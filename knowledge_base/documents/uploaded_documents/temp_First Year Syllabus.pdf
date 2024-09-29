@@ -1,0 +1,3442 @@
+ 
+ 
+CSE, SSET, SU  Page 70 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+TERM - I 
+ 
+ 
+ 
+ 
+ 
+   
+ 
+CSE, SSET, SU  Page 71 
+ 
+School: SET  Batch :  2023 -27 
+Program: B.Tech  Current Academic Year: 2023 -24 
+Branch: ALL  Semester:1  
+1 Course Code  CSE113  Course Name: Programming for problem solving  
+2 Course  Title  Programming for problem solving  
+3 Credits  3 
+4 Contact Hours  
+(L-T-P) 3-0-0 
+ Course Status  Core  
+5 Course Objective  1. Learn basic programming constructs –data types, 
+decision structures, control structures in C  
+2. learning logic aptitude programming in  c language  
+3. Developing software in c programming  
+6 Course Outcomes   Students will be able to:  
+CO1: demonstrate  the algorithm, Pseudo -code and flow 
+chart for the given problem.  
+CO2 : develop  better understanding of basic concepts of 
+C programming.  
+CO3: create  and implement logic using array and 
+function.  
+CO4: construct  and implement the logic based on the 
+concept of strings and pointers.  
+CO5: apply  user-defined data types and I/O operations 
+in file.  
+CO6: design  and develop solutions to real world 
+problems usin g C. 
+ 
+7 Course Description  Programming for problem solving gives the Understanding of 
+C programming and implement code from flowchart or 
+algorithm  
+8 Outline syllabus  CO 
+Mapping  
+ Unit 1  Logic Building   
+A Flowchart: Elements, Identifying and 
+understanding input/ output, Branching and 
+iteration in flowchart  CO1,  
+B Algorithm design: Problem solving approach(top 
+down/bottom up approach)  CO1  
+C Pseudo Code : Representation of different 
+construct, writing pseudo -code from algorithm 
+and flowchar t CO1  
+ Unit 2  Introduction to C Programming   
+A Introduction to C programming language, Data 
+types, Variables, Constants, Identifiers and 
+keywords, Storage classes  CO2, 
+CO6  
+B Operators and expressions, Types of Statements: 
+Assignment, Control, jumping.  CO2, 
+CO6   
+ 
+CSE, SSET, SU  Page 72 
+ 
+C Control statements: Decisions, Loops, break, 
+continue   CO2, 
+CO6  
+ Unit 3  Arrays and Functions   
+A Arrays: One dimensional and multi -dimensional  
+arrays: Declaration, Initialization and array 
+manipulation (sorting, searching).  CO3, 
+CO6  
+B Functions: Definition, Declaration/Prototyping 
+and Calling, Types of functions, Parameter 
+passing: Call by value, Call by reference.  CO3, 
+CO6  
+C Passing and Returning Arrays from Functions, 
+Recursive Functions.  CO3, 
+CO6  
+ Unit 4  Pre-processors and Pointers   
+A Pre-processors: Types, Directives, Pre -
+processors Operators (#,##, \) , Macros: Types, 
+Use, predefined Macros  CO4, 
+CO6  
+B Pointer: Introduction, declaration of pointer 
+variables, Operations on pointers: Pointer 
+arithmetic, Arrays and pointers, Dynamic 
+memory allocation.  CO4, 
+CO6  
+C String: Introduction, predefined string functions, 
+Manipulation of text data, Command Line 
+Arguments.  CO4, 
+CO6  
+ Unit 5  User Defined Data Types and File Handling   
+A Structure and Unions: Introduction, Declaration, 
+Difference, Application, Nested structure, self -
+referential structure, Array of structures, Passing 
+structure in function.  CO5, 
+CO6  
+B Files: Introduction, concept of record, I/O 
+Streaming and Buffering, Types of Files: 
+Indexed file, sequential file and random file,  CO5, 
+CO6  
+C Creating a data file, Opening and closing a data 
+file, Various I/O operations on data files: Storing 
+data or records in file, adding records, 
+Retrieving, and updating Sequential file/random 
+file. CO5, 
+CO6  
+ Mode of examination  Theory   
+ Weightage Distribution  CA MTE  ETE  
+25% 25% 50%  
+ Text book/s*  Kernighan, Brian, and Dennis Ritchie.  The C Programming  
+Language   
+ Other References  1. B.S. Gottfried - Programming With C - Schaum's 
+Outline Series - Tata McGraw Hill 2nd Edition - 
+2004.  
+2. E. Balagurusamy  - Programming in ANSI C - 
+Second Edition - Tata McGraw Hill - 1999  
+  
+ 
+CO and PO Mapping   
+ 
+CSE, SSET, SU  Page 73 
+ 
+S. 
+No. Course Outcome  Program Outcomes (PO) & Program 
+Specific Outcomes (PSO)  
+1. CO1:  demonstrate the algorithm, Pseudo -code and flow 
+chart for the given problem.   PO1,PO2,PO3, PO9, PSO1,PSO2  
+2. CO2: develop better understanding of basic concepts of 
+C programming.  
+.  PO1,PO3, PO4, PO5, PO9, 
+PO11,PSO1,PSO2  
+3. CO3: : create and implement logic using array and 
+function.   PO1,PO3,PO4, PO9, PSO2  
+4. CO4: const ruct and implement the logic based on the 
+concept of strings and pointers.   PO1,PO3,PO4, PO9, PSO2  
+5. CO5: apply user -defined data types and I/O operations 
+in file.   PO1,PO3,PSO2  
+6 CO6: design and develop solutions to real world 
+problems using C.   PO1,PO2,PO3,PO4,PO9, PO11,PSO1  
+PSO2,PSO3  
+ 
+ 
+PO and PSO mapping with level of strength for Course Name Programming for 
+problem solving (Course Code CSE 113)  
+  
+PO 
+1 PO 
+2 PO 
+3 PO 
+4 PO 
+5 PO 
+6 PO 
+7 PO 
+8 PO 
+9 PO 
+10 PO 
+11 PO 
+12 PSO1  PSO2  PSO3  
+CO1  1 2 2 _ _ - _ _ 2 _ _ _ 1 2 _ 
+CO2  2 _ 3 2 2 - _ _ 1 _ 1 _ 2 2 _ 
+CO3  3 _ 2 1 _ _ _ _ 3 _ _ _ _ 2 _ 
+CO4  1 _ 2 1 _ _ _ _ 1 _ _ _ _ 3 _ 
+CO5  1 _ 1 _ _ _ _ _ _ _ _ _ _ 1 _ 
+CO6  3 3 3 2 - - _ _ 2 _ 2 _ 2 3 1 
+ 
+Average of non -zeros entry in following table (should be auto calculated).  
+ 
+ 
+   
+ 
+CSE, SSET, SU  Page 74 
+ 
+School: SET  Batch : 2023 -27 
+Program: B.Tech.  Current Academic Year:  2023 -24 
+Branch: CSE  Semester: I  
+1 Course Code  MTH 145  
+2 Course  Title   Probability and Statistics  
+3 Credits  4 
+4 Contact Hours  
+(L-T-P) 3-1-0 
+ Course Status  Compulsory  
+5 Course 
+Objective  The objective of this course is to familiarize the students with 
+statistical techniques. It aims to equip the students with standard 
+concepts and tools at an intermediate to advanced level that will serve 
+them well towards tackling various problems in the discipline.  
+6 Course 
+Outcomes  CO1: Explain the concept of probability and Random Variable. 
+(K2,K3, K4)  
+CO2: Explain the concept of distribution functions, densities and 
+probability  distributions; illustrate discret e and continuous 
+probability distributions. (K1, K2, K3, K4)  
+CO3: Describe the concept of moments, skewness and Kurtosis; 
+evaluate correlation and regression – Rank correlation; discuss  
+bivariate distributions and their properties  
+. (K1, K2, K5)  
+CO4: Disc uss the basic of Curve fitting by the method of least 
+squares; evaluate straight lines, second degree parabolas and more 
+general curves. (K1, K2, K5)  
+CO5: Describe and use the concepts test of significance: Large sample 
+test for single proportion, differen ce of proportions; calculate single 
+mean, difference of means, and difference of standard deviations. 
+(K1,K2,K3)  
+CO6:  Explain the basic concepts of tests of small samples - Student’s 
+T test, Chi -square test for goodness of fit, and evaluate the result.            
+(K2, K4, K5)  
+7 Course 
+Description  This course is an introduction to the fundamental of Mathematics. The 
+primary objective of the course is to develop the basic understanding 
+of statistics including measures of central tendency, correlation and 
+regression, statistical methods of data sampli ng, probability and 
+random variables and various discrete and continuous  probability 
+distributions and their properties.  
+8 Outline syllabus : Probability and Statistics  CO 
+Mapping  
+ Unit 1  Basic Probability   
+A Probability spaces, conditional probability, Bayes' 
+rule. CO1   
+ 
+CSE, SSET, SU  Page 75 
+ 
+ 
+B Discrete random variables, Independent random 
+variables  CO1  
+C Expectation of Discrete Random Variables, 
+Chebyshev's Inequality  CO1  
+ Unit 2  Discrete and Continuous Probability Distributions   
+A Discrete Probability distributions: Binomial, Poisson.  CO2  
+B Continuous random variables and their properties, 
+distribution functions and densities.  CO2  
+C Normal, exponential and gamma distribution.  CO2  
+ Unit 3  Statistics   
+A Moments, skewness and Kurtosis.  CO3  
+B Correlation and regression – Rank correlation.  CO3  
+C Bivariate distributions and their properties.  CO3  
+ Unit 4  Applied Statistics   
+A Curve fitting by the method of least squares - fitting 
+of straight lines, second degree parabolas and more 
+general curves.  CO4, CO5  
+B Test of significance: Large sample test for single 
+proportion,  CO4, CO5  
+C Difference of proportions, single mean, difference of 
+means, and difference of standard deviations.  CO4, CO5  
+ Unit 5  Testing Hypothesis   
+A Test for single mean, difference of means  CO6  
+B test for ratio of variances  CO6  
+C Chi-square test for goodness of fit and independence 
+of attributes  CO6  
+ Mode of 
+examination  Theory   
+ Weightage 
+Distribution  CA MTE  ETE  
+25% 25% 50%  
+ Text book/s*  1. Erwin Kreyszig, Advanced 
+Engineering Mathematics, 9th 
+Edition, John Wiley & Sons, 2006.  
+2. P. G. Hoel, S. C. Port and C. J. 
+Stone, Introduction to Probability 
+Theory, Universal Book Stall, 2003 
+(Reprint).  
+3. S. Ross, A First Course i n 
+Probability, 6th Ed., Pearson 
+Education India, 2002.  
+  
+ Other 
+References  1. W. Feller, An Introduction to 
+Probability Theory and its   
+ 
+CSE, SSET, SU  Page 76 
+ 
+Applications, Vol. 1, 3rd Ed., Wiley, 
+1968.  
+2. B.S. Grewal, Higher Engineering 
+Mathematics, Khanna Publishers, 35th 
+Edition, 2000. Veerarajan T., 
+Engineering Mathematics (for 
+semester III), Tata McGraw -Hill, New 
+Delhi, 2010.  
+ 
+ 
+COURSE OUTCOMES – PROGRAMME OUTCOMES MAPPING TABLE  
+ 
+PO PO1  PO2  PO3  PO4  PO5  PO6  PO7  PO8  PO9  PO10  PO11  PO12  
+CO 
+CO1 3 3 2 2 3 1 - - - 1 1 1 
+CO2 3 2 3 2 2 2 - - - 1 1 2 
+CO3 3 3 2 2 2 1 - - - 1 1 1 
+CO4 3 2 2 2 2 1 - - - 1 1 1 
+CO5 3 3 2 2 2 1 - - - 1 1 2 
+CO6 3 3 2 3 2 2 - - - 1 1 2 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+CSE, SSET, SU  Page 77 
+ 
+PHY125 Engineering Physics -I 
+School: School of 
+Basic Sciences and 
+Research  Batch : 2023 -27 
+Program: B.TECH .  Current Academic Year: 2023 -24 
+Branch: 
+CSE/EC/EEE  Semester: I 
+1 Course Code  PHY125  
+2 Course Title  Engineering Physics -I 
+3 Credits  4 
+4 Contact Hours 
+(L-T-P) 3-1-0 
+ Course Status  Compulsory  
+5 Course 
+Objective  To make students proverbial with the fundamental concepts of 
+Semiconductors materials and electromagnetism and their real -life 
+applications for configuring various electronics devic es. 
+6 Course 
+Outcomes  After the completion of this course,  
+CO1: Students will learn the fundamental concepts of mobility, 
+conductivity, electrons and holes in an intrinsic semiconductors, Donor 
+and Acceptor impurities (n -type and p -type semiconductor), Fermi levels 
+etc. Students will gain knowledge about the formation of depletion region, 
+barrier potential, Zener diode, Characteristics of Zener diode etc.  
+CO2: Students will have a clear understanding of Coherent sources, 
+interaction of ra diation with matter (spontaneous and stimulated 
+emission), Einstein’s relation, population inversion and pumping, Ruby 
+LASER, He -Ne Laser and semiconductor Laser.   
+CO3:  Students  will show  that they have  learned  the basics  of fiber  
+optics,  Holography  and its applications.  
+CO4:  Students  will be able to understand  the significance  and 
+applications  of Maxwell’s  equations.  
+CO5:  Students  will be able to know  about  the short  comings  of classical  
+physics  and will learn  various  quantum  mechanical  principles.  
+CO6: S tudent will be familiar with the essential concepts of 
+Semiconductors materials technology and their applications in industries.  
+ 
+7 Course 
+Description  This course provides the basic foundation for understanding electronic 
+semiconductor devices and their applications and limitations. It has 
+introductory elements of various concept of material science. This course 
+is essential for students who desire to sp ecialize their engineering in 
+Computer Sciences, Electronics, and Electronics and Electrical 
+engineering.  
+8 Outline Syllabus  CO 
+Mapping  
+ Unit 1  Semiconductor Physics   
+A Classification of Solids on the basis of energy band, electrons 
+and holes concentration in intrinsic semiconductors, Fermi 
+levels, Mobility, conductivity,  CO1   
+ 
+CSE, SSET, SU  Page 78 
+ 
+B Donor and Acceptor impurities (n -type and p -type 
+semiconductor), Drift and diffusion current, Hall effect,  CO1  
+C p-n junction, types of p -n junction (step -graded and Linearly -
+graded junction), formation of depletion region, barrier 
+potential, Zener diode, Avalanche and Zener breakdown.  CO1, 
+CO6  
+ 
+ Unit 2  Laser Physics and optoelectronic Sources                                                  
+A Coherent sources, interaction of radiation with matter 
+(spontaneous and stimulated emission), Einstein’s relation,  CO2  
+B population inversion and pumping, active components of laser, 
+optical amplification or gain, threshold condition for laser 
+action, Ruby and He -Ne lasers.  CO2, 
+CO6  
+C Optoelectronic sources: Light emitting diode (construction, 
+basic working principle) , semiconductor laser (construction, 
+basic working principle)  CO2, 
+CO6  
+ Unit 3  Fiber Optics and Holography                                                                       
+A Introduction, structure of optical fiber, Light guidance through 
+optical fiber, Acceptance angle and Acceptance cone, 
+Numerical aperture,  CO3  
+B Types of optical fibers, Attenuation and Dispersion in optical 
+fiber, Applications of optical fibers.  CO3, 
+CO6  
+C Basic principle of holography, Recording of holograms, 
+Reconstruction process, Applications of holography.  CO3, 
+CO6  
+ Unit 4  Electromagnetism   
+A Gauss’s theorem and its applications, Electric potential, and 
+potential difference, Biot -Savart law and its application to 
+current carrying circular loop  CO4  
+B Ampere’s law and its applications to infinitely long straight 
+wire, and solenoids. Electromagnetic induction; Faraday’s law  CO4  
+C Maxwell’s equations in free space and dielectric media, 
+Electromagnetic waves.  CO4  
+ Unit 5  Quantum Mechanics                                                                                      
+A Inadequacy of classical Physics, Wave particle duality, de -
+Broglie wavelength,  CO5  
+B Davisson -Germer  experiment, Schrodinger wave equation,  CO5, 
+CO6  
+C particle in a 1 -dimensional box, harmonic oscillator problem,  CO5, 
+CO6  
+ Mode of 
+Examination  Theory   
+ Weightage 
+Distribution  CA MTE  ETE  
+30% 20% 50%  
+ Text books  Integrated Electronics - Millman - Halkias, Tata Mc 
+Graw Hill   
+ 
+ Other 
+References  1. Semiconductor Devices Physics and Technology - S M 
+Sze, John Wiley & Sons  
+2. Semiconductor  physics  and devices:  basic  principles - 
+Donald  A. Neamen.  
+3. Laser and non -linear optics by B.B. laud, New Age Int.    
+ 
+CSE, SSET, SU  Page 79 
+ 
+4. Semiconductor Devices - Kanaan Kano, Pearson 
+Education.  
+5. Electronics devices and circuit theory by R.L. 
+Boylestad, Pearson.  
+6. Introduction to Electrodynamics, David J. Griffiths, 
+Pearson Cambridge University Press  
+7. Fundamentals of Electricity and Magnetism, D. N. 
+Vasudeva, S. Chand &amp; Co. New Delhi  
+8. Fundamentals of Physics, Halliday, Resnick and 
+Walker, John Wiley.  
+9. Concepts of Modern Physics, Beiser Arthur, McGraw -
+Hill Education  
+ 
+ 
+ 
+Mapping of CO Vs Pos:  
+Cos PO1 PO2 PO3 PO4 PO5 PO6 PO7 PO8 PO9 PO10  PO11  PO12  
+CO1 3 3 2 2 2 1 1 1 2 1 1 1 
+CO2  3 3 2 3 3 2 1 1 1 1 1 1 
+CO3  3 3 2 3 3 2 1 1 1 1 1 1 
+CO4  3 3 3 2 3 2 1 1 1 1 1 1 
+CO.5 3 3 3 2 3 2 1 1 1 1 1 1 
+CO6  3 3 3 3 3 2 1 1 1 1 1 1 
+ 
+   
+ 
+CSE, SSET, SU  Page 80 
+ 
+School: SET  Batch : 2023 -27 
+Program: B. Tech  Current Academic Year: 2023 -24 
+Branch: All  Semester: I  
+1 Course Code  CVL -103 
+2 Course  Title   Environmental Science  
+3 Credits  02 
+4 Contact 
+Hours  
+(L-T-P) 2-0-0   
+ Course Status  Compulsory  
+5 Course 
+Objective  1. Enable students to learn the concepts, principles and 
+importance of environmental science  
+2. Provide students an insight of various causes of  natural 
+resource depletion and its conservation  
+3. Provide knowledge of layers of atmosphere  with an insight of 
+role of climatic elements in dispersion of pollutants  
+4. Provide detailed knowledge  of causes, eff ects and control of 
+different types of environmental pollution, solid waste 
+management and its effect on climate change, global warming 
+and ozone layer depletion  
+5. Provide and enrich the students about social issues such as 
+R&R, water conservation and sustainability.  
+6 Course 
+Outcomes  CO1.Understand the scope of environmental science  with  
+knowledge about various types of natural resources and its 
+conservation         
+CO2. Study about the structure and composition of atmosphere and 
+factors affecting weather and climate  
+CO3. Study about pollution causes, effects and control and solid 
+waste management  
+CO4. Effect of global warming and ozone layer depletion  
+CO5. Understand sustainable development, resettlement and 
+rehabilitation, impact of population explosion on environment  
+CO6.Understand overall environmental issues and its 
+management  
+7 Course 
+Description  Environmental Science emphasises on various factors as  
+1. Importance and scope of environmental science  
+2. Natural  resource conservation  
+3. Pollution causes, effects and control methods and solid waste 
+management  
+4. Social issues associated with environment  
+ 
+8 Outline syllabus  CO 
+Mapping  
+ Unit 1  General Introduction   
+A Definition, principles and scope of environmental 
+science  CO1  
+B Water Resources,  Land Resources,  Food Resources  CO1  
+C Mineral Resources,  Energy Resources,  Forest 
+Resources  CO1  
+ Unit 2  Atmosphere and meteorological parameters    
+ 
+CSE, SSET, SU  Page 81 
+ 
+A Structure and composition of atmosphere  CO2  
+B Meteorological parameters: Pressure, Temperature, 
+Precipitation, Humidity,  CO2  
+C Radiation, Wind speed and direction, Wind Rose  CO2  
+ Unit 3  Environmental Pollution ( Cause, effects and 
+control measures)   
+A Air, water,  Noise  and  Soil pollution    CO3  
+B Case studies on pollution   CO3  
+C Solid waste management: Causes, effects and 
+control measures of urban and industrial wastes.  CO3  
+ Unit 4  Climate Change and its impact   
+A Concept of Global Warming and greenhouse effect   CO4  
+B Ozone layer Depletion and its consequences  CO4  
+C Climate change and its effect on ecosystem,  Kyoto 
+protocol and IPCC concerns on changing climate  CO4  
+ Unit 5  Social Issues and the Environment    
+A Concept of sustainable development, Water 
+conservation  CO5  
+B Resettlement and rehabilitation of people; its 
+problems and concerns, Case studies  CO5  
+C Population explosion and its consequences  CO5  
+ Mode of 
+examination  Theory   
+ Weightage 
+Distribution  CA MTE  ETE  
+25% 25% 50%  
+ Text book/s*  1. Joseph, Benny, “Environmental Studies”, Tata 
+Mcgraw -Hill. 
+2. .Howard S. Peavy, Donald R. Rowe, George 
+Tchobanoglous. Environmental engineering  Mc Graw -
+Hill, 1985    
+ Other 
+References    
+   
+ 
+CO↓ PO→  PO1 PO2 PO3 PO4 PO5 PO6 
+CO1 2 2 3 3 3 3 
+CO2 2 2 2 2 2 3 
+CO3 2 2 3 2 3 3 
+CO4 2 2 3 2 3 3 
+CO5 2 2 2 2 3 3 
+CO6 2 2 3 2 2 3 
+ 
+   
+ 
+CSE, SSET, SU  Page 82 
+ 
+School: SET   
+Program: B.Tech   
+Branch: All  Semester: I/II  
+1 Course Code  HMM111  Course Name  
+2 Course  Title  Human Values and Ethics  
+ 
+3 Credits  2 
+4 Contact Hours  
+(L-T-P) 2-0-0 
+ Course Status  Compulsory  
+5 Course 
+Objective  To facilitate the development of a Holistic perspective among students 
+towards life and profession as well as towards happiness and prosperity based 
+on a correct understanding of the Human reality and the rest of Existence  
+6 Course 
+Outcomes   
+1. Understand that the technical education without study of human values 
+can generate more problems than solutions.  
+2. Define the principles and ideals, which help in making the judgement of 
+what is more important.  
+3.  See that ‘I’ and ‘Body’ are two realities, and most of their desires are 
+related to ‘I’ and not body, while their efforts are mostly c entered on the 
+fulfilment of the needs of the body assuming that it will meet the needs 
+of ‘I’ too.  
+4. Appreciate the importance of harmony in the self, family and the society 
+for mutual fulfilment.  
+5. Understand the importance of harmony among human beings, ot her 
+living beings and entire nature for universal equilibrium and mutual co -
+existence.  
+6. Know and practice the ethical approach in profession for continuous 
+happiness and sustained prosperity.  
+ 
+7 Course 
+Description  Human values and embedded in all human be ings it is important to sensitize 
+them towards these values that they can use in their life to attain mutual 
+happiness and mutual prosperity. Professional ethics will enlighten them 
+about the value addition that can be done within the framework of ethical 
+behaviour.  
+8 Outline syllabus  CO Mapping  
+ Unit 1  The  Need and Process for Value Education   
+A The need, basic guidelines, content, and process for Value 
+Education  CO1  
+B Concept of ‘Natural Acceptance’ and Experiential 
+Validation - as the mechanism for self -exploration; 
+Continuous Happiness and Prosperity - A look at basic 
+Human Aspirations  
+ CO1,CO2  
+C Right understanding, Relationship and Physical Facilities - 
+the basic requirements for fulfilment aspirations of every 
+human being with their correct priority  CO1,CO2  
+ Unit 2  Understanding Harmony in the Human Being - Harmony 
+in Myself   
+A Human being as a co -existence of the sentient ‘I’ and the 
+material ‘Body’  CO3   
+ 
+CSE, SSET, SU  Page 83 
+ 
+ 
+B The needs of Self (‘I’) and ‘Body’  ;  Understanding the 
+Body as an instrument of ‘I’ (I being the doer, seer and 
+enjoyer)  CO3  
+C The characteristics and activities of ‘I’ and harmony in ‘I’ 
+; Understanding the harmony of I with the Body:  Correct 
+appraisal of Physical needs, meaning of Prosperity in 
+detail  CO3  
+ Unit 3  Harmony in the Family and Society   
+A Values in human -human relationship;  Trust  and Respect 
+as the foundational values of r elationship  
+ CO4  
+B Understanding the meaning of Trust; Difference between 
+intention and competence; The meaning of Respect; 
+Difference between respect and differentiation; the other 
+salient values in relationship  CO4  
+C Harmony in the society (society being an extension of 
+family; Visualizing a universal harmonious order in 
+society - from family to world family  CO4  
+ Unit 4  Harmony in the Nature and Existence   
+A The harmony in the Nature  CO5  
+B Interconnectedness and mutual fulfilment among the four 
+orders of nature recyclability and self -regulation in nature  CO5  
+C Understanding Existence as Co -existence of mutually 
+interacting units in all -pervasive space  
+ CO5  
+ Unit 5  Competence in professional ethics   
+A Ability to utilize the professional competence for 
+augmenting universal human order  CO6  
+B Ability to identify the scope and characteristics of people -
+friendly and eco -friendly production systems,  CO6  
+C Ability to identify and develop appropriate technologies 
+and management patterns for above production systems.  CO6  
+ Mode of 
+examination  Theory   
+ Weightage 
+Distribution  CA MTE  ETE  
+25% 25% 50%  
+ Text book/s*  3. R.R Gaur, R Sangal, G P Bagaria, "A foundation 
+course in Human Values and professional Ethics", 
+Excel books, New Delhi   
+ Other 
+References  1. B L Bajpai, 2004, Indian Ethos and Modern 
+Management, New Royal Book Co., Lucknow.   
+2. A.N. Tripathy, 2003, Human Values, New Age 
+International Publishers.  
+3. PL Dhar, RR Gaur, Science an d Humanism, 
+Commonwealth Publishers. Starting out with Python, 
+Tony Gaddis, Pearson  
+  
+ 
+ 
+ 
+  
+ 
+CSE, SSET, SU  Page 84 
+ 
+CO and PO Mapping  
+ 
+ 
+ 
+  
+COs PO1 PO2 PO3 PO4 PO
+5 P
+O6 PO7 PO8 PO9 PO1
+0 PO1
+1 PO1
+2 PSO
+1 PSO2  PSO3  PSO
+4 PSO
+5 
+CO1       3 1 3 1   3      
+CO2       2 1 3 2   3      
+CO3       3 1 3 2   3      
+CO4       3 1 3 2   3      
+CO5       3 3 3 3  2 3      
+CO6       3 3 3 2  3 3       
+ 
+CSE, SSET, SU  Page 85 
+ 
+ 
+School:  SET | SOL | SMFE | SBS -BBA | SBSR | SOE | SAP  
+Department  Sharda Skills  
+Program:  Communicative English -2 
+Branch:  Aptitude Reasoning & Personality  
+1 Course Code  ARP - 102  
+2 Course  Title   Communicative English -2 
+3 Credits  2 
+4 Contact Hours  
+(L-T-P) 1-0-2 
+ Course Status  Core  
+5 Course 
+Objective  To Develop LSRW skills through audio -visual language acquirement, 
+creative writing, advanced speech et al and MTI Reduction with the aid 
+of certain tools like texts, movies, long and short essays.  
+6 Course 
+Outcomes  After completion of this course, students will be able to:  
+ 
+CO1   Acquire Vision, Goals and Strategies through Audio -visual 
+Language Texts  
+ 
+CO2   Synthesize complex concepts and present them in creative 
+writing  
+ 
+CO3   Develop MTI Reduction/Neutral Accent through Classroom 
+Sessions & Practice  
+ 
+CO4   Determine their role in achieving team success t hrough defining 
+strategies for effective communication with different people  
+ 
+CO5 Realize their potentials as human beings and conduct themselves 
+properly in the ways of world.  
+ 
+CO6 Acquire satisfactory competency in use of  Quantitative aptitude 
+and  Logi cal Reasoning  
+ 
+7 Course 
+Description  The course takes the learnings from the previous semester to an 
+advanced level of language learning and self -comprehension through 
+the introduction of audio -visual aids as language enablers. It also leads 
+learners to an advanced level of writing, reading, listening and 
+speaking abilities, while also reducing the usage of L1 to minimal in 
+order to increase the employability chances.  
+ 
+8 Outline syllabus – ARP 102  CO Mapping  
+ Unit 1  Acquiring Vision, Goals, Strategies through Audio -
+visual Language Texts and Creative Writing    
+ 
+CSE, SSET, SU  Page 86 
+ 
+A Pursuit of Happiness / Goal Setting & Value 
+Proposition in life,12 Angry Men / Ethics & 
+Principles,The  King’s Speech / Mission statement in 
+life | strategies & Action Plans in Life  CO1 
+B Story Reconstruction - Positive Thinking,Theme 
+based Story Writing - Positive attitude  CO2 
+C Learning Diary  Learning Log – Self-introspection  CO2 
+ Unit 2  Writing Skills 1 and MTI Reduction/Neutral Accent 
+through Classroom Sessions & Practice   
+A Precis, Paraphrasing, Essays (Simple essays)  
+CO2 
+B Vowel, Consonant, sound correction, speech sounds, 
+Monothongs, Dipthongs and Tripthongs , Vowel 
+Sound drills , Consonant Sound drills, Affricates and 
+Fricative Sounds  co3 
+C Speech Sounds | Speech Music| Tone | Volume| 
+Diction |Syntax |Intonation | Syllable Stress   
+ Unit 3  Gauging MTI Reduction Effectiveness through Free 
+Speech   
+A Jam sessions  CO3 
+B Extempore  CO3 
+C Situation -based Role Play  CO3 
+ Unit 4  Leadership and Management Skills and Universal 
+Human Values   
+A Innovative Leadership and Design Thinking, Ethics 
+and Integrity  CO4  
+B Love & Compassion, Non -Violence & Truth, 
+Righteousness, Peace  CO5  
+C Service, Renunciation (Sacrifice)  CO5  
+ Unit 5  Introduction to Quantitative aptitude & Logical 
+Reasoning   
+A Analytical Reasoning  CO6  
+B Number Systems and its Application in Solving 
+Problem  CO6  
+C Puzzle Solving  CO6  
+ Mode of 
+examination  CA / VIVA / ESE   
+ Weightage 
+Distribution  
+ CA VIVA  ETE  
+25 25 50  
+ Text book/s*  .Wren, P.C.&Martin H. High English Grammar 
+and Composition , S.Chand& Company Ltd, New 
+Delhi.    
+ 
+CSE, SSET, SU  Page 87 
+ 
+● Blum, M. Rosen. How to Build Better 
+Vocabulary . London: Bloomsbury 
+Publication  
+● Comfort, Jeremy(et.al). Speaking Effectively .  
+Cambridge University Press.  
+ 
+ Other 
+References  The Luncheon by W.Somerset Maugham - 
+http://mistera.co.nf/files/sm_luncheon.pdf   
+CO and PO Mapping  
+S. 
+No. Course Outcome  Program Outcomes (PO) & 
+Program Specific Outcomes 
+(PSO)  
+1. CO1   Acquire Vision, Goals and Strategies through Audio -visual 
+Language Texts . PO9, PO10, PO11,PO12  
+ 
+2. CO2   Synthesize complex concepts and present them in creative 
+writing . PO9, PO10, PO11,PO12  
+3. CO3   Develop MTI Reduction/Neutral Accent through Classroom 
+Sessions & Practice . PO9, PO10, PO11,PO12  
+4. CO4   Determine their role in achieving team success through 
+defining strategies for effective communication with different people  PO9, PO10, PO11,PO12  
+5. CO5 Realize their potentials as human beings and conduct 
+themselves properly in the ways of world. . 
+ PO9, PO10, PO11,PO12  
+6.  CO6 Acquire satisfactory competency in use of  Quantitative 
+aptitude and  Logical Reasoning  PO9, PO10, PO11,PO12  
+ 
+PO and PSO mapping with lev el of strength for Course  
+Code_ 
+Course 
+Name  CO’s  PO 
+1 PO2  P
+O
+3 PO4  P
+O5 P
+O
+6 PO
+7 P
+O8 PO9  PO10  PO11  PO12  PSO1  
+ PSO2  PSO3  
+ 
+CSC302_
+Cryptogra
+phy  
+and  
+Network 
+Security  CO1  - -  - - 
+ 
+ - - - 1 3 1 2 - - - 
+CO2  - - - – - - - - 1 3 1 2 - - -- 
+CO3  - - - - - - - - 1 3 1 2 - - - 
+CO4  - - - - - – – - 1 3 1 2 - - - 
+CO5  - - -  - - -  1 3 1 2 - - - 
+CO6  - - - - - - - - 1 3 1 2 - - -- 
+ 
+Average of non -zeros entry in following table (should be auto calculated).  
+Course 
+Code  Course Name  PO   1  PO2  PO 3  PO 
+4 PO
+5 PO
+6 P
+O7 PO
+8 PO9  PO
+10 P
+O1
+1 PO
+12 PSO
+1 PS
+O2 PS
+O3 
+ARP  - 
+102  Communicative 
+English - 2         1 3 1 2    
+ 
+ 
+ 
+CSE, SSET, SU  Page 88 
+ 
+Syllabus: CSP 113:  Programming for problem solving Lab  
+ 
+School: SET Batch : 2023 -27 
+Program: B.Tech.  Current Academic Year: 2023 -24 
+Branch: CSE  Semester: I  
+1 Course Code  CSP113  
+2 Course  Title  Programming for problem solving Lab  
+3 Credits  3 
+4 Contact Hours  
+(L-T-P) 3-0-0 
+ Course Status  Compulsory  
+5 Course 
+Objective  1. Learn basic programming constructs –data types, decision 
+structures, control structures in C  
+2. learning logic aptitude programming in  C  language  
+3. Developing software in c programming  
+6 Course 
+Outcomes  Students will be able to:  
+CO1: Implement  core concept of c Programming  
+CO2: develop  programs using Array and String   
+CO3: create  Functions for any problem  
+CO4: Use Union and Structure to write any program  
+CO5: implement  concept of Pointers  
+CO6 : design  a real world problem with the help of c 
+programming  
+7 Course 
+Description  Programming for problem solving gives the Understanding of C 
+programming and implement code from flowchart or algorithm  
+8 Outline syllabus  CO Mapping  
+ Unit 1  Logic Building  CO1, CO6  
+ Draw flowchart for finding leap year   
+ Write a c Program to Add Two Integers   
+ Write a program to create a calculator   
+ Unit 2  Introduction to C Programming  CO2, CO6  
+ Write a c program to convert length meter to cm   
+ Write a c program to convert temp   
+ Write a c program to swap two numbers   
+ Unit 3  Arrays and Functions  CO3, CO6  
+ Write a c program to calculate the average using 
+arrays   
+ Write a c program to find the largest element of the 
+array   
+ Unit 4  Pre-processors and Pointers  CO4, CO6  
+ Write a c program to swap two values using pointers   
+ Write a c program to find largest number from array 
+using pointers   
+ Unit 5  User Defined Data Types and File Handling  CO5, CO6  
+ Write a c program to store information of a student 
+using structure   
+ 
+ 
+CSE, SSET, SU  Page 89 
+ 
+ Write a c program to store information of a student 
+using union   
+ Mode of 
+examination  Practical   
+ Weightage 
+Distribution  CA CE(Viva)  ETE  
+25% 25% 50%  
+ Text book/s*  Kernighan, Brian, and Dennis Ritchie.  The C Programming  
+Language   
+ Other 
+References  4. B.S. Gottfried - Programming With C - Schaum's 
+Outline Series - Tata McGraw Hill 2nd Edition - 
+2004.  
+5. E. Balagurusamy - Programming in ANSI C - 
+Second Edition - Tata McGraw Hill - 1999  
+  
+ 
+Course outline  
+This course  implements a rray and pointer and Recursive applications. The course talks 
+primarily about Array, string, functions, structure & union and Pointers etc.  
+Course Evaluation  
+Attendance  None  
+Any other  CA judged on the practicals conducted in the lab ,  weightage may be specified  
+References  
+ Text book  Kernighan, Brian, and Dennis Ritchie.  The C Programming  Language  
+Other References  1. B.S. Gottfried - Programming With C - Schaum's  Outline Series - Tata 
+McGraw Hill 2nd Edition - 2004.  
+2. E. Balagurusamy - Programming in ANSI C - Second Edition - Tata McGraw 
+Hill- 1999  
+Softwares  Turbo C  
+ 
+PO and PSO mapping with level of strength for Course Name Programming for problem 
+solving Lab  (Course Code CSP113)  
+ 
+ 
+Course Code_ 
+Course Name  CO’s  PO 
+1 PO 
+2 PO 
+3 PO 
+4 PO 
+5 PO 
+6 PO 
+7 PO 
+8 PO 
+9 PO 
+10 PO 
+11 PO 
+12 PSO  
+1 PSO  
+2 PSO  
+3 
+CSP113_  
+Programming for 
+problem solving Lab  CO1  2 - 3 2 2 - - - 2 - - - 3 2 2 
+CO2  3 - 3 2 2 - - - 3 - - - 3 3 1 
+CO3  2 - 3 1 2 - - - 2 - - - 2 3 2 
+CO4  1 - 2 1 1 - - - 2 - - - 2 2 - 
+CO5  2 - 3 2 2 - - - 3 - - - 3 2 2 
+CO6  3 - 3 3 1 - - - 2 - - - 2 3 2 
+ 
+Average of non -zeros entry in following table (should be auto calculated).  
+ 
+Course 
+Code  Course 
+Name  PO   
+1 PO 
+2 PO 
+3 PO 
+4 PO 
+5 PO 
+6 PO 
+7 PO 
+8 PO 
+9 PO 
+10 PO 
+11 PO 
+12 PSO 
+1 PSO  
+2 PSO 
+3 
+CSP113  Programming  
+for problem  
+solving Lab  2.17  2.83 1.83 1.67 - - - 2.33 - - - 2.50 2.50 1.80  
+ 
+CSE, SSET, SU  Page 90 
+ 
+Syllabus: CSP 101: Introduction to Computer Science and Engineering  
+ 
+School: SET  Batch : 2023 -27 
+Program:B.Tech  Current Academic Year: 2023 -24 
+Branch: CSE  Semester:I  
+1 Course Code  CSP101  Course Name  
+2 Course  Title  Introduction to Computer Science and Engineering  
+3 Credits  1 
+4 Contact 
+Hours  
+(L-T-P) 0-0-2 
+ Course 
+Status  UG 
+5 Course 
+Objective  1. To familiarize the students about the importance of Undergraduate 
+course on Computer Science & Engineering.  
+2. To discuss recent developments in hardware and software 
+environments.  
+3. To focus future application areas of Computer Science and 
+Engineering.  
+4. To discuss various research and development options in Computer 
+Science and Engineering.  
+6 Course 
+Outcomes  The student should be able to:  
+CO1.  Understand the technical aspects of Computer Science & Engineering 
+Course.  
+CO2.  Perceive some knowledge about programming in various applications.  
+CO3.  Acquire basic understanding about computer networking and related 
+technology.  
+CO4.  Enhance s ome fundamental knowledge of DBMS including application 
+areas.  
+CO5.  Understand the current trends in computing in discovering 
+wisdom/knowledge and future prediction.  
+CO6.  Implement the course program on AWS cloud.  
+7 Course 
+Description  This course focuses application areas of Computer Science and Engineering for 
+students admitted in undergraduate program. The purpose of B. Tech. in 
+Computer Science & Engineering is to be given through this course to students.  
+8 Outline syllabus  CO Mapp ing 
+ Unit 1  Hardware aspect of Computer Science & Engineering   
+A History of Computing Systems, Computer Basics and 
+Computer Organization.  
+CO1  
+ B Computer Architecture, Introduction to various connecting 
+devices.  
+C Recent additions – IoT, Robotics and new alternate 
+architectures.  
+ Unit 2  Programming Aspects   
+A Basics of Programming, Programming Paradigms, System 
+Software versus Application Software.  
+CO2  B Hard Computing versus Soft Computing, Data Structures and 
+Algorithms.  
+C Computer Graphics, Multimedia, Computer Vision.  
+ 
+ 
+CSE, SSET, SU  Page 91 
+ 
+ Unit 3  Computer Networking and  DBMS   
+A Introduction to Networking, Various terminologies, Client 
+Server Technology, Web Technology. Introduction to network 
+security  CO3  B Introduction to DBMS, DBMS versus File System, Relational 
+DBMS.  
+C Big Data Analytics & Scientific Computing   
+ Unit 4  Artificial Intelligence   
+A Information Processing and Retrieval,  Basics of Artificial 
+Intelligence  CO4  B Basics of Pattern Recognition  
+C Basics of Machine Learning  
+ Unit 5  Cloud Computing: Amazon Web Services   
+A Concept of Cloud Computing and Virtualization, Real life 
+applications.  CO5  B AWS services:EC2,  Lambda,S3,IAM,VPC  
+C AWS security services, management services  
+ Mode of 
+examination  Practical  
+ Weightage 
+Distribution  CA CE(Viva)  ETE  
+25% 25% 50%  
+ Text book/s*  1. Introduction to Computer, Peter Norton, 7/e, 2017, Tata McGraw Hill 
+Publishing.  
+2. Cloud Computing: A Practical Approach, Anthony T. Velte, Toby J. 
+Velte, Robert Elsenpeter  
+3. AWS Educate Cloud Practitioners Essentials contents  
+ Other 
+References  4. Foundations of Computer Science, B A Forouzan & F 
+Mosharraf, 2/e, 2008, Delmar Learning.  
+5. https://aws.amazon.com/developer/language/java/   
+6. https://aws.amazon.com/developer/   
+ 
+ 
+ 
+CO and PO Mapping  
+S. No.  Course Outcome  Program Outcomes (PO) & 
+Program Specific Outcomes 
+(PSO)  
+1. CO1: Understand the technical aspects of Computer 
+Science &Engineering Course.  PO1, PO2, PO12, PSO3  
+2. CO2: Perceive some knowledge about programming in 
+various applications . PO1, PO12, PSO1, PSO3  
+3. CO3:  Acquire basic understanding about computer 
+networking and related technology.  PO1, PO2, PO12, PSO2, 
+PSO3  
+4. CO4: Enhance some fundamental knowledge of DBMS 
+including application areas.  PO1, PO12, PSO2, PSO3  
+5.  CO5:  Understand the current trends in compu ting in 
+discovering wisdom/knowledge and future prediction . PO1, PO6, PO8, PO12, PSO2, 
+PSO3  
+ 
+ 
+CSE, SSET, SU  Page 92 
+ 
+ 
+ 
+COs PO1 PO2 PO3 PO4 PO5 PO6 PO7 PO8 PO9 PO10  PO11  PO12  PSO1  PSO2  PSO3  
+ CO1  3 2 - - - - - - - - - 3 3 - 3 
+ CO2  3 2 - - - - - - - - - 3 - 3 2 
+ CO3  3 2 - - - - - - - - - 3 - 2 3 
+ CO4  3 - - - - - - - - - - 3 - 3 2 
+CO5  3 - - - - 2 - 2 - - - 3 - 3 3 
+ 
+   
+ 
+CSE, SSET, SU  Page 93 
+ 
+ 
+School: SET  Batch : 2023 -27 
+Program: B.Tech  Current Academic Year: 2023 -24 
+Branch: ALL  Semester: I  
+1 Course Code  MEP 106  
+2 Course  Title  Computer Aided Design & Drafting Laboratory  
+3 Credits  1.5 
+4 Contact Hours  
+(L-T-P) 0-0-3 
+ Course Status  Compulsory  
+5 Course Objective  The objective of this introductory course is to make students familiar with 
+computer -aided drafting/ design, introduce them about the basic 
+commands, tools and dimension techniques for creation and presentation 
+of various engineering drawing by using AutoCAD software which helps 
+in visualization and problem solving in engineering disciplines.  
+6 Course Outcomes  After successful completion of this course the student will be able to  
+CO1: Understand the fundamental features of AutoCAD workspace and 
+user interface.  
+CO2: Apply the fundamental tools such as draw, edit, and view for creating 
+two dimensional engineering drawin gs in AutoCAD.  
+CO3: Choose advance features to present an engineering drawing in 
+AutoCAD.  
+CO4: Apply text and dimension features in the engineering drawing.  
+CO5: Create different orthographic projections from a pictorial view.  
+CO6: Analyze an engineering d rawing and use the software packages for 
+drafting and modeling.  
+7 Course 
+Description  This introductory course is offered to students to make them proficient in 
+design, layout, product development, and other careers that require 
+technical drawing. Using the current version of the AutoCAD software, 
+students will learn a variety of drawing techniques and be able to replicate 
+specific drawings in multiple perspectives. The pinnacle of the class is to 
+empower and enable students to create using the soft ware provided. Career 
+opportunities in 3D modeling, manufacturing, and engineering will also be 
+explored. No drafting or computer experience is necessary.  
+8 Outline syllabus  CO Mapping  
+ 
+ List of 
+Experiments    
+ Experiment 1  Introduction to AutoCAD and its interface  CO1  
+Experiment 2  Working with coordinates, Drawing offline, circle, 
+arc, polygon and creating sketches  CO2  
+Experiment 3  Editing of drawing by using editing Tools and Power 
+tools  CO2  
+Experiment 4  Creating of advanced feature like fillet, chamfer, hatch 
+and using of block  CO3  
+Experiment 5  Representing text and dimensioning in AutoCAD  CO4  
+Experiment 6  Creating the drawings of mechanical components by 
+using AutoCAD features.  CO2, CO3  
+Experiment 7  Creating the electrical circuit drawings in AutoCAD.  CO2  
+Experiment 8  Drawing plan and elevation of various buildings in 
+AutoCAD.  CO2, CO4   
+ 
+CSE, SSET, SU  Page 94 
+ 
+Experiment 9  Creating the drawing of renowned constructions such 
+as Taj Mahal in AutoCAD  CO3  
+Experiment 10  Creating of orthographic projections from a pictorial 
+views  CO5  
+    
+ Mode of 
+examination  Practical   
+ Weightage 
+Distribution  CA CE(Viva)  ETE  
+25% 25% 50%  
+ Text book/s*  1. Ibrahim Zaid,"CAD /CAM - Theory and Practice", McGraw Hill, 
+International Edition.  
+ Software  AutoCAD  
+ 
+ 
+1.3.5.1 COURSE ARTICULATION MATRIX  
+ 
+ 
+COs PO1 PO2 PO3 PO4 PO5 PO6 PO7 PO8 PO9 PO10  PO11  PO12  PSO1  PSO2  
+CO106.1  2 2 2 - 3 - - - - - - 3 3 3 
+CO106.2  2 2 2 - 3 - - - - - - 3 3 3 
+CO106.3  2 2 2 - 3 - - - - - - 3 3 3 
+CO106.4  2 2 2 2 3 - - - 2 2 - 3 3 3 
+CO106.5  2 2 2 2 3 - - - 2 2 - 3 3 3 
+CO106.6  2 2 2 2 3 - - - 2 2 - 3 3 3 
+ 
+1-Slight (Low)   
+2-Moderate (Medium)  
+3-Substantial (High)  
+ 
+  
+ 
+ 
+CSE, SSET, SU  Page 95 
+ 
+School: SET  Batch : 2023 -27 
+Program: B.Tech  Current Academic Year: 2023 -24 
+Branch: Mechanical 
+Engineering  Semester: I  
+1 Course Code  MEP 105  
+2 Course  Title  Mechanical Workshop  
+3 Credits  1.5 
+4 Contact Hours  
+(L-T-P) 0-0-3 
+ Course Status  Compulsory  
+5 Course 
+Objective  The objective of this course is to make the students, familiar with the 
+modern day manufacturing processes, introduce them to various hand tools 
+and equipment, acclimatize with the measuring devices, and perform basic 
+machine tool operations in various mac hine tools.  
+6 Course 
+Outcomes  After successful completion of this course, students will be able to  
+CO1: Apply 5S (Seiri, Seiton, Seiso, Seiketsu and Shitsuke ) methodology  
+at workplace.  
+CO2: Select the various hand tools used in the basic mechanical 
+engineering workshop sections -smithy, carpentry, assembling, welding etc.  
+CO3: Choose different measuring devices according to the job  
+CO4: Differentiate between various machine tools and their operation  
+CO5: Classify and select suitable tools for machining pr ocesses including 
+turning, facing, thread cutting and tapping, milling, drilling and shaping.  
+CO6: Apply the knowledge for advance manufacturing experiments.  
+7 Course 
+Description  Black Smithy Shop:  Simple exercises based on black smithy operations 
+such as upsetting, practice of S -Hook from circular bar using hand forging 
+operations.  
+Carpentry Shop :  Study of  different types of wood , Carpentry Tools, 
+Equipment and different joints, Practice of  T joint, cross lap joint, Mortise 
+and Tenon T joint, Bridle T joint  
+Fitting Shop:  Preparation of  Square joint, V joint, half round joint, 
+dovetail jointas p er the given specifications,  which contains: Sawing, 
+Filing, Grinding, and Practice marking operations.  
+Sheet Metal Shop:  Study of galvanized Iron (G.I.) Sheet material 
+properties, hand tools and sheet metal machines, and projective geometry, 
+demonstrati on of different sheet metal operations and practice of 
+development of Tray, cylinder, hopper, funnel etc.  
+Welding Shop:  Introduction, Study of Tools and welding Equipment (Gas 
+and Arc welding), Selection of welding electrode and current, Bead practice 
+and Practice of Butt Joint, Lap Joint.  
+Machine Shop:  Study of machine tools in particular Lathe machine 
+(different parts, different operations, study of cutting tools), Demonstration 
+of different operations on Lathe machine, Practice of Facing, Plane 
+Turning,  step turning, taper turning, knurling and parting and Study of 
+Quick return mechanism of Shaper.  
+Foundry Shop:  Introduction to foundry, Patterns, pattern allowances, 
+ingredients of moulding sand and melting furnaces. Foundry tools and their 
+purposes, Dem o of mould preparation and Practice – Preparation of mould 
+by using split pattern.  
+ 
+8 Outline syllabus  CO Mapping  
+ 
+ List of 
+Experiments     
+ 
+CSE, SSET, SU  Page 96 
+ 
+Experiment 1  To make a S shaped hook from a given 
+circular rod using hand forging technique.  CO4  
+Experiment 2  To make a dovetail lap joint in Carpentry 
+shop.  CO2,CO3  
+Experiment 3  To make a cross -half lap joint in Carpentry 
+shop.  CO2,CO3  
+Experiment 4  To make a square fit from the given mild 
+steel pieces in fitting shop.  CO3,CO5  
+Experiment 5  To prepare a V -Fit from the given mild steel 
+pieces in fitting shop.  CO3, CO5  
+Experiment 6  To make a rectangular tray of specified 
+dimensions in sheet metal shop.  CO2, CO5  
+Experiment 7  To make a Lap joint, using the given mild 
+steel pieces using arc welding.  CO3, CO5  
+Experiment 8  To perform step turning and taper turning 
+operations on the given work piece   CO5  
+ Experiment 9  To prepare a sand mold, using the given 
+single piece pattern  CO2  
+ Experiment 10  To prepare a sand mold, using the given 
+Split -piece pattern.  CO2  
+ Mode of 
+examination  Practical   
+ Weight - age 
+Distribution  CA MTE  ETE  
+25% 25% 50%  
+ Text book/s*  1. Raghuwanshi  B.S., Workshop Technology Vol. I & II, DhanpathRai& 
+Sons.  
+2. Kannaiah P. and Narayana K.L., Workshop Manual, 2nd Edn, Scitech 
+publishers.  
+3. John K.C., Mechanical Workshop Practice. 2nd Edn. PHI 2010.  
+4. JeyapoovanT.andPranitha S., Engineering Practice s Lab Manual, 3rd 
+Edn. Vikas Pub.2008.  
+ 
+ 
+Program Outcome Vs Courses Mapping Table : 
+ 
+ 
+COs PO1 PO2 PO3 PO4 PO5 PO6 PO7 PO8 PO9 PO10  PO11  PO12  PSO1  PSO2  PSO3  
+CO105.1  1 - - - - 2 - - - - - 2 - - - 
+CO105.2  1 - - - 1 2 - - - - - 1 1 - 1 
+CO105.3  2 - 1 - 1 2 - - - - - 2 1 - 1 
+CO105.4  2 - 1 - 2 2 - - - - - 2 1 - 1 
+CO105.5  2 - 1 - 2 2 - - - - - 2 2 - 1 
+CO105.6  2 - 1 - 2 2 - - - - - 2 2 - 1 
+CO105  2 - 1 - 2 2 - - - - - 2 2 - 1 
+ 
+          1-Slight (Low)                     2-Moderate (Medium)              3 -Substantial (High)  
+ 
+ 
+ 
+ 
+ 
+ 
+CSE, SSET, SU  Page 97 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+TERM - II 
+   
+ 
+CSE, SSET, SU  Page 98 
+ 
+Syllabus for Application Based Programming in Python   
+ 
+School:  School of Engineering & Technology  
+Department  Department of Computer Science & Engineering  
+Program:  B.Tech.  
+Branch:  CSE  
+1 Course Code  CSE114   
+2 Course  Title   Application Based Programming in Python   
+3 Credits  3 
+4 Contact 
+Hours  
+(L-T-P) 3-0-0   
+ Course Status  Core  
+5 Course 
+Objective  Emphasis is placed on procedural programming, algorithm design, 
+and language constructs common to most high -level languages 
+through Python Programming.  
+6 Course 
+Outcomes  
+ Upon successful completion of this course, the student will be able to:  
+CO1. Demonstrate program by using decision and repetition 
+structures  
+CO2. Construct programs by using Python lists, tuples and 
+dictionaries    
+CO3. Apply methods and functions to improve readability of 
+programs.  
+CO4. Develop logical problem using object -oriented programming 
+methodolog y. 
+CO5. Analyze and implement various tools, modules and packages 
+for python.   
+CO6. Design efficient logical solution for any given real life problem 
+by using concise and efficient algorithms  
+7 Course 
+Description  Python is a language with a simple syntax, and a powerful set of 
+libraries. It is widely used in many scientific areas for data 
+exploration. This course is an introduction to the Python 
+programming language for students without prior programming 
+experience. We cover data types, control flow , object -oriented 
+programming.   
+8 Outline syllabus  CO 
+Mapping  
+ Unit 1  Introduction  CO1  
+A Python Environment, Variables, Data Types, 
+Operators.   
+B Conditional Statements: If, If- else, Nested if -else.  
+Looping: For, While, Nested loops.   
+C Control Statements: Break, Continue, And Pass. 
+Comments   
+ Unit 2  List, Tuple and Dictionaries  CO1, CO2  
+A Lists and Nested List:  Introduction, Accessing  list, 
+Operations, Working with lists, Library Function and 
+Methods with Lists   
+ 
+ 
+CSE, SSET, SU  Page 99 
+ 
+B Strings: Introduction, Accessing items of a string, 
+Operations, Working, Library Functions and Methods 
+with strings.  
+Tuple:  Introduction, Accessing tuples, Operations, 
+Work ing, Library Functions and Methods with Tuples.   
+C Sets: Introduction, Operations, Working, functions 
+with sets. Difference between set and lists.  
+Dictionaries : Introduction, Accessing values in 
+dictionaries, Working with dictionaries, Library 
+Functions   
+ Unit 3  Functions and Exception Handling  CO3  
+A Functions:  Defining a function, Calling a function, 
+Types of functions, Function Arguments   
+B Anonymous functions, Global and local variables   
+C Exception Handling : Definition, Except  clause, Try, 
+finally clause, User Defined Exceptions   
+ Unit 4  OOP and File Handling  CO4  
+A OOPs concept  : Class and object, Attributes, 
+Abstraction, Encapsulation, Polymorphism and 
+Inheritance   
+B Static and Final Keyword, Access Modifiers and 
+specifiers, scope of a class   
+C File Handling: Introduction, File Operations   
+ Unit 5  Application based programming  CO5,CO6  
+A Modules& packages : Importing module, Math 
+module, Random module, creating Modules   
+B Introduction to   Numpy, pandas, Matplotlib   
+C Applications: Searching Linear Search, Binary Search. 
+Sorting: Bubble Sort    
+ Mode of 
+examination  Theory   
+ Weightage 
+Distribution  CA MTE  ETE  
+25% 25% 50%  
+ Text book/s*  The Complete Reference Python, Martin C. Brown, 
+McGraw Hill   
+ Other 
+References  1. Introduction to computing in problem solving 
+using Python, E Balahurusamy, McGraw Hill  
+2. Introduction to programming using Python, Y. 
+Daniel Liang, Pearson  
+3. Mastering Python, Rick Van Hatten, Packet 
+Publishing House  
+4. Starting out with Python, Tony Gaddis, 
+Pearson  
+ 
+CO and PO Mapping  
+S. 
+No. Course Outcome  Program Outcomes (PO) & Program Specific 
+Outcomes (PSO)   
+ 
+CSE, SSET, SU  Page 100 
+ 
+1. CO1. Demonstrate program by 
+using decision and repetition 
+structures  PO1,PO2,PO3,PO8,PO12, PSO2  
+2. CO2. Apply methods and 
+functions to improve readability 
+of programs.  PO1,PO2,PO3,PO4,PO8,PO12, PSO2,PSO3  
+3. CO3. Construct programs by 
+using Python lists, tuples and 
+dictionaries    PO1,PO2,PO3,PO8,PO12,PSO1, PSO2,PSO3  
+4. CO4. Develop logical problem 
+using object -oriented 
+programming methodology.  PO1,PO2,PO3, PO4,PO5,PO6,PO8, 
+PO12,PSO1,PSO2,PSO3  
+5. CO5. Analyze and implement 
+various tools, modules and 
+packages for python  PO1,PO2,PO3, PO4,PO5,PO6, PO8, 
+PO12,PSO1,PSO2,PSO3  
+6. CO6. Create efficient logical 
+solution for any given real life 
+problem by using concise and 
+efficient algorithms.  PO1,PO2,PO3, PO4,PO5,PO6, PO8, 
+PO12,PSO1,PSO2,PSO3  
+ 
+PO and PSO mapping with level of strength for Course Name Application Based 
+Programming i n Python (Course Code CSE 114)  
+ 
+Average of non -zeros entry in following table (should be auto calculated).  
+ 
+Course 
+Code  Course Name  PO   
+1 PO 
+2 PO  
+3 PO 
+4 PO 
+5 PO  
+6 PO 
+7 PO 
+8 PO 
+9 PO 
+10 PO 
+11 PO 
+12 PSO 
+1 PSO  
+2 PSO  
+3 
+CSE114  Application 
+Based 
+programming 
+in Python  2.1 2 1.7 1.2 1 1 - 2 - - - 2 1 2 1.1 
+ 
+Strength of Correlation  
+1. Addressed to  Slight (Low=1) extent  2. Addressed to  Moderate (Medium=2) extent    
+3. Addressed to  Substantial (High=3) extent  Course Code_ 
+Course Name  CO’s  PO 
+ 1 PO 
+2 PO 
+3 PO  
+4 PO  
+5 PO 
+ 6 PO 
+ 7 PO 
+ 8 PO 
+ 9 PO 
+10 PO 
+11 PO 
+12 PSO  
+1 PSO  
+2 PSO  
+3 
+CSE114_Applica
+tion Based 
+programming in 
+Python  CO1  2 1 1  
+   
+2    
+2  
+1  
+CO2  2 2 2 1    
+2    
+2  
+2 1 
+CO3  2 2 1  
+   
+2  
+  
+2 1 2 1 
+CO4  2 2 2 2 1 2  
+2  
+  
+2 1 2 2 
+CO5  2 2 2 2 3 2  
+2  
+  
+2 2 2 1 
+CO6  3 3 2 2 2 2  
+2  
+  
+2 2 3 2  
+ 
+CSE, SSET, SU  Page 101 
+ 
+School: SET  Batch : 2023 -27 
+Program: B.Tech.  Current Academic Year: 2023 -24 
+Branch: CSE  Semester: II  
+1 Course Code  MTH 145  
+2 Course  Title   Probability and Statistics  
+3 Credits  4 
+4 Contact Hours  
+(L-T-P) 3-1-0 
+ Course Status  Compulsory  
+5 Course 
+Objective  The objective of this course is to familiarize the students with 
+statistical techniques. It aims to equip the students with standard 
+concepts and tools at an intermediate to advanced level that will serve 
+them well towards tackling various problems in the discipline.  
+6 Course 
+Outcomes  CO1: Explain the concept of probability and Random Variable. 
+(K2,K3, K4)  
+CO2: Explain the concept of distribution functions, de nsities 
+andprobability distributions; illustrate discrete and continuous 
+probability distributions. (K1, K2, K3, K4)  
+CO3: Describe the concept of moments, skewness and Kurtosis; 
+evaluate correlation and regression – Rank correlation; discuss  
+bivariate dis tributions and their properties  
+. (K1, K2, K5)  
+CO4: Discuss the basic of Curve fitting by the method of least 
+squares; evaluate straight lines, second degree parabolas and more 
+general curves. (K1, K2, K5)  
+CO5: Describe and use the concepts test of signifi cance: Large 
+sample test for single proportion, difference of proportions; calculate 
+single mean, difference of means, and difference of standard 
+deviations. (K1,K2,K3)  
+CO6:  Explain the basic concepts of tests of small samples - Student’s 
+T test, Chi -squar e test for goodness of fit, and evaluate the result.            
+(K2, K4, K5)  
+7 Course 
+Description  This course is an introduction to the fundamental of Mathematics. The 
+primary objective of the course is to develop the basic understanding 
+of statistics including measures of central tendency, correlation and 
+regression, statistical methods of data sampli ng, probability and 
+random variables and various discrete andcontinuous probability 
+distributions and their properties.  
+8 Outline syllabus : Probability and Statistics  CO 
+Mapping  
+ Unit 1  Basic Probability   
+A Probability spaces, conditional probability, Bayes' 
+rule. CO1   
+ 
+CSE, SSET, SU  Page 102 
+ 
+ 
+B Discrete random variables, Independent random 
+variables  CO1  
+C Expectation of Discrete Random Variables, 
+Chebyshev's Inequality  CO1  
+ Unit 2  Discrete and Continuous Probability Distributions   
+A Discrete Probability distributions: Binomial, Poisson.  CO2  
+B Continuous random variables and their properties, 
+distribution functions and densities.  CO2  
+C Normal, exponential and gamma distribution.  CO2  
+ Unit 3  Statistics   
+A Moments, skewness and Kurtosis.  CO3  
+B Correlation and regression – Rank correlation.  CO3  
+C Bivariate distributions and their properties.  CO3  
+ Unit 4  Applied Statistics   
+A Curve fitting by the method of least squares - fitting 
+of straight lines, second degree parabolas and more 
+general curves.  CO4, CO5  
+B Test of significance: Large sample test for single 
+proportion,  CO4, CO5  
+C Difference of proportions, single mean, difference of 
+means, and difference of standard deviations.  CO4, CO5  
+ Unit 5  Testing Hypothesis   
+A Test for single mean, difference of means  CO6  
+B test for ratio of variances  CO6  
+C Chi-square test for goodness of fit and independence 
+of attributes  CO6  
+ Mode of 
+examination  Theory   
+ Weightage 
+Distribution  CA MTE  ETE  
+25% 25% 50%  
+ Text book/s*  1. Erwin Kreyszig, Advanced Engineering Mathematics, 9th 
+Edition, John Wiley & Sons, 2006.  
+2. P. G. Hoel, S. C. Port and C. J. Stone, Introduction to 
+Probability Theory, Universal Book Stall, 2003 (Reprint).  
+3. S. Ross, A First Course i n Probability, 6th Ed., Pearson 
+Education India, 2002.  
+  
+ Other 
+References  3. W. Feller, An Introduction to Probability Theory and its 
+Applications, Vol. 1, 3rd Ed., Wiley, 1968.  
+4. B.S. Grewal, Higher Engineering Mathematics, Khanna 
+Publishers, 35th Edition, 2000. Veerarajan T., Engineering 
+Mathematics (for semester III), Tata McGraw -Hill, New 
+Delhi, 2010.   
+ 
+   
+ 
+CSE, SSET, SU  Page 103 
+ 
+COURSE OUTCOMES – PROGRAMME OUTCOMES MAPPING TABLE  
+ 
+PO PO1  PO2  PO3  PO4  PO5  PO6  PO7  PO8  PO9  PO10  PO11  PO12  
+CO 
+CO1 3 3 2 2 3 1 - - - 1 1 1 
+CO2 3 2 3 2 2 2 - - - 1 1 2 
+CO3 3 3 2 2 2 1 - - - 1 1 1 
+CO4 3 2 2 2 2 1 - - - 1 1 1 
+CO5 3 3 2 2 2 1 - - - 1 1 2 
+CO6  3 3 2 3 2 2 - - - 1 1 2 
+ 
+ 
+   
+ 
+CSE, SSET, SU  Page 104 
+ 
+School: SET  Batch : 2023 -27 
+Program: B.Tech  Current Academic Year: 2023 -24 
+Branch:  Semester: I/II  
+1 Course Code  EEE112  
+2 Course  Title   Principles of Electrical and Electronics Engineering  
+3 Credits  3 
+4 Contact Hrs  
+(L-T-P) 2-1-0   
+ Course Status  Compulsory  
+5 Course 
+Objective  To provide the students with an introductory concept in the field of 
+electrical and electronics engineering to facilitate better understanding 
+of the devices, techniques and equipments used in  engineering 
+applications.  
+6 Course 
+Outcomes  CO1: To analyze and solve basic electrical circuits  
+CO3: To understand the working principle of transformer and 
+identify its applications.  
+CO3: To understand the working principle of dc and ac motors and 
+identify the starting methods of single phase induction motor  
+CO4: To apply the basics of diode to describe the working of rectifier 
+circuits such as half and full wave rectifiers  
+CO5: To apply the concepts of basic electronic devices to design 
+various circuits  
+CO6:  Apply the basic concepts in Electrical and Electronics  
+Engineering for multi -disciplinary tasks  
+7 Course 
+Description  This initial course introduces the concepts and fundamentals of 
+electrical and electronic circuits and devices. Topics include basic 
+circuit analysis, diode and transistor fundamentals and applications. 
+This course also introduces working principle and applications of dc/ac 
+motors and transformers.  
+8 Outline sylla bus CO 
+Mapping  
+ Unit 1  DC & AC Circuits ( 6 lectures )   
+A Electrical circuit elements (R, L and C), series and 
+parallel circuits, concept of equivalent resistance, 
+Kirchhoff current and voltage laws, star -delta 
+conversion  CO1,CO6  
+B Analysis of simple circuits with dc excitation and 
+Superposition Theorem, Representation of sinusoidal 
+waveforms, peak and rms values, real power, reactive 
+power, apparent power, power factor  CO1,CO6  
+C Introduction to three phase system, relationship 
+between phase v oltages and line voltages,  CO1,CO6  
+ Unit 2  Transformer( 4 lectures )   
+A Working principle and construction of transformer, 
+EMF equation  CO2,CO6  
+B Efficiency of transformer, Power and distribution 
+transformer and difference between them  CO2,CO6   
+ 
+CSE, SSET, SU  Page 105 
+ 
+C Transformer applications in transmission and 
+distribution of electrical power  CO2,CO6,  
+ Unit 4  Electrical Motors ( 6 lectures )   
+A Construction, working principle, torque -speed 
+characteristic and applications of dc motor.  CO3,CO6  
+B Construction, working principle and applications of a 
+three -phase induction motor, significance of torque -
+slip characteristic  CO3,CO6  
+C Working principle starting methods and applications 
+of single phase induction motor  CO3,CO6  
+Unit 4  Semiconductor Diode and Rectifier ( 5 lectures )   
+A PN junction and its biasing  CO4,CO6  
+B Semiconductor diode, ideal versus practical diode , VI 
+characteristics of diode  CO4,CO6  
+C Half wave and full wave rectifiers with and without 
+filters.  CO4,CO6  
+Unit 5  Transistors ( 5 lectures )   
+A Bipolar Junction Transistor (BJT) – Construction, 
+working principle and input -output characteristics  CO5,CO6  
+B BJT as CE amplifier and as a switch  CO5,CO6  
+C Introduction to JFET  CO5,CO6  
+ Mode of 
+examination  Theory   
+ Weightage 
+Distribution  CA MTE  ETE  
+25% 25% 50%  
+ Text book/s*   1.    D. P. Kothari and I. J. Nagrath, “Basic Electrical 
+Engineering”, Tata McGraw Hill, 2010.  
+2.    S. K. Bhattacharya, “Basic Electrical and Electronics 
+Engineering”, Pearson Publication.  
+3. Robert L Boylestad, “Electronic Devices and Circuit 
+Theory” Pearson Education, 2009  
+  
+ Other 
+References  1.  V. D. Toro, “Electrical Engineering 
+Fundamentals”, Prentice Hall India, 1989.   
+ 
+Course Articulation Matrix:  
+ COs  PO1  PO2  PO3  PO4  PO5  PO6  PO7  PO8  PO9  PO10  PO11  PO12  PSO1  PSO2  PSO3  
+CO1 3 3 2 2 - - - - - - - - - - - 
+CO2 1 1 2 - - - - - - - - - - - - 
+CO3 2 2 1 - - - - - -- - - - - - - 
+CO4 2 1 2 - - - - - - - 1 - - - - 
+CO5 3 2 1 - - - - - - - 1 - - - - 
+CO6 2 2 3 1 - - - - - - 1 - - - -  
+ 
+CSE, SSET, SU  Page 106 
+ 
+ 
+ School: SET  
+Batch:2023 -2027  
+Program:  B.Tech  
+Current Academic Year: 2023 -2024 
+Branch:  ECE  
+Semester:  I 
+1 Course 
+Code  EEP112  
+2 Course  
+Title  Principles  of Electrical  and Electronics  Engineering  Lab 
+3 Credits  1 
+4 Contact  
+Hours  
+(L-T-P) 0-0-2 
+ Course  
+Status  Compulsory  
+5 Course  
+Objective  To provide  the students  with an introductory  concept  in the field of electrical  and 
+electronics  engineering  to facilitate  better  understanding  of the devices,  techniques  and 
+equipment‟s  used in engineering  applications.  
+6 Course  
+Outcomes  After  successful  completion  of this course  the student will  be able to: CO1:  To 
+configure  and analyze  any given  circuit.  
+CO2:  To inspect  the working  of transformer  and calculate  its efficiency  
+CO3:  To understand  the working  of dc and ac motors  and measure  its various  operating  
+parameters.  
+CO4: To design rectifier circuits such as half and full wave rectifiers and observe its  
+output  waveforms.  
+CO5:  To obtain  the characteristics  of BJT.  
+CO6:Apply  the basic concepts in Electrical and Electronics Engineering for multi - 
+disciplinary  tasks.  
+7 Course  
+Description  This initial course introduces the concepts and fundamentals of electrical and electronic  
+circuits  and devices.  Topics  include  basic  circuit  analysis,  diode  and transistor  
+fundamentals  and applications.  This course  also introduces  working  principle  and 
+applications  of dc/ac motors  and transformers.  
+8 Outline  syllabus  CO Mapping  
+ Unit  1 Practical  based  on DC & AC Circuits  CO1  
+ To configure  a dc circuit  on breadboard,  and measure  voltage/current 
+across/through  each element  CO1  
+  To verify  Kirchhoff‟s  Laws  CO1  
+  To verify  Superposition  Theorem  CO1  
+  To find the real power,  reactive  power,  apparent  power  and power  factor 
+of RL & RC load CO1  
+ Unit  2 Practical  related  to Transformers   
+ To find the  efficiency  of transformer by  obtaining  its losses.  CO2,CO6  
+ Unit  3 Practical  related  to Electrical  Motors   
+ To study  cut-section  of DC motor  and induction  motor.  CO3,CO6  
+ To start the DC motor  and reverse  its direction  of rotation.  CO3,CO6  
+ To start an induction motor  and reverse  its direction  of rotation.  CO3,CO6  
+ Unit  4 Practical  related  to Diode  and Rectifier   
+ To determine  voltage -current  characteristic  of diode  CO4,CO6  
+  To assemble  and test half wave  and full wave  rectifier  circuits  for their 
+input  and output  waveform  CO4,CO6   
+ 
+CSE, SSET, SU  Page 107 
+ 
+ 
+ 
+ CO , PO & PSO  MAPPING:  
+ 
+ 
+   Unit  5 Practical  related  to Transistors    
+   
+To determine  input and  output  characteristics  of BJT CO5,  
+CO6   
+   
+Validation  of BJT as a switch  CO5,  
+CO6   
+ Mode of  
+examination  Practical    
+ Weightage  
+Distribution  CA CE ETE   
+25% 25% 50%   
+ Text book/s*  1. D. P. Kothari and I. J. Nagrath, “Basic Electrical 
+Engineering”, Tata  McGraw  Hill, 2010 -
+ISBN:9780070146112  
+2. S. K. Bhattacharya,  “Basic  Electrical  and Electronics  
+Engineering”,  Pearson  Publication.ISBN:  
+9789332586505  
+3. Robert  L Boylestad,  “Electronic  Devices  and Circuit  
+Theory”  Pearson  Education,  2009  
+ISBN:  9780131189058    
+ Other  
+References  4. V. D. Toro,  “Electrical  Engineering  
+Fundamentals”,  Prentice  Hall India, 1989.  
+SBN:9780132471312    
+Cos 
+PO1 
+PO2 
+PO3 
+PO4 
+PO5 
+PO6 
+PO7 
+PO8 
+PO9 
+PO10  
+PO11  
+PO12  
+PSO1  
+PSO2  
+PSO3  
+EEP112.1  3 3 3 1 1 - - - - - - - 2 - - 
+EEP112.2  2 2 2 - - - - - - - - - - - 1 
+EEP112.3  2 1 1 - - - - - - - - - - - - 
+EEP112.4  2 1 3 - - - - - - - - - 2 - - 
+EEP112.5  2 1 1 - - - - - - - - - 2 - - 
+EEP112.6  2 2 2 2 2    2  2 - 1 1 - 
+EEP112  2.1 1.6 2 1 1 - - - 1 - 1 - 1.1 1 1  
+ 
+CSE, SSET, SU  Page 108 
+ 
+School: SET   
+Program: B.Tech   
+Branch: All  Semester: I/II  
+1 Course Code  HMM111  Course Name  
+2 Course  Title  Human Values and Ethics  
+ 
+3 Credits  2 
+4 Contact Hours  
+(L-T-P) 2-0-0 
+ Course Status  Compulsory  
+5 Course 
+Objective  To facilitate the development of a Holistic perspective among students 
+towards life and profession as well as towards happiness and prosperity based 
+on a correct understanding of the Human reality and the rest of Existence  
+6 Course 
+Outcomes   
+7. Understand that the technical education without study of human values 
+can generate more problems than solutions.  
+8. Define the principles and ideals, which help in making the judgement of 
+what is more important.  
+9.  See that ‘I’ and ‘Body’ are two realities, and most of their desires are 
+related to ‘I’ and no t body, while their efforts are mostly centered on the 
+fulfilment of the needs of the body assuming that it will meet the needs 
+of ‘I’ too.  
+10. Appreciate the importance of harmony in the self, family and the society 
+for mutual fulfilment.  
+11. Understand the impo rtance of harmony among human beings, other 
+living beings and entire nature for universal equilibrium and mutual co -
+existence.  
+12. Know and practice the ethical approach in profession for continuous 
+happiness and sustained prosperity.  
+ 
+7 Course 
+Description  Human values and embedded in all human beings it is important to sensitize 
+them towards these values that they can use in their life to attain mutual 
+happiness and mutual prosperity. Professional ethics will enlighten them 
+about the value addition that can be done within the framework of ethical 
+behaviour.  
+8 Outline syllabus  CO Mapping  
+ Unit 1  The  Need and Process for Value Education   
+A The need, basic guidelines, content, and process for Value 
+Education  CO1  
+B Concept of ‘Natural Acceptance’ and Experiential 
+Validation - as the mechanism for self -exploration; 
+Continuous Happiness and Prosperity - A look at basic 
+Human Aspirations  
+ CO1,CO2  
+C Right understanding, Relationship and Physical Facilities - 
+the basic requirements for fulfilment aspirations of every 
+human being with their correct priority  CO1,CO2  
+ Unit 2  Understanding Harmony in the Human Being - Harmony 
+in Myself   
+A Human being as a co -existence of the sentient ‘I’ and the 
+material ‘Body’  CO3   
+ 
+CSE, SSET, SU  Page 109 
+ 
+ 
+B The needs of Self (‘I’) and ‘Body’  ; Understanding the 
+Body as an instrument of ‘I’ (I being the doer, seer and 
+enjoyer)  CO3  
+C The characteristics and activities of ‘I’ and harmony in ‘I’ 
+; Understanding the harmony of I with the Body:  Correct 
+appraisal of Physical needs, meaning of Prosperity in 
+detail  CO3  
+ Unit 3  Harmony in the Family and Society   
+A Values in human -human relationship;  Trust  and Respect 
+as the foundational values of r elationship  
+ CO4  
+B Understanding the meaning of Trust; Difference between 
+intention and competence; The meaning of Respect; 
+Difference between respect and differentiation; the other 
+salient values in relationship  CO4  
+C Harmony in the society (society being an extension of 
+family; Visualizing a universal harmonious order in 
+society - from family to world family  CO4  
+ Unit 4  Harmony in the Nature and Existence   
+A The harmony in the Nature  CO5  
+B Interconnectedness and mutual fulfilment among the four 
+orders of nature recyclability and self -regulation in nature  CO5  
+C Understanding Existence as Co -existence of mutually 
+interacting units in all -pervasive space  
+ CO5  
+ Unit 5  Competence in professional ethics   
+A Ability to utilize the professional competence for 
+augmenting universal human order  CO6  
+B Ability to identify the scope and characteristics of people -
+friendly and eco -friendly production systems,  CO6  
+C Ability to identify and develop appropriate technologies 
+and management patterns for above production systems.  CO6  
+ Mode of 
+examination  Theory   
+ Weightage 
+Distribution  CA MTE  ETE  
+25% 25% 50%  
+ Text book/s*  4. R.R Gaur, R Sangal, G P Bagaria, "A foundation 
+course in Human Values and professional Ethics", 
+Excel books, New Delhi   
+ Other 
+References  1. B L Bajpai, 2004, Indian Ethos and Modern 
+Management, New Royal Book Co., Lucknow.   
+2. A.N. Tripathy, 2003, Human Values, New Age 
+International Publishers.  
+3. PL Dhar, RR Gaur, Science an d Humanism, 
+Commonwealth Publishers. Starting out with Python, 
+Tony Gaddis, Pearson  
+  
+ 
+ 
+ 
+  
+ 
+CSE, SSET, SU  Page 110 
+ 
+CO and PO Mapping  
+ 
+1.  Course : Environmental Science  
+  
+COs PO1 P
+O
+2 PO
+3 PO
+4 PO
+5 PO
+6 PO
+7 PO8 PO9 PO
+10 PO11  PO
+12 PS
+O1 PS
+O2 PSO
+3 PS
+O4 PS
+O5 
+ CO1       3 1 3 1   3      
+CO2       2 1 3 2   3      
+ CO3       3 1 3 2   3      
+CO4       3 1 3 2   3      
+CO5       3 3 3 3  2 3      
+CO6       3 3 3 2  3 3       
+ 
+CSE, SSET, SU  Page 111 
+ 
+School: SET  Batch : 2023 -27 
+Program: B. Tech  Current Academic Year: 2023 -24 
+Branch: All  Semester: I I 
+1 Course Code  CVL -103 
+2 Course  Title   Environmental Science  
+3 Credits  02 
+4 Contact 
+Hours  
+(L-T-P) 2-0-0   
+ Course Status  Compulsory  
+5 Course 
+Objective  1. Enable students to learn the concepts, principles and 
+importance of environmental science  
+2. Provide students an insight of various causes of  natural 
+resource depletion and its conservation  
+3. Provide knowledge of layers of atmosphere  with an insight 
+of role of climatic elements in dispersion of pollutants  
+4. Provide detailed knowledge  of causes, eff ects and control 
+of different types of environmental pollution, solid waste 
+management and its effect on climate change, global 
+warming and ozone layer depletion  
+5. Provide and enrich the students about social issues 
+such as R&R, water conservation and susta inability.  
+6 Course 
+Outcomes  CO1.Understand the scope of environmental science  with  
+knowledge about various types of natural resources and its 
+conservation         
+CO2. Study about the structure and composition of atmosphere and 
+factors affecting weathe r and climate  
+CO3. Study about pollution causes, effects and control and solid 
+waste management  
+CO4. Effect of global warming and ozone layer depletion  
+CO5. Understand sustainable development, resettlement and 
+rehabilitation, impact of population explosion on environment  
+CO6.Understand overall environmental issues and its 
+management  
+7 Course 
+Description  Environmental Science emphasises on various factors as  
+5. Importance and scope of environmental science  
+6. Natural resource conservation  
+7. Pollution caus es, effects and control methods and solid waste 
+management  
+8. Social issues associated with environment  
+ 
+8 Outline syllabus  CO 
+Mapping  
+ Unit 1  General Introduction   
+A Definition, principles and scope of environmental 
+science  CO1  
+B Water Resources,  Land Resources,  Food Resources  CO1  
+C Mineral Resources,  Energy Resources,  Forest 
+Resources  CO1  
+ Unit 2  Atmosphere and meteorological parameters    
+ 
+CSE, SSET, SU  Page 112 
+ 
+A Structure and composition of atmosphere  CO2  
+B Meteorological parameters: Pressure, Temperature, 
+Precipitation, Humidity,  CO2  
+C Radiation, Wind speed and direction, Wind Rose  CO2  
+ Unit 3  Environmental Pollution ( Cause, effects and 
+control measures)   
+A Air, water,  Noise  and  Soil pollution    CO3  
+B Case studies on pollution   CO3  
+C Solid waste management: Causes, effects and 
+control measures of urban and industrial wastes.  CO3  
+ Unit 4  Climate Change and its impact   
+A Concept of Global Warming and greenhouse effect   CO4  
+B Ozone layer Depletion and its consequences  CO4  
+C Climate change and its effect on ecosystem,  Kyoto 
+protocol and IPCC concerns on changing climate  CO4  
+ Unit 5  Social Issues and the Environment    
+A Concept of sustainable development, Water 
+conservation  CO5  
+B Resettlement and rehabilitation of people; its 
+problems and concerns, Case studies  CO5  
+C Population explosion and its consequences  CO5  
+ Mode of 
+examination  Theory   
+ Weightage 
+Distribution  CA MTE  ETE  
+25% 25% 50%  
+ Text book/s*  3. Joseph, Benny, “Environmental Studies”, Tata 
+Mcgraw -Hill. 
+4. .Howard S. Peavy, Donald R. Rowe, George 
+Tchobanoglous. Environmental engineering  Mc Graw -
+Hill, 1985    
+ Other 
+References    
+   
+ 
+CO↓ PO→  PO1 PO2 PO3 PO4 PO5 PO6 
+CO1 2 2 3 3 3 3 
+CO2 2 2 2 2 2 3 
+CO3 2 2 3 2 3 3 
+CO4 2 2 3 2 3 3 
+CO5 2 2 2 2 3 3 
+CO6 2 2 3 2 2 3 
+ 
+   
+ 
+CSE, SSET, SU  Page 113 
+ 
+Syllabus: CSE242, Data Structures  
+ 
+School: SET Batch : 2023 -27 
+Program: B.Tech.  Current Academic Year: 2023 -24 
+Branch: CSE/IT  Semester: II 
+1 Course Code  CSE242   
+2 Course  Title   Data Structures  
+3 Credits  3 
+4 Contact 
+Hours  
+(L-T-P) 3-0-0   
+ Course Status  Core  
+5 Course 
+Objective  1. Learn the basic concepts of Data Structures and algorithms.  
+2. Design and Implementation of Various Basic and Advanced Data 
+Structures.  
+3. Learn the concepts of various searching, Sorting and Hashing 
+Techniques.  
+4. Choose the appropriate data structures and algorithm design method 
+for a specified application.  
+ 
+6 Course 
+Outcomes  CO1: Select  appropriate data structures as applied to specified problem 
+definition.  
+CO2: Choose  the suitable data structures like arrays, linked list, stacks 
+and queues to solve real world problems efficiently.  
+CO3 Represent  and manipulate data using nonlinear data structures 
+like trees and graphs to design algorithms for various applications.  
+CO4:  Compare  various techniques for searching and sorting.  
+CO5: Design  and implement an appropriate hashing function for an 
+application  
+CO6: Formulate  new solutions for programing problems or improve 
+existing code using learned algorithms and data structures  
+7 Course 
+Description  This course  starts with an introduction to data structures with its 
+classification, efficiency of different algorithms, array and pointer 
+based implementations and Recursive applications. As the course 
+progresses the study of Linear a nd Non -Linear data structures are 
+studied in details. The course talks primarily about Linked list, stacks, 
+queue, Tree structure, Graphs etc. This Course also deals with the 
+concept of searching, sorting and hashing methods.  
+8 Outline syllabus  CO 
+Mapping  
+ Unit 1  Introduction   
+A Data Structure – Definition, Operations and Applications, 
+Abstract Data Types, Algorithm – Definition, Introduction 
+to Complexity, Big OH notation, Time and Space tradeoffs.  CO1  
+B Dynamic Memory Allocation( Malloc, calloc, realloc, free), 
+Recursion – Definition, Examples - Tower of Hanoi problem, 
+Tail Recursion  CO1  
+C Arrays: Implementation of One Dimensional Arrays, 
+Multidimensional Arrays, Applications of Arrays, Address 
+Calculation, Matrix Operations, Sparse martices  CO1  
+ 
+ 
+CSE, SSET, SU  Page 114 
+ 
+ Unit 2  Linked List  
+A Concept of Linked List, Garbage Collection, Overflow and 
+Underflow, Array Implementation and Dynamic 
+Implementation of Singly Linked Lists  CO2  
+B Array Implementation and Dynamic Implementation of 
+Doubly Linked List, Circularly Linked List  CO3  
+C Operations on a Linked List - Insertion, Deletion, Traversal, 
+Polynomial Representation and Addition  CO2  
+ Unit 3  Stack and Queue   
+A Stacks: Definitions, Primitive operations, Application of 
+stacks – Conversion of Infix Expression to Postfix form, 
+Evaluation of Postfix Expressions  CO3  
+B Queues: Definition, Primitive Operations, Implementation 
+of Circular Queues, Priority Queues  CO3  
+C Deques, Application of Queues. Implementation - Linked 
+Stacks, Linked Queues.  CO3  
+ Unit 4  Tree and Graphs   
+A Trees: Terminologies, Binary tree, Representation, 
+Applications, Binary search Tree – Operations on Binary 
+Search Trees (Traversing, Insertion, deletion etc.), Binary 
+Search Algorithm, AVL Tree  CO4, CO6  
+B Graph: Terminology, Representation, Traversals - Depth 
+First Search, Breadth First Search.  CO4, CO6  
+C Graph Applications – Minimum Spanning Trees – Prim’s 
+and Kruskal’s Algorithms  CO4, CO6  
+ Unit 5  Searching, Sorting and Hashing   
+A Implementation and Analysis - Linear search, Binary Search  CO5, CO6  
+B Implementation and Analysis - Bubble Sort, Insertion Sort, 
+Selection Sort, Tree sort  CO5, CO6  
+C Hashing: Concepts and Applications, Hash Functions, 
+Collisions, Methods of Resolving C ollisions  CO5, CO6  
+ Mode of 
+examination  Theory   
+ Weightage 
+Distribution  CA MTE  ETE  
+25% 25% 50%  
+ Text book/s*  1. Lipschutz, “Data Structures” Schaum’s Outline 
+Series, TMH   
+ Other 
+References  1. Aaron M. Tenenbaum, Yedidyah Langsam and 
+Moshe J. Augenstein “Data Structures Using C and 
+C++” , PHI  
+2. Horowitz and Sahani, “Fundamentals of Data 
+Structures”, Galgotia Publication  
+3. Jean Paul Trembley and Paul G. Sorenson, “An 
+Introduction to Data S tructures with applications”, 
+McGraw Hill  
+4. R. Kruse etal, “Data Structures and Program Design 
+in C”, Pearson Education  
+5. G A V Pai, “Data Structures and Algorithms”, TMH   
+ 
+  
+ 
+CSE, SSET, SU  Page 115 
+ 
+CO and PO Mapping  
+S. 
+No. Course Outcome  Program Outcomes (PO) 
+& Program Specific 
+Outcomes (PSO)  
+1. Select  appropriate data structures as applied to specified 
+problem definition.  PO1, PO3, PO9, PSO1, 
+PSO2  
+2. Choose  the suitable data structures like arrays, linked list, 
+stacks and queues to solve real world problems 
+efficiently.  PO1, PO2, PO3, PO9, 
+PSO1, PSO2, PSO3  
+3. Represent  and manipulate data using nonlinear data 
+structures like trees and graphs to design algorithms for 
+various applications.  PO1, PO2, PO3, PO4, 
+PO9, PSO1, PSO2  
+4. Compare  various techniques for se arching and sorting.  PO3, PO9, PO12, PSO1, 
+PSO2  
+5. Design  and implement an appropriate hashing function 
+for an application  PO1, PO2, PO3, PO4, 
+PO5, PO9, PSO1, PSO2, 
+PSO3  
+6. Formulate  new solutions for programing  problems or 
+improve existing code using learned algorithms and data 
+structures  PO1, PO3, PO4, PO5, 
+PO9, PSO1, PSO2, PSO3  
+ 
+PO and PSO mapping with level of strength for Course Name Data Structures (Course 
+Code CSE 242)  
+ 
+Cos PO
+1 PO
+2 PO
+3 PO
+4 PO
+5 PO
+6 PO
+7 PO
+8 PO
+9 PO1
+0 PO1
+1 PO1
+2 PSO
+1 PSO
+2 PSO
+3 
+ 
+CO
+1 2 - 2 - - - - - 2 - - - 2 2 - 
+CO
+2 1 2 3 - - - - - 1 - - - 3 1 2 
+ 
+CO
+3 2 3 3 2 - - - - 2 - - - 2 3 - 
+ 
+CO
+4 - - 2 - - - - - 3 - - 1 2 2 - 
+CO
+5 3 2 3 2 1 - - - 2 - -- - 3 2 2 
+CO
+6 2 - 3 3 2 - - - 1 - - - 2 3 3 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+CSE, SSET, SU  Page 116 
+ 
+Average of non -zeros entry in following table (should be auto calculated).  
+ 
+ 
+Course 
+Code  Course 
+Name  PO 
+1 PO 
+2 PO 
+3 PO 
+4 PO 
+5 PO 
+6 PO 
+7 PO 
+8 PO 
+9 PO 
+10 PO 
+11 PO 
+12 PSO  
+1 PSO  
+2 PSO3  
+CSE242  Data 
+structures   2 2.33 2.67 2.33 1.5 - - - 1.83 - - 1 2.33 2.17 2.33 
+ 
+Strength of Correlation  
+ 
+1. Addressed to  Slight (Low=1) extent  2. Addressed to  Moderate (Medium=2) extent    
+3. Addressed to  Substantial (High=3) extent  
+ 
+   
+ 
+CSE, SSET, SU  Page 117 
+ 
+` 
+School:  SET | SOL | SMFE | SBS -BBA | SBSR | SOE | SAP  
+Department  Sharda Skills  
+Program:  Communicative English -2 
+Branch:  Aptitude Reasoning & Personality  
+1 Course Code  ARP – 102  
+2 Course  Title   Communicative English -2 
+3 Credits  2 
+4 Contact Hours  
+(L-T-P) 1-0-2 
+ Course Status  Core  
+5 Course 
+Objective  To Develop LSRW skills through audio -visual language acquirement, 
+creative writing, advanced speech et al and MTI Reduction with the aid 
+of certain tools like texts, movies, long and short essays.  
+6 Course 
+Outcomes  After completion of this course, students will be able to:  
+ 
+CO1   Acquire Vision, Goals and Strategies through Audio -visual 
+Language Texts  
+ 
+CO2   Synthesize complex concepts and present them in creative 
+writing  
+ 
+CO3   Develop MTI Reduction/Neutral Accent through Classroom 
+Sessions & Practice  
+ 
+CO4   Determ ine their role in achieving team success through defining 
+strategies for effective communication with different people  
+ 
+CO5 Realize their potentials as human beings and conduct themselves 
+properly in the ways of world.  
+ 
+CO6 Acquire satisfactory competency in use of  Quantitative aptitude 
+and  Logical Reasoning  
+ 
+7 Course 
+Description  The course takes the learnings from the previous semester to an 
+advanced level of language learning and self -comprehension through 
+the introduction of audio -visual aids as language enablers. It also leads 
+learners to an advanced level of writing, reading, listening and 
+speaking abilities, while also reducing the usage of L1 to minimal in 
+order to increase the employability chances.  
+ 
+8 Outline syllabus – ARP 102  CO Mapping  
+ Unit 1  Acquiring Vision, Goals, Strategies through Audio -
+visual Language Texts and Creative Writing    
+ 
+CSE, SSET, SU  Page 118 
+ 
+A Pursuit of Happiness / Goal Setting & Value 
+Proposition in life,12 Angry Men / Ethics & 
+Principles,The King’s Speech / Mission statement in 
+life | strategies & Action Plans in Life  CO1  
+B Story Reconstruction - Positive Thinking,Theme 
+based Story Writing - Positive attitude  CO2  
+C Learning Diary  Learning Log – Self-introspection  CO2  
+ Unit 2  Writing Skills 1 and MTI Reduction/Neutral Accent 
+through Classroom Sessions & Practice   
+A Precis, Paraphrasing, Essays (Simple essays)  
+CO2  
+B Vowel, Consonant, sound correction, speech sounds, 
+Monothongs, Dipthongs and Tripthongs, Vowel 
+Sound drills , Consonant Sound drills, Affricates and 
+Fricative Sounds  co3 
+C Speech Sounds | Speech Music| Tone | Volume| 
+Diction |Syntax |Intonation | Syllable Stress   
+ Unit 3  Gauging MTI Reduction Effectiveness through Free 
+Speech   
+A Jam sessions  CO3  
+B Extempore  CO3  
+C Situation -based Role Play  CO3  
+ Unit 4  Leadership and Management Skills and Universal 
+Human Values   
+A Innovative Leadership and Design Thinking, Ethics 
+and Integrity  CO4  
+B Love & Compassion, Non -Violence & Truth, 
+Righteousness, Peace  CO5  
+C Service, Renunciation (Sacrifice)  CO5  
+ Unit 5  Introduction to Quantitative aptitude & Logical 
+Reasoning   
+A Analytical Reasoning  CO6  
+B Number Systems and its Application in Solving 
+Problem  CO6  
+C Puzzle Solving  CO6  
+ Mode of 
+examination  CA / VIVA / ESE   
+ Weightage 
+Distribution  
+ CA VIVA  ETE  
+25 25 50  
+ Text book/s*  .Wren, P.C.&Martin H. High English Grammar 
+and Composition , S.Chand& Company Ltd, New 
+Delhi.    
+ 
+CSE, SSET, SU  Page 119 
+ 
+● Blum, M. Rosen. How to Build Better 
+Vocabulary . London: Bloomsbury 
+Publication  
+● Comfort, Jeremy(et.al). Speaking Effectively .  
+Cambridge University Press.  
+ 
+ Other 
+References  The Luncheon by W.Somerset Maugham - 
+http://mistera.co.nf/files/sm_luncheon.pdf   
+CO and PO Mapping  
+S. 
+No. Course Outcome  Program Outcomes (PO) & 
+Program Specific Outcomes 
+(PSO)  
+1. CO1   Acquire Vision, Goals and Strategies through Audio -visual 
+Language Texts . PO9, PO10, PO11,PO12  
+ 
+2. CO2   Synthesize complex concepts and present them in creative 
+writing . PO9, PO10, PO11,PO12  
+3. CO3   Develop MTI Reduction/Neutral Accent through Classroom 
+Sessions & Practice . PO9, PO10, PO11,PO12  
+4. CO4   Determine their role in achieving team success through 
+defining strategies for effective communication with different 
+people  PO9, PO10, PO11,PO12  
+5. CO5 Realize their potentials as human beings and conduct 
+themselves properly in the ways of world. . 
+ PO9, PO10, PO11,PO12  
+6.  CO6 Acquire satisfactory competency in use of  Quantitative 
+aptitude and  Logical Reasoning  PO9, PO10, PO11,PO12  
+ 
+ 
+PO and PSO mapping with level of strength for Course  
+Code_ 
+Course 
+Name  CO
+’s P
+O 
+1 PO
+2 P
+O
+3 P
+O4 P
+O
+5 P
+O
+6 P
+O
+7 P
+O
+8 PO
+9 PO1
+0 PO11  PO12  PS
+O1 
+ PS
+O2 PSO3  
+ 
+ARP10
+2 CO
+1 - -  - - 
+ 
+ - - - 1 3 1 2 - - - 
+CO
+2 - - - – - - - - 1 3 1 2 - - -- 
+CO
+3 - - - - - - - - 1 3 1 2 - - - 
+CO
+4 - - - - - – – - 1 3 1 2 - - - 
+CO
+5 - - -  - - -  1 3 1 2 - - - 
+CO
+6 - - - - - - - - 1 3 1 2 - - -- 
+ 
+ 
+ 
+CSE, SSET, SU  Page 120 
+ 
+Average of non -zeros entry in following table (should be auto calculated).  
+Course 
+Code  Course 
+Name  PO   
+1 PO2 PO 
+3 P
+O 
+4 P
+O
+5 P
+O
+6 P
+O
+7 P
+O
+8 P
+O
+9 P
+O
+1
+0 P
+O
+1
+1 P
+O
+1
+2 PS
+O
+1 P
+S
+O
+2 P
+S
+O
+3 
+ARP  - 
+102  
+Communic
+ative 
+English - 2         1 3 1 2    
+ 
+ 
+Strength of Correlation  
+ 
+1. Addressed to Slight (Low=1) extent  2. Addressed to Moderate (Medium=2) extent    
+3. Addressed to Substantial (High=3) extent  
+ 
+ 
+   
+ 
+CSE, SSET, SU  Page 121 
+ 
+ 
+School: SET  Batch : 2023 -27 
+Program: B.Tech.  Current Academic Year: 2023 -24 
+Branch: CSE / IT  Semester: 2nd  
+1 Course Code  CSP116  Course Name:  Design & Creativity Lab  
+2 Course  Title  Design & Creativity Lab (DCL)  
+3 Credits  2 
+4 Contact Hours  
+(L-T-P) 1-0-2 
+ Course Status  Compulsory  
+5 Course 
+Objective  
+ 
+ 
+ 1.To align student to think out of box and identify a realistic 
+problem or project  
+2.To understand the significance of problem and its scope  
+3.To develop skills to frame small project for the defined problem  
+6 Course 
+Outcomes   Students will be able to:  
+CO1: Identify and formulate problem statements using systematic 
+approach for real world/proposed problems.  
+CO2: Develop teamwork and problem -solving skills, along with the 
+ability to communicate effectively with others.  
+CO3: Design the problem solution as per the problem statement 
+framed.  
+CO4: Classify and understand project solution and design solution 
+parameters.  
+CO5: Fabricate the solution by using C programming/other known 
+programming.  
+CO6: Develop future work areas from the project outcome.  
+7 Course 
+Description  In DCL, the students will learn the fundamentals of defining the 
+problem, formulating the problem statement, identifying the required 
+skills for developing the solution based on a given problem identified 
+based on the understanding of the programming language studied in 
+the previous semester or known.  
+8 Outline syllabus  CO 
+Mapping  
+ Unit 1  Problem Definition, Formation of Teamwork and problem 
+solving, and Project Assignment.  CO1, CO2  
+ Unit 2  Develop the ability to communicate effectively and 
+identify proposed problems.   CO2, CO3  
+ Unit 3  Design proposed solution for identified problem statement.  CO3  
+ Unit 4  Develop a solution set and obtain the appropriate results for 
+defined parameters.  CO3, CO4  
+ Unit 5  Demonstrate and execute projects with the team. 
+Determine future work based on the final outcome.  CO4, CO5, 
+CO6  
+ The report should include Abstract, Hardware / Software 
+Requirement, Problem Statement, Design/Algorithm, 
+Solution Detail. Reports.  
+References if any.    
+ 
+CSE, SSET, SU  Page 122 
+ 
+The presentation, report, work done during the term 
+supported by the documentation, forms the basis of 
+assessment.  
+   
+ Mode of 
+examination  Practical /Viva   
+ Weight age 
+Distribution  CA CE (VIVA)  ETE  
+25% 25% 50%  
+ 
+CO and PO Mapping  
+S. 
+No. Course Outcome  Program Outcomes (PO)  
+1. CO1: Identify and formulate problem 
+statements using systematic approach for 
+real world/proposed problems.  PO1, PO2, PO4, PO9, PO10, PO11, 
+PO12,PSO1,PSO2,PSO3  
+2. CO2: Develop teamwork and problem -
+solving skills, along with the ability to 
+communicate effectively with others.  PO1, PO2, PO4, PO7, PO9, PO10, 
+PO11, PO12 ,PSO3  
+3. CO3: Design the problem solution as per the 
+problem statement framed.  PO1, PO2, PO5, PO9, PO10, PO11, 
+PO12, PSO1,PSO2  
+4. CO4: Classify and understand p roject 
+solution and design solution parameters.  PO1, PO2, PO6, PO9, PO10, PO11, 
+PO12,PSO2  
+5. CO5: Fabricate the solution by using C 
+programming/other known programming.  PO1, PO2, PO3, PO4,PO5, PO6, PO7, 
+PO8, PO9, PO10, PO11, PO12 
+PSO1,PSO2, PSO3  
+6. CO6: Develop future work areas from the 
+project outcome.  PO1, PO2, PO4, PO9, PO10, PO11, 
+PO12,PSO3  
+ 
+PO and PSO mapping with level of strength for Course Name Design & Creativity Lab  (Course 
+Code CSP116)  
+CO/PO Mapping  
+(1/2/3 indicates strength of correlati on)       3 -Strong, 2 -Medium, 1 -Low 
+Cos Programme Outcomes(POs)  
+PO
+1 PO
+2 PO
+3 PO
+4 PO
+5 PO
+6 PO
+7 PO
+8 PO
+9 PO1
+0 PO1
+1 PO1
+2 PSO
+1 PSO
+2 PSO
+3 
+CO1  3 3 - 3 - - - - 3 3 2 3 2 2 1 
+CO2  3 2 - 3 - - 2 - 3 3 2 3   1 
+CO3  3 2 - - 2 - - - 3 3 2 3 2 2  
+CO4  3 3 - - - 2 - - 3 3 2 3  2  
+CO5  3 3 2 2 2 2 3 3 3 3 2 3 2 2  
+CO6  3 3 - 3 - - - - 3 3 2 3   1 
+AvgP
+O 
+attain
+ed 3 2.7 0.3
+4 1.8
+4 0.6
+7 0.6
+7 0.8
+4 0.5 3 3 2 3 1 1.4 0.5 
+ 
+   
+ 
+CSE, SSET, SU  Page 123 
+ 
+ 
+School: SET  Batch : 2023 -27 
+Program: B.Tech.  Current Academic Year: 2023 -24 
+Branch: CSE / IT  Semester: 2nd  
+1 Course Code  CSP116  Course Name:  Design & Creativity Lab  
+2 Course  Title  Design & Creativity Lab (DCL)  
+3 Credits  2 
+4 Contact Hours  
+(L-T-P) 1-0-2 
+ Course Status  Compulsory  
+5 Course 
+Objective  
+ 
+ 
+ 1.To align student to think out of box and identify a realistic 
+problem or project  
+2.To understand the significance of problem and its scope  
+3.To develop skills to frame small project for the defined problem  
+6 Course 
+Outcomes   Students will be able to:  
+CO1: Identify and formulate problem statements using systematic 
+approach for real world/proposed problems.  
+CO2: Develop teamwork and problem -solving skills, along with the 
+ability to communicate effectively with others.  
+CO3: Design the problem solution as per the problem statement 
+framed.  
+CO4: Classify and understand project solution and design solution 
+parameters.  
+CO5: Fabricate the solution by using C programming/other known 
+programming.  
+CO6: Develop future work areas from the project outcome.  
+7 Course 
+Description  In DCL, the students will learn the fundamentals of defining the 
+problem, formulating the problem statement, identifying the required 
+skills for developing the solution based on a given problem identified 
+based on the understanding of the programming language studied in 
+the previous semester or known.  
+8 Outline syllabus  CO 
+Mapping  
+ Unit 1  Problem Definition, Formation of Teamwork and problem 
+solving, and Project Assignment.  CO1, CO2  
+ Unit 2  Develop the ability to communicate effectively and 
+identify proposed problems.   CO2, CO3  
+ Unit 3  Design proposed solution for identified problem statement.  CO3  
+ Unit 4  Develop a solution set and obtain the appropriate results for 
+defined parameters.  CO3, CO4  
+ Unit 5  Demonstrate and execute projects with the team. 
+Determine future work based on the final outcome.  CO4, CO5, 
+CO6  
+ The report should include Abstract, Hardware / Software 
+Requirement, Problem Statement, Design/Algorithm, 
+Solution Detail. Reports.  
+References if any.    
+ 
+CSE, SSET, SU  Page 124 
+ 
+The presentation, report, work done during the term 
+supported by the documentation, forms the basis of 
+assessment.  
+   
+ Mode of 
+examination  Practical /Viva   
+ Weight age 
+Distribution  CA CE (VIVA)  ETE  
+25% 25% 50%  
+ 
+CO and PO Mapping  
+S. 
+No. Course Outcome  Program Outcomes (PO)  
+1. CO1: Identify and formulate problem 
+statements using systematic approach for real 
+world/proposed problems.  PO1, PO2, PO4, PO9, PO10, PO11, 
+PO12,PSO1,PSO2,PSO3  
+2. CO2: Develop teamwork and problem -solving 
+skills, along with the ability to communicate 
+effectively with others.  PO1, PO2, PO4, PO7, PO9, PO10, 
+PO11, PO12 ,PSO3  
+3. CO3: Design the problem solution as per the 
+problem statement framed.  PO1, PO2, PO5, PO9, PO10, PO11, 
+PO12, PSO1,PSO2  
+4. CO4: Classify and understand project solution 
+and design solution parameters.  PO1, PO2, PO6, PO9, PO10, PO11, 
+PO12,PSO2  
+5. CO5: Fabricate the solution by using C 
+programming/other known programming.  PO1, PO2, PO3, PO4,PO5, PO6, PO7, 
+PO8, PO9, PO10, PO11, PO12 
+PSO1,PSO2, PS O3 
+6. CO6: Develop future work areas from the 
+project outcome.  PO1, PO2, PO4, PO9, PO10, PO11, 
+PO12,PSO3  
+ 
+PO and PSO mapping with level of strength for Course Name Design & Creativity Lab  (Course 
+Code CSP116)  
+CO/PO Mapping  
+(1/2/3 indicates strength of correlation)       3 -Strong, 2 -Medium, 1 -Low 
+Cos Programme Outcomes(POs)  
+PO
+1 PO
+2 PO
+3 PO
+4 PO
+5 PO
+6 PO
+7 PO
+8 PO
+9 PO1
+0 PO1
+1 PO1
+2 PSO
+1 PSO
+2 PSO
+3 
+CO1  3 3 - 3 - - - - 3 3 2 3 2 2 1 
+CO2  3 2 - 3 - - 2 - 3 3 2 3   1 
+CO3  3 2 - - 2 - - - 3 3 2 3 2 2  
+CO4  3 3 - - - 2 - - 3 3 2 3  2  
+CO5  3 3 2 2 2 2 3 3 3 3 2 3 2 2  
+CO6  3 3 - 3 - - - - 3 3 2 3   1 
+AvgP
+O 
+attain
+ed 3 2.7 0.3
+4 1.8
+4 0.6
+7 0.6
+7 0.8
+4 0.5 3 3 2 3 1 1.4 0.5 
+  
+ 
+CSE, SSET, SU  Page 125 
+ 
+Syllabus: CSP 114:  Application based programming in Python Lab  
+ 
+ 
+School:  School of Engineering & Technology  
+Department  Department of Computer Science & Engineering  
+Program:  B.Tech.  
+Branch:  CSE  
+1 Course Code  CSP114  
+2 Course   Title  Application Based Programming in Python Lab   
+3 Credits  1 
+4 Contact 
+Hours   
+(L-T-P) 0-0-2 
+ 
+Course Status  Compulsory  
+5 Course 
+Objective  Emphasis is placed on procedural programming, algorithm design, and 
+language constructs common to most high level languages through Python 
+Programming.  
+6 Course 
+Outcomes  Upon successful completion of this course, the student will be able to:  
+ CO1: Develop  program based on procedural statements like assignments, 
+conditional statements and loops.  
+CO2: Compare and implement different data types of python.  
+CO3: Create programs by using function and function call.  
+CO4: Formulate clear and accurate logical solution by using OOPS  
+CO5: Apply different modules, packages available in python.  
+CO6: Design real life situational problems and think creatively about 
+solutions of them.  
+7 Course 
+Description  Python is a language with a simple syntax, and a power ful set of libraries. It 
+is widely used in many scientific areas for data exploration. This course is an 
+introduction to the Python programming language for students without prior 
+programming experience. We cover data types, control flow, object -oriented 
+programming.   
+8 Outline syllabus  CO Mapping  
+ 
+Unit 1  Practical based on conditional statements 
+and control structures   
+ 
+1. Program to implement all conditional 
+statements  
+2. Program to implement different control 
+structures  CO1,C06  
+ 
+Unit 2  Practical related to List, Tuples and 
+dictionaries   
+ 
+1. Program to implement operations on lists  
+2. Program to implement operations on 
+Dictionary  
+3. Program to implement operations on 
+Tuple  CO2,CO6  
+ 
+Unit 3  Practical related to Functions and  
+Exception Handling   
+ 
+ 
+CSE, SSET, SU  Page 126 
+ 
+ 
+1. Program to implement Exception 
+Handling  
+2. Program to use different functions  CO3,CO6  
+ 
+Unit 4  Practical related to Object Oriented 
+Programming   
+ 
+1. Program to use object oriented  concepts like 
+inheritance, overloading polymorphism etc.  
+2.Program for file handling  CO4,CO6  
+ 
+Unit 5  Practical related to Modules and 
+Applications   
+ 
+1.Program to use modules and package  
+2.Program to implement searching and sorting  CO5,CO6  
+ 
+Mode of 
+examination  Practical/Viva   
+ 
+Weightage 
+Distribution  CA CE(Viva)  ETE  
+25% 25% 50%  
+ 
+Text book/s*  2. The Complete Reference Python, Martin C. 
+Brown, McGraw Hill   
+ 
+Other 
+References  5. Introduction to computing in problem solving 
+using Python, E Balagurusamy, McGraw Hill  
+6. Introduction to programming using Python, 
+Y. Daniel Liang, Pearson  
+7. Mastering Python, Rick Van Hatten, Packet 
+Publishing House  
+8. Starting out with Python, Tony Gaddis, 
+Pearson  
+ 
+ 
+ 
+CO and PO Mapping  
+ 
+S. 
+No. Course Outcome  Program Outcomes (PO) & Program Specific 
+Outcomes (PSO)  
+1.  CO1: Develop program based 
+on procedural statements like 
+assignments, conditional 
+statements and loops.  PO1,PO 2,PO3,PO4,PO8,PO12, PSO2  
+2. CO2: Compare and implement 
+different data types of python.  PO1,PO2,PO3,PO4,PO5,PO8,PO12, PSO2,PSO3  
+3. CO3: Create programs by using 
+function and function call.  PO1,PO2,PO3,PO4,PO5,PO6,PO8,PO12,  
+PSO1, PSO2,PSO3  
+4. CO4: Formulate clear and 
+accurate logical solution by 
+using OOPS  PO1,PO2,PO3,PO4,PO5,PO6,PO8,PO12,  
+PSO1, PSO2,PSO3  
+5.  CO5: Apply different modules, 
+packages available in python.  PO1,PO2,PO3,PO4,PO5,PO6,PO8,PO12,  
+PSO1, PSO2,PSO3  
+6. CO6: Design real life situational 
+problems and think creatively 
+about solutions of them.  PO1,PO2,PO3,PO4,PO5,PO6,PO8,PO12,  
+PSO1, PSO2,PSO3  
+  
+ 
+CSE, SSET, SU  Page 127 
+ 
+PO and PSO mapping with level of strength for Course Name -Application Based 
+Programming in Python Lab (Course Code CSP 114)  
+ 
+ 
+Course Code_ 
+Course Name  CO’
+s PO 
+1 PO 
+2 PO 
+3 PO
+4 PO 
+5 PO 
+6 PO 
+7 PO 
+8 PO 
+9 PO 
+10 PO 
+11 PO 
+12 PSO  
+1 PSO
+2 PSO
+3 
+CSP114_Appli
+cation Based 
+programming 
+in Python Lab  CO1  1 1 1 1    
+2    
+2  
+1  
+CO2  2 2 1 1 2   
+2    
+2  
+1 1 
+CO3  2 2 1 1 1 1  
+2  
+  
+2 1 2 1 
+CO4  2 2 2 2 1 1  
+2  
+  
+2 2 2 1 
+CO5  2 2 2 2 2 2  
+2  
+  
+2 2 2 2 
+CO6  3 3 2 2 2 3  
+2  
+  
+2 2 2 2 
+ 
+Average of non -zeros entry in following table (should be auto calculated).  
+ 
+Course 
+Code  Course Name  PO   
+1 PO
+2 PO 3  PO 
+4 PO 
+5 PO 6  PO 
+7 PO 
+8 PO 
+9 PO 
+10 PO 
+11 PO 
+12 PSO1  PSO
+2   PSO3  
+CSP11
+4 Application 
+Based 
+programming 
+in Python Lab  2 2 1.5 1.5 1.3 1.2 - 2 - - - 2 1.2 1.7 1.2 
+ 
+Strength of Correlation  
+ 
+1. Addressed to  Slight (Low=1) extent  2. Addressed to  Moderate (Medium=2) extent    
+3. Addressed to  Substantial (High=3) extent  
+ 
+   
+ 
+CSE, SSET, SU  Page 128 
+ 
+School: SET  Batch : 2023 -27 
+Program: B.Tech  Current Academic Year: 2023 -24 
+Branch: Mechanical 
+Engineering  Semester: II  
+1 Course Code  MEP 105  
+2 Course  Title  Mechanical Workshop  
+3 Credits  1.5 
+4 Contact Hours  
+(L-T-P) 0-0-3 
+ Course Status  Compulsory  
+5 Course 
+Objective  The objective of this course is to make the students, familiar with the 
+modern day manufacturing processes, introduce them to various hand tools 
+and equipment, acclimatize with the measuring devices, and perform basic 
+machine tool operations in various machine tools.  
+6 Course 
+Outcomes  After successful completion of this course, students will be able to  
+CO1: Apply 5S (Seiri, Seiton, Seiso, Seiketsu and Shitsuke )  methodology  
+at workplace.  
+CO2: Select the various hand tools used in the basic mechanical 
+engineering workshop sections -smithy, carpentry, assembling, welding etc.  
+CO3: Choose different measuring devices according to the job  
+CO4: Differentiate between va rious machine tools and their operation  
+CO5: Classify and select suitable tools for machining processes including 
+turning, facing, thread cutting and tapping, milling, drilling and shaping.  
+CO6: Apply the knowledge for advance manufacturing experiments.  
+7 Course 
+Description  Black Smithy Shop:  Simple exercises based on black smithy operations 
+such as upsetting, practice of S -Hook from circular bar using hand forging 
+operations.  
+Carpentry Shop :  Study of  different types of wood , Carpentry Tools, 
+Equipmen t and different joints, Practice of  T joint, cross lap joint, Mortise 
+and Tenon T joint, Bridle T joint  
+Fitting Shop:  Preparation of  Square joint, V joint, half round joint, 
+dovetail jointas per the given specifications,  which contains: Sawing, 
+Filing, Grinding, and Practice marking operations.  
+Sheet Metal Shop:  Study of galvanized Iron (G.I.) Sheet material 
+properties, hand tools and sheet metal machines, and projective geometry, 
+demonstration of different sheet metal operations and practice of 
+develop ment of Tray, cylinder, hopper, funnel etc.  
+Welding Shop:  Introduction, Study of Tools and welding Equipment (Gas 
+and Arc welding), Selection of welding electrode and current, Bead practice 
+and Practice of Butt Joint, Lap Joint.  
+Machine Shop:  Study of mac hine tools in particular Lathe machine 
+(different parts, different operations, study of cutting tools), Demonstration 
+of different operations on Lathe machine, Practice of Facing, Plane 
+Turning, step turning, taper turning, knurling and parting and Study o f 
+Quick return mechanism of Shaper.  
+Foundry Shop:  Introduction to foundry, Patterns, pattern allowances, 
+ingredients of moulding sand and melting furnaces. Foundry tools and their 
+purposes, Demo of mould preparation and Practice – Preparation of mould 
+by using split pattern.  
+ 
+8 Outline syllabus  CO Mapping  
+ 
+ List of 
+Experiments     
+ 
+CSE, SSET, SU  Page 129 
+ 
+Experiment 1  To make a S shaped hook from a given 
+circular rod using hand forging technique.  CO4  
+Experiment 2  To make a dovetail lap joint in Carpentry 
+shop.  CO2,CO3  
+Experiment 3  To make a cross -half lap joint in Carpentry 
+shop.  CO2,CO3  
+Experiment 4  To make a square fit from the given mild 
+steel pieces in fitting shop.  CO3,CO5  
+Experiment 5  To prepare a V -Fit from the given mild steel 
+pieces in fitting shop.  CO3, CO5  
+Experiment 6  To make a rectangular tray of specified 
+dimensions in sheet metal shop.  CO2, CO5  
+Experiment 7  To make a Lap joint, using the given mild 
+steel pieces using arc welding.  CO3, CO5  
+Experiment 8  To perform step turning and taper turning 
+operations on the given work piece   CO5  
+ Experiment 9  To prepare a sand mold, using the given 
+single piece pattern  CO2  
+ Experiment 10  To prepare a sand mold, using the given 
+Split -piece pattern.  CO2  
+ Mode of 
+examination  Practical   
+ Weight - age 
+Distribution  CA MTE  ETE  
+25% 25% 50%  
+ Text book/s*  1. Raghuwanshi B.S., Workshop Technology Vol. I & II, DhanpathRai& 
+Sons.  
+2. Kannaiah P. and Narayana K.L., Workshop Manual, 2nd Edn, Scitech 
+publishers.  
+3. John K.C., Mechanical Workshop Practice. 2nd Edn. PHI 2010.  
+4. JeyapoovanT.andPranitha S., Engineering Practices Lab Manual, 3rd 
+Edn. Vikas Pub.2008.  
+ 
+ 
+Program Outcome Vs Courses Mapping Table : 
+ 
+ 
+COs PO1 PO2 PO3 PO4 PO5 PO6 PO7 PO8 PO9 PO10  PO11  PO12  PSO1  PSO2  PSO3  
+CO105.1  1 - - - - 2 - - - - - 2 - - - 
+CO105.2  1 - - - 1 2 - - - - - 1 1 - 1 
+CO105.3  2 - 1 - 1 2 - - - - - 2 1 - 1 
+CO105.4  2 - 1 - 2 2 - - - - - 2 1 - 1 
+CO105.5  2 - 1 - 2 2 - - - - - 2 2 - 1 
+CO105.6  2 - 1 - 2 2 - - - - - 2 2 - 1 
+CO105  2 - 1 - 2 2 - - - - - 2 2 - 1 
+ 
+          1-Slight (Low)                     2-Moderate (Medium)              3 -Substantial (High)  
+ 
+ 
+ 
+  
+ 
+ 
+CSE, SSET, SU  Page 130 
+ 
+School: SET  Batch : 2023 -27 
+Program: B.Tech  Current Academic Year: 2023 -24 
+Branch: ALL  Semester: I I 
+1 Course Code  MEP 106  
+2 Course  Title  Computer Aided Design & Drafting Laboratory  
+3 Credits  1.5 
+4 Contact Hours  
+(L-T-P) 0-0-3 
+ Course Status  Compulsory  
+5 Course Objective  The objective of this introductory course is to make students familiar with 
+computer -aided drafting/ design, introduce them about the basic 
+commands, tools and dimension techniques for creation and presentation 
+of various engineering drawing by using AutoCAD software which helps 
+in visualization and problem solving in engineering disciplines.  
+6 Course Outcomes  After successful completion of this course the student will be able to  
+CO1: Understand the fundamental features of AutoCAD workspace and 
+user interface.  
+CO2: Apply the fundamental tools such as draw, edit, and view for creating 
+two dimensional engineering drawings in AutoCAD.  
+CO3: Choose advance features to present an engineering drawing in 
+AutoCAD.  
+CO4: Apply text and dimension features in the engineering  drawing.  
+CO5: Create different orthographic projections from a pictorial view.  
+CO6: Analyze an engineering drawing and use the software packages for 
+drafting and modeling.  
+7 Course 
+Description  This introductory course is offered to students to make them proficient in 
+design, layout, product development, and other careers that require 
+technical drawing. Using the current version of the AutoCAD software, 
+students will learn a variety of drawing techniques and be able to replicate 
+specific drawings in m ultiple perspectives. The pinnacle of the class is to 
+empower and enable students to create using the software provided. Career 
+opportunities in 3D modeling, manufacturing, and engineering will also be 
+explored. No drafting or computer experience is necess ary. 
+8 Outline syllabus  CO Mapping  
+ 
+ List of 
+Experiments    
+ Experiment 1  Introduction to AutoCAD and its interface  CO1  
+Experiment 2  Working with coordinates, Drawing  offline, circle, 
+arc, polygon and creating sketches  CO2  
+Experiment 3  Editing of drawing by using editing Tools and Power 
+tools  CO2  
+Experiment 4  Creating of advanced feature like fillet, chamfer, hatch 
+and using of block  CO3  
+Experiment 5  Representing text and dimensioning in AutoCAD  CO4  
+Experiment 6  Creating the drawings of mechanical components by 
+using AutoCAD features.  CO2, CO3  
+Experiment 7  Creating the electrical circuit drawings in AutoCAD.  CO2  
+Experiment 8  Drawing plan and elevation of various buildings in 
+AutoCAD.  CO2, CO4  
+Experiment 9  Creating the drawing of renowned constructions such 
+as Taj Mahal in AutoCAD  CO3   
+ 
+CSE, SSET, SU  Page 131 
+ 
+Experiment 10  Creating of orthographic projections from a pictorial 
+views  CO5  
+    
+ Mode of 
+examination  Practical   
+ Weightage 
+Distribution  CA CE(Viva)  ETE  
+25% 25% 50%  
+ Text book/s*  1. Ibrahim Zaid,"CAD/CAM - Theory and Practice", McGraw Hill, 
+International Edition.  
+ Software  AutoCAD  
+ 
+ 
+1.3.5.1 COURSE ARTICULATION MATRIX  
+ 
+ 
+COs PO
+1 PO
+2 PO
+3 PO
+4 PO
+5 PO
+6 PO
+7 PO
+8 PO
+9 PO
+10 PO
+11 PO
+12 PS
+O1 PS
+O2 
+CO10
+6.1 2 2 2 - 3 - - - - - - 3 3 3 
+CO10
+6.2 2 2 2 - 3 - - - - - - 3 3 3 
+CO10
+6.3 2 2 2 - 3 - - - - - - 3 3 3 
+CO10
+6.4 2 2 2 2 3 - - - 2 2 - 3 3 3 
+CO10
+6.5 2 2 2 2 3 - - - 2 2 - 3 3 3 
+CO10
+6.6 2 2 2 2 3 - - - 2 2 - 3 3 3 
+ 
+1-Slight (Low)   
+2-Moderate (Medium)  
+3-Substantial (High)  
+  
+ 
+ 
+CSE, SSET, SU  Page 132 
+ 
+Syllabus: CSP 242, Data Structure Lab  
+ 
+School: SET Batch : 2023 -27 
+Program: B.Tech.  Current Academic Year: 2023 -24 
+Branch: CSE/IT  Semester: II  
+1 Course Code  CSP242  
+2 Course  Title  Data Structure Lab  
+3 Credits  1 
+4 Contact Hours  
+(L-T-P) 0-0-2 
+ Course Status  Compulsory  
+5 Course 
+Objective  1. Learn the basic concepts of Data Structures and algorithms.  
+2. Design and Implementation of Various Basic and Advanced Data 
+Structures.  
+3. Learn the concepts of various searching, Sorting and Hashing 
+Techniques.  
+4. Choose the appropriate data structures and algorithm design method 
+for a specified application.  
+ 
+6 Course 
+Outcomes  CO1: Implement  operation like traversing, insertion, deletion, searching 
+etc. on various data structures.  
+CO2 apply  linear data structure(s) to solve various problems  
+CO3: develop  the solution of any problem using non linear data 
+structure(s)  
+CO4: create  a solution of any problem using searching and sorting 
+techniques  
+CO5: Design  a hash function using any programming language  
+CO6: Choose  the most appropriate data structure(s) for a given 
+problem  
+ 
+7 Course 
+Description  This course  starts with an introduction to data structures with its 
+classification, efficiency of different algorithms, array and pointer 
+based implementations and Recursive applications. As the course 
+progresses the study of Linear and Non -Linear data structures are 
+studied in details. The course talks primarily about Linked list, 
+stacks, queue, Tree structure, Graphs etc. This Course also deals 
+with the concept of searching, sorting and hashing methods.  
+ 
+8 Outline syllabus  CO 
+Mapping  
+ Unit 1  Introduction  CO1  
+ Program to implement Operation on Array such as 
+Traversing, Insertion & Deletion operation  CO1  
+ Program based on Recursion such as Towers of 
+Hanoi, Fibonacci series etc.  CO1  
+ Unit 2  Linked List  CO2  
+ Program to implement different operation on the 
+following linked list: Singly,  Doubly and circular linked 
+list. CO2  
+ 
+ 
+CSE, SSET, SU  Page 133 
+ 
+ Unit 3  Stack & Queue  CO3  
+ Program to Implement Stack operation using Array and 
+Linked list  CO3  
+ Program to convert infix expression to post fix expression  CO3  
+  Program on Evaluation of Post fix expression  CO3  
+ Program to implement queue operation using array and 
+linked list  CO3  
+ Program to implement circular queue and deque.  CO3  
+ Unit 4  Tree & Graph  CO4, CO6  
+ Program to implement binary tree and BST.  CO4, CO6  
+ Program to implement MST and shortest path algorithm.  CO4, CO6  
+ Unit 5  Searching, Sorting & Hashing  CO5  
+ Program on Searching and Hashing  CO5  
+ Program on Sorting.  CO5  
+ Mode of 
+examination  Practical   
+ Weightage 
+Distribution  CA CE(Viva)  ETE  
+25% 25% 50%  
+ Text book/s*  1. Lipschutz, “Data Structures” Schaum’s Outline 
+Series, TMH   
+ Other 
+References  1. Aaron M. Tenenbaum, Yedidyah Langsam and 
+Moshe J. Augenstein “Data Structures Using C and 
+C++” , PHI  
+2. Horowitz and Sahani, “Fundamentals of Data 
+Structures”, Galgotia Publication  
+3. Jean Paul Trembley and Paul G. Sorenson, “An 
+Introduction to Data S tructures with applications”, 
+McGraw Hill  
+4. R. Kruse etal, “Data Structures and Program 
+Design in C”, Pearson Education  
+5. G A V Pai, “Data Structures and Algorithms”, TMH   
+ 
+ 
+PO and PSO mapping with level of strength for Course Name Data Structures (Course 
+Code CSE 242)  
+  
+PO 
+1 PO 
+2 PO 
+3 PO 
+4 PO 
+5 PO 
+6 PO 
+7 PO 
+8 PO 
+9 PO 
+10 PO 
+11 PO 
+12 PSO1  PSO2  PSO3  
+CO1  2 2 3 _ _ - _ _ 3 _ _ 2 3 2 2 
+CO2  3 2 2 2 2 - _ _ 2 _ - _ 2 3 3 
+CO3  3 1 3 3 _ _ _ _ 3 _ _ 1 3 2 2 
+CO4  3 2 3 2 _ _ _ _ 2 _ _ 2 2 3 2  
+ 
+CSE, SSET, SU  Page 134 
+ 
+CO5  2 2 2 _ _ _ _ _ _ _ _ _ 1 2 2 
+CO6  3 3 2 3 - - _ _ 3 _ - _ 2 3 2 
+ 
+Average of non -zeros entry in following table (should be auto calculated).  
+ 
+ 
+Cou
+rse 
+Cod
+e Cours
+e 
+Name  P
+O1 P
+O2 P
+O3 P
+O4 P
+O5 P
+O6 P
+O7 P
+O8 P
+O9 PO
+10 PO
+11 PO
+12 PS
+O1 PS
+O2 PS
+O3 
+CSP 
+242 Data 
+struct
+ures  
+Lab 2.
+67 2 2.
+5 2.
+5 2 - - - 2.
+6 - - 1.7 2.1
+7 2.5 2.2 
+ 
+ 
+ 
+ 
+Strength of Correlation  
+ 
+1. Addressed to  Slight (Low=1) extent  2. Addressed to  Moderate (Medium=2) extent    
+3. Addressed to  Substantial (High=3) extent  
+ 
+ 
+ 
+  
