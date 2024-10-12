@@ -32,8 +32,8 @@ class RAGKnowledgeBase:
     def __init__(self, base_dir="knowledge_base"):
         self.base_dir = Path(base_dir)
         self.model = SentenceTransformer("all-MiniLM-L6-v2")
-        self.chunk_size = 100  # Very small chunks
-        self.overlap = 20  # Minimal overlap
+        self.chunk_size = 120  # Very small chunks
+        self.overlap = 40  # Minimal overlap
         self.max_chunks_per_doc = 5  # Strict limit on chunks per document
         self.max_workers = min(4, os.cpu_count() or 1)  # Limit concurrent processing
 
@@ -195,7 +195,10 @@ class RAGKnowledgeBase:
             for doc in self.documents:
                 chunks = self.chunk_document(doc)
                 futures.extend(
-                    [executor.submit(self.process_chunk, chunk) for chunk in chunks]
+                    [
+                        executor.submit(self.process_chunk, doc, chunk)
+                        for chunk in chunks
+                    ]
                 )
 
             for future in tqdm(futures, total=len(futures), desc="Processing chunks"):
@@ -203,14 +206,10 @@ class RAGKnowledgeBase:
 
         print(f"Processing complete. Total chunks: {len(self.contextualized_chunks)}")
 
-    def process_chunk(self, chunk):
-        # Simple bag-of-words representation
-        word_counts = Counter(chunk.lower().split())
-        vec = np.zeros(len(self.word_to_index))
-        for word, count in word_counts.items():
-            if word in self.word_to_index:
-                vec[self.word_to_index[word]] = count
-        return {"text": chunk, "context": vec}
+    def process_chunk(self, document, chunk):
+        # Use SentenceTransformer to get a better semantic representation
+        context = self.model.encode(chunk)
+        return {"text": chunk, "context": context, "document": document}
 
     def create_faiss_index(self):
         if not self.contextualized_chunks:
@@ -228,14 +227,11 @@ class RAGKnowledgeBase:
         )
 
     def create_bm25_index(self):
-        if self.contextualized_chunks:
-            tokenized_chunks = [
-                word_tokenize(chunk["text"].lower())
-                for chunk in self.contextualized_chunks
-            ]
-            self.bm25 = BM25Okapi(tokenized_chunks)
-        else:
-            print("No contextualized chunks available. BM25 index not created.")
+        tokenized_chunks = [
+            word_tokenize(chunk["text"].lower()) for chunk in self.contextualized_chunks
+        ]
+        self.bm25 = BM25Okapi(tokenized_chunks)
+        print("BM25 index created successfully.")
 
     def save_indexes(self):
         index_dir = self.base_dir / "index"
@@ -311,72 +307,89 @@ class RAGKnowledgeBase:
             )
 
     def query_knowledge_base(self, query, k=20):
-        # Load indexes if not already loaded
         if self.index is None:
             self.load_faiss_index()
         if self.bm25 is None:
             self.load_bm25_index()
 
         print(f"Querying knowledge base with: {query}")
-        print(f"Number of documents in knowledge base: {len(self.documents)}")
+        print(f"Number of chunks in knowledge base: {len(self.contextualized_chunks)}")
 
-        if not self.documents:
-            print("No documents in the knowledge base. Unable to perform search.")
-            return [], []
+        if not self.contextualized_chunks:
+            print("No chunks in the knowledge base. Unable to perform search.")
+            return [], []  # Return empty lists for both results and indices
 
         # Semantic search
         sem_distances, sem_indices = self.similarity_search(query, k)
-        print(f"Semantic search results: {sem_indices}")
-        print(f"Semantic search distances: {sem_distances}")
-        sem_docs = [self.documents[i] for i in sem_indices if i < len(self.documents)]
 
         # BM25 search
-        if self.bm25 is None:
-            print("BM25 index not initialized. Skipping BM25 search.")
-            bm25_docs = []
-            bm25_scores = []
-        else:
-            bm25_results = self.contextual_bm25_search(query, k)
-            bm25_indices, bm25_scores = zip(*bm25_results)
-            print(f"BM25 search results: {bm25_indices}")
-            print(f"BM25 search scores: {bm25_scores}")
-            bm25_docs = [
-                self.documents[i] for i in bm25_indices if i < len(self.documents)
-            ]
+        bm25_scores = self.bm25.get_scores(word_tokenize(query.lower()))
+        bm25_indices = np.argsort(bm25_scores)[::-1][:k]
 
-        # Combine results from semantic search and BM25
-        combined_docs = list(set(sem_docs + bm25_docs))
+        # Combine results
+        combined_indices = list(set(sem_indices) | set(bm25_indices))
 
-        # Rerank the combined results
+        # Rerank combined results
         reranked_indices = self.rerank(
-            query, combined_docs, k=min(5, len(combined_docs))
+            query, [self.contextualized_chunks[i]["text"] for i in combined_indices]
         )
-        final_docs = [combined_docs[i] for i in reranked_indices]
 
-        # Get metadata for final docs
-        final_indices = [self.documents.index(doc) for doc in final_docs]
-        retrieved_docs = self.retrieve_documents(final_indices)
+        final_indices = [combined_indices[i] for i in reranked_indices]
+        final_chunks = [self.contextualized_chunks[i] for i in final_indices]
 
-        # Calculate final distances
-        final_distances = []
-        for doc in final_docs:
-            if doc in sem_docs:
-                final_distances.append(sem_distances[sem_docs.index(doc)])
-            elif doc in bm25_docs:
-                final_distances.append(1 / (1 + bm25_scores[bm25_docs.index(doc)]))
-            else:
-                final_distances.append(float("inf"))
+        print("\nRetrieved Chunks:")
+        results = []
+        for i, chunk in enumerate(final_chunks):
+            sem_distance = (
+                sem_distances[list(sem_indices).index(final_indices[i])]
+                if final_indices[i] in sem_indices
+                else float("inf")
+            )
+            bm25_score = bm25_scores[final_indices[i]]
 
-        print("\nRetrieved Documents:")
-        for i, (doc, distance) in enumerate(zip(retrieved_docs, final_distances)):
-            print(f"\nDocument {i+1}:")
-            print(f"Filename: {doc.get('filename', 'Unknown')}")
-            print(f"Distance: {distance}")
+            result = {
+                "text": chunk["text"],
+                "semantic_distance": sem_distance,
+                "bm25_score": bm25_score,
+                "document": chunk.get("document", "Unknown document"),
+            }
+            results.append(result)
+
+        # Sort results by a combined score (you can adjust this scoring method)
+        sorted_results = sorted(
+            results,
+            key=lambda x: (
+                x["semantic_distance"]
+                if x["semantic_distance"] != float("inf")
+                else 1000
+            )
+            - (x["bm25_score"] * 0.1),
+            reverse=True,
+        )
+
+        # If we have more than 10 results, filter to top 10
+        if len(sorted_results) > 10:
+            final_results = sorted_results[:10]
+        else:
+            final_results = (
+                sorted_results  # Keep all results if less than or equal to 10
+            )
+
+        print(f"Number of results after filtering: {len(final_results)}")
+
+        for i, result in enumerate(
+            final_results[:5]
+        ):  # Print details for top 5 results
+            print(f"\nChunk {i+1}:")
+            print(f"Semantic Distance: {result['semantic_distance']}")
+            print(f"BM25 Score: {result['bm25_score']}")
             print("Content:")
-            print(doc.get("content", "No content available"))
+            print(result["text"][:200] + "...")
             print("-" * 80)
 
-        return retrieved_docs, final_distances
+        return final_results, [
+            results.index(r) for r in final_results
+        ]  # Return both results and indices
 
     def similarity_search(self, query, k=20):
         if self.index is None:
@@ -389,14 +402,8 @@ class RAGKnowledgeBase:
             print("FAISS index is empty. Unable to perform similarity search.")
             return [], []
 
-        # Create a bag-of-words vector for the query
-        query_vec = np.zeros(len(self.word_to_index))
-        for word in query.lower().split():
-            if word in self.word_to_index:
-                query_vec[self.word_to_index[word]] += 1
-
-        # Ensure the query vector is float32 and reshape it
-        query_vec = query_vec.astype("float32").reshape(1, -1)
+        # Use SentenceTransformer to encode the query
+        query_vec = self.model.encode(query).astype("float32").reshape(1, -1)
 
         D, I = self.index.search(query_vec, min(k, self.index.ntotal))
         return D[0], I[0]
@@ -567,6 +574,11 @@ if __name__ == "__main__":
 
     # Add a document to the knowledge base
     kb.add_to_knowledge_base("path/to/your/document.pdf", "category1")
+
+    # Query the knowledge base
+    results, distances = kb.query_knowledge_base("Your query here", k=5)
+    for doc, distance in zip(results, distances):
+        print(f"Document: {doc['filename']}, Distance: {distance}")
 
     # Query the knowledge base
     results, distances = kb.query_knowledge_base("Your query here", k=5)

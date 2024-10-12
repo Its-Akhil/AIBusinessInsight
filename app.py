@@ -39,6 +39,9 @@ global_data = pd.DataFrame(columns=["timestamp", "value"])
 data_lock = threading.Lock()
 update_queue = Queue()
 
+# Global counter for data storage iterations
+data_storage_counter = 0
+
 
 def read_encryption_key():
     key_file_path = os.path.join(os.path.dirname(__file__), "encryption_key.key")
@@ -77,7 +80,7 @@ class CustomAI:
         if api_key is None:
             raise ValueError("TOGETHER_API_KEY environment variable is not set")
         self.client = Together(api_key=api_key)
-        self.kb = RAGKnowledgeBase(chunk_size=500, overlap=150)
+        self.kb = RAGKnowledgeBase()
         print(f"Loaded {len(self.kb.documents)} documents into the knowledge base.")
         print(
             f"FAISS index status: {'Initialized' if self.kb.index is not None else 'Not initialized'}"
@@ -104,9 +107,9 @@ class CustomAI:
         selected_docs = st.session_state.get("selected_docs", [])
         print(f"Selected documents: {selected_docs}")
 
-        results, distances = self.kb.query_knowledge_base(prompt, k=k)
+        results, indices = self.kb.query_knowledge_base(prompt, k=k)
         print(f"Query results: {results}")
-        print(f"Query distances: {distances}")
+        print(f"Query indices: {indices}")
 
         if not results:
             print(
@@ -116,43 +119,30 @@ class CustomAI:
 
         if selected_docs:
             filtered_results = []
-            filtered_distances = []
-            for result, distance in zip(results, distances):
-                if any(doc in result["path"] for doc in selected_docs):
+            for result in results:
+                if any(doc in result.get("document", "") for doc in selected_docs):
                     filtered_results.append(result)
-                    filtered_distances.append(distance)
-            results = filtered_results
-            distances = filtered_distances
+
+            if filtered_results:
+                results = filtered_results
+            else:
+                print("No results after filtering. Using all results instead.")
+                # Keep original results if filtering removes everything
 
         print(f"Filtered results: {results}")
 
         context = "Relevant information:\n"
-        for doc, distance in zip(results, distances):
-            relevance = 1 / (1 + distance) if distance != float("inf") else 0
-            context += f"- {doc['filename']} (relevance: {relevance:.2f}):\n"
-            try:
-                file_path = doc["path"]
-                print(f"Attempting to open file: {file_path}")
-                if not os.path.exists(file_path):
-                    print(f"File does not exist: {file_path}")
-                    continue
-
-                with open(file_path, "r", encoding="utf-8") as f:
-                    content = f.read()
-                    context += f"  {content[:200]}...\n"
-                print(f"Successfully read content from: {file_path}")
-            except Exception as e:
-                print(f"Error reading file {doc['path']}: {str(e)}")
-                print(
-                    f"File details: exists={os.path.exists(doc['path'])}, "
-                    f"size={os.path.getsize(doc['path']) if os.path.exists(doc['path']) else 'N/A'}"
-                )
+        for i, doc in enumerate(results[:5], 1):  # Limit to top 5 results
+            relevance = (
+                1 / (1 + doc["semantic_distance"])
+                if doc["semantic_distance"] != "N/A"
+                else 0
+            )
+            context += f"- Document {i} (relevance: {relevance:.2f}):\n"
+            content = doc.get("text", "")
+            context += f"  {content[:200]}...\n"
 
         print(f"Generated context: {context}")
-
-        if context == "Relevant information:\n":
-            print("No relevant context found. Generating response without RAG.")
-            return self.generate_without_rag(prompt)
 
         augmented_prompt = f"{context}\n\nUser query: {prompt}\n\nBased on the above information, please respond to the user query:"
 
@@ -201,35 +191,34 @@ class WebSocketClient:
     async def connect(self):
         try:
             self.ws = await websockets.connect(self.url)
-            print("WebSocket connection established")
+            logger.info("WebSocket connection established")
         except Exception as e:
-            print(f"Failed to connect to WebSocket: {e}")
+            logger.error(f"WebSocket connection failed: {e}")
             self.ws = None
 
     async def receive_data(self):
         if self.ws is None:
-            print("WebSocket is not connected. Attempting to reconnect...")
-            await self.connect()
-            if self.ws is None:
-                print("Failed to reconnect. Returning None.")
-                return None
-
+            return None
         try:
             encrypted_message = await self.ws.recv()
+            logger.debug(f"Received encrypted message: {encrypted_message[:50]}...")
             decrypted_message = decrypt_data(encrypted_message, username="StreamlitApp")
             if decrypted_message is None:
-                print("Error decrypting message from WebSocket")
+                logger.error("Error decrypting message from WebSocket.")
+                logger.error(f"Full encrypted message: {encrypted_message}")
                 return None
+            logger.debug(f"Successfully decrypted message: {decrypted_message[:50]}...")
             return json.loads(decrypted_message)
         except websockets.exceptions.ConnectionClosed:
-            print("WebSocket connection closed. Attempting to reconnect...")
-            await self.connect()
+            logger.warning("WebSocket connection closed")
+            self.ws = None
             return None
-        except json.JSONDecodeError:
-            print("Received message is not valid JSON")
+        except json.JSONDecodeError as e:
+            logger.error(f"Error parsing JSON from decrypted message: {e}")
+            logger.error(f"Decrypted message: {decrypted_message}")
             return None
         except Exception as e:
-            print(f"Error receiving data from WebSocket: {e}")
+            logger.error(f"Unexpected error receiving data: {e}")
             return None
 
 
@@ -272,7 +261,7 @@ def create_dashboard_chart(data):
         cols=2,
         subplot_titles=(
             "Sales Trend",
-            "Customer Count",
+            "Customer `Coun`t",
             "Average Order Value",
             "Customer Satisfaction",
         ),
@@ -389,31 +378,57 @@ def upload_document(kb):
 
 
 def store_encrypted_data(data, case_name):
+    global data_storage_counter
     base_dir = Path("encrypted_data")
     case_dir = base_dir / case_name
     case_dir.mkdir(parents=True, exist_ok=True)
-
     file_path = case_dir / f"{case_name}_data.json"
 
-    # Read existing data if file exists
-    if file_path.exists():
-        with open(file_path, "rb") as f:
-            encrypted_content = f.read()
-        decrypted_content = decrypt_data(encrypted_content, username="StreamlitApp")
-        existing_data = json.loads(decrypted_content)
-    else:
-        existing_data = []
+    try:
+        if file_path.exists():
+            with open(file_path, "r") as f:
+                encrypted_content = f.read()
 
-    # Append new data
-    existing_data.append(data)
+            decrypted_content = decrypt_data(encrypted_content, username="StreamlitApp")
+            if decrypted_content is None:
+                print(f"Decryption failed for {file_path}. Starting with empty data.")
+                existing_data = []
+            else:
+                try:
+                    existing_data = json.loads(decrypted_content)
+                except json.JSONDecodeError:
+                    print(
+                        f"Failed to parse JSON from {file_path}. Starting with empty data."
+                    )
+                    existing_data = []
+        else:
+            existing_data = []
 
-    # Encrypt and write updated data
-    encrypted_data = encrypt_data(json.dumps(existing_data), username="StreamlitApp")
+        existing_data.append(data)
 
-    with open(file_path, "wb") as f:
-        f.write(encrypted_data)
+        # Increment the counter
+        data_storage_counter += 1
 
-    print(f"Appended encrypted data for case {case_name} at {file_path}")
+        # Save data every 20th iteration or if it's the first iteration
+        if data_storage_counter % 20 == 0 or data_storage_counter == 1:
+            json_data = json.dumps(existing_data)
+            encrypted_data = encrypt_data(json_data, username="StreamlitApp")
+
+            with open(file_path, "w") as f:
+                f.write(encrypted_data)
+
+            print(
+                f"Data stored successfully in {file_path} (Iteration: {data_storage_counter})"
+            )
+        else:
+            print(f"Data added to memory buffer (Iteration: {data_storage_counter})")
+
+    except Exception as e:
+        print(f"Error handling data: {str(e)}")
+
+    # If we've reached 20 iterations, reset the counter
+    if data_storage_counter == 20:
+        data_storage_counter = 0
 
 
 async def fetch_data(ws_client):
@@ -474,7 +489,7 @@ def main():
         )
         if st.button("Get Insights", key="query_button"):
             with st.spinner("Analyzing..."):
-                response = process_query(user_query)
+                response = ai.generate_with_rag(user_query)
             st.success("Analysis complete!")
             st.write("AI Response:", response)
             # Store the query and response in session state
@@ -484,22 +499,7 @@ def main():
         # Advanced options (expandable)
         with st.expander("Advanced Options"):
             st.subheader("Document Selection")
-            available_docs = []
-            for doc in kb.documents:
-                if (
-                    isinstance(doc, dict)
-                    and "metadata" in doc
-                    and "filename" in doc["metadata"]
-                ):
-                    available_docs.append(doc["metadata"]["filename"])
-                elif isinstance(doc, str):
-                    available_docs.append(doc)
-                else:
-                    try:
-                        available_docs.append(str(doc))
-                    except:
-                        pass
-
+            available_docs = kb.list_documents()
             selected_docs = st.multiselect(
                 "Select documents to include in analysis:", available_docs
             )
