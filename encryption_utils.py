@@ -2,8 +2,6 @@ import os
 import logging
 from functools import wraps
 from cryptography.fernet import Fernet, InvalidToken
-from cryptography.hazmat.primitives import hashes
-from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 import base64
 from dotenv import load_dotenv
 
@@ -14,12 +12,7 @@ load_dotenv()
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 
-# Generate a static key for testing
-static_key = Fernet.generate_key()
-logger.debug(f"Static key generated: {static_key}")
 
-
-# Read the encryption key from the file
 def read_encryption_key():
     key_file_path = os.path.join(os.path.dirname(__file__), "encryption_key.key")
     with open(key_file_path, "rb") as key_file:
@@ -45,6 +38,7 @@ def ensure_fernet_key(key):
 
 
 ENCRYPTION_KEY = ensure_fernet_key(ENCRYPTION_KEY)
+
 
 # Set up logging
 logging.basicConfig(
@@ -74,32 +68,21 @@ def log_function_call(func):
 
 
 @log_function_call
-def generate_key(username="Unknown"):
-    return Fernet.generate_key()
+def encrypt_data(data, username="Unknown"):
+    """
+    Encrypts the provided data using the global ENCRYPTION_KEY.
 
+    Args:
+        data (str): The data to be encrypted.
+        username (str): The username of the person requesting encryption.
 
-@log_function_call
-def derive_key(username, salt):
-    kdf = PBKDF2HMAC(
-        algorithm=hashes.SHA256(),
-        length=32,
-        salt=salt,
-        iterations=100000,
-    )
-    key = base64.urlsafe_b64encode(kdf.derive(username.encode()))
-    return key
-
-
-@log_function_call
-def encrypt_data(data, username):
-    salt = os.urandom(16)
-    key = derive_key(username, salt)
-    f = Fernet(key)
+    Returns:
+        str: The encrypted data encoded in a URL-safe format.
+    """
+    f = Fernet(ENCRYPTION_KEY)
     encrypted_data = f.encrypt(data.encode())
-    result = base64.urlsafe_b64encode(salt + encrypted_data).decode()
+    result = base64.urlsafe_b64encode(encrypted_data).decode()
 
-    logger.debug(f"Encryption - Salt: {salt.hex()}")
-    logger.debug(f"Encryption - Derived key: {key}")
     logger.debug(f"Encryption - Encrypted data length: {len(encrypted_data)}")
     logger.debug(f"Encryption - Final result length: {len(result)}")
 
@@ -107,7 +90,17 @@ def encrypt_data(data, username):
 
 
 @log_function_call
-def decrypt_data(encrypted_data, username):
+def decrypt_data(encrypted_data, username="Unknown"):
+    """
+    Decrypts the provided encrypted data using the global ENCRYPTION_KEY.
+
+    Args:
+        encrypted_data (str): The encrypted data to be decrypted.
+        username (str): The username of the person requesting decryption.
+
+    Returns:
+        str: The decrypted data.
+    """
     try:
         if isinstance(encrypted_data, str):
             encrypted_data = encrypted_data.encode()
@@ -119,58 +112,60 @@ def decrypt_data(encrypted_data, username):
 
         decoded_data = base64.urlsafe_b64decode(encrypted_data)
 
-        if len(decoded_data) < 16:
-            raise ValueError("Decoded data is too short")
+        f = Fernet(ENCRYPTION_KEY)
+        decrypted_data = f.decrypt(decoded_data)
+        return decrypted_data.decode()
 
-        salt, encrypted_message = decoded_data[:16], decoded_data[16:]
-        key = derive_key(username, salt)
-
-        logger.debug(f"Decryption - Salt: {salt.hex()}")
-        logger.debug(f"Decryption - Derived key: {key}")
-        logger.debug(f"Decryption - Encrypted message length: {len(encrypted_message)}")
-
-        f = Fernet(key)
-        try:
-            decrypted_data = f.decrypt(encrypted_message)
-            return decrypted_data.decode()
-        except InvalidToken:
-            logger.warning("Decryption with derived key failed, trying static key...")
-            f_static = Fernet(static_key)
-            decrypted_data = f_static.decrypt(encrypted_message)
-            return decrypted_data.decode()
-
-    except base64.binascii.Error as e:
-        logger.error(f"Base64 decoding failed: {str(e)}")
-        logger.error(f"Problematic data: {encrypted_data[:50]}...")
-    except ValueError as e:
-        logger.error(f"Value error during decryption: {str(e)}")
-    except InvalidToken as e:
-        print(f"Invalid token error: {str(e)}")
-        print(f"Salt: {salt.hex()}")
-        print(f"Derived key: {key}")
-        print(f"Encrypted message length: {len(encrypted_message)}")
+    except InvalidToken:
+        logger.error("Invalid token error during decryption.")
     except Exception as e:
         logger.error(f"Unexpected error during decryption: {str(e)}")
     return None
 
 
 @log_function_call
-def hash_password(password, username="Unknown"):
+def hash_password(password):
+    """
+    Hashes the provided password using a derived key.
+
+    Args:
+        password (str): The password to be hashed.
+
+    Returns:
+        bytes: The salt and derived key.
+    """
     salt = os.urandom(16)
-    key = derive_key(password, salt, username=username)
+    key = derive_key(password, salt)
     return salt + key
 
 
 @log_function_call
-def verify_password(stored_password, provided_password, username="Unknown"):
+def verify_password(stored_password, provided_password):
+    """
+    Verifies the provided password against the stored password.
+
+    Args:
+        stored_password (bytes): The stored password.
+        provided_password (str): The password to verify.
+
+    Returns:
+        bool: True if the password matches, False otherwise.
+    """
     salt = stored_password[:16]
     stored_key = stored_password[16:]
-    derived_key = derive_key(provided_password, salt, username=username)
+    derived_key = derive_key(provided_password, salt)
     return derived_key == stored_key
 
 
 @log_function_call
-def log_access(user, action, username="Unknown"):
+def log_access(user, action):
+    """
+    Logs user access actions.
+
+    Args:
+        user (str): The user performing the action.
+        action (str): The action performed by the user.
+    """
     logging.info(f"User {user} performed action: {action}")
 
 
@@ -183,7 +178,17 @@ roles = {
 
 
 @log_function_call
-def check_permission(user_role, action, username="Unknown"):
+def check_permission(user_role, action):
+    """
+    Checks if a user has permission to perform a specific action.
+
+    Args:
+        user_role (str): The role of the user.
+        action (str): The action to check permission for.
+
+    Returns:
+        bool: True if the user has permission, False otherwise.
+    """
     if user_role in roles and action in roles[user_role]:
         return True
     return False

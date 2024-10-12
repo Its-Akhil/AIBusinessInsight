@@ -11,7 +11,7 @@ import numpy as np
 import plotly.express as px
 from faiss import IndexFlatL2
 import websockets
-import json
+import json, logging
 import asyncio
 from encryption_utils import decrypt_data, encrypt_data
 import os
@@ -191,9 +191,9 @@ class WebSocketClient:
     async def connect(self):
         try:
             self.ws = await websockets.connect(self.url)
-            logger.info("WebSocket connection established")
+            logging.info("WebSocket connection established")
         except Exception as e:
-            logger.error(f"WebSocket connection failed: {e}")
+            logging.error(f"WebSocket connection failed: {e}")
             self.ws = None
 
     async def receive_data(self):
@@ -201,24 +201,27 @@ class WebSocketClient:
             return None
         try:
             encrypted_message = await self.ws.recv()
-            logger.debug(f"Received encrypted message: {encrypted_message[:50]}...")
+            logging.debug(f"Received encrypted message: {encrypted_message[:50]}...")
             decrypted_message = decrypt_data(encrypted_message, username="StreamlitApp")
             if decrypted_message is None:
-                logger.error("Error decrypting message from WebSocket.")
-                logger.error(f"Full encrypted message: {encrypted_message}")
+                logging.error("Error decrypting message from WebSocket.")
+                logging.error(f"Full encrypted message: {encrypted_message}")
                 return None
-            logger.debug(f"Successfully decrypted message: {decrypted_message[:50]}...")
-            return json.loads(decrypted_message)
+            else:
+                logging.debug(
+                    f"Successfully decrypted message: {decrypted_message[:50]}..."
+                )
+                return json.loads(decrypted_message)
         except websockets.exceptions.ConnectionClosed:
-            logger.warning("WebSocket connection closed")
+            logging.warning("WebSocket connection closed")
             self.ws = None
             return None
         except json.JSONDecodeError as e:
-            logger.error(f"Error parsing JSON from decrypted message: {e}")
-            logger.error(f"Decrypted message: {decrypted_message}")
+            logging.error(f"Error parsing JSON from decrypted message: {e}")
+            logging.error(f"Decrypted message: {decrypted_message}")
             return None
         except Exception as e:
-            logger.error(f"Unexpected error receiving data: {e}")
+            logging.error(f"Unexpected error receiving data: {e}")
             return None
 
 
@@ -305,6 +308,9 @@ def create_dashboard_chart(data):
     fig.update_yaxes(showgrid=True, gridwidth=1, gridcolor="lightgrey")
 
     return fig
+
+
+from encryption_utils import encrypt_data, decrypt_data
 
 
 def process_query(query):

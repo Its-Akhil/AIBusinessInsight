@@ -9,6 +9,9 @@ import os
 
 
 # Load environment variables
+load_dotenv()
+
+
 def read_encryption_key():
     key_file_path = os.path.join(os.path.dirname(__file__), "encryption_key.key")
     with open(key_file_path, "rb") as key_file:
@@ -19,6 +22,21 @@ def read_encryption_key():
 ENCRYPTION_KEY = read_encryption_key()
 if not ENCRYPTION_KEY:
     raise ValueError("Encryption key file is empty or not found")
+
+
+# Ensure the key is in the correct format for Fernet
+def ensure_fernet_key(key):
+    if len(key) == 32:
+        return base64.urlsafe_b64encode(key)
+    elif len(key) == 44 and key.endswith(b"="):
+        return key
+    else:
+        raise ValueError(
+            "Encryption key must be 32 bytes or 44 characters ending with '='"
+        )
+
+
+ENCRYPTION_KEY = ensure_fernet_key(ENCRYPTION_KEY)
 
 
 async def send_mock_data(websocket, path):
@@ -37,7 +55,6 @@ async def send_mock_data(websocket, path):
 
         # Encrypt the JSON data
         encrypted_data = encrypt_data(json_data, username="WebSocketServer")
-        # print(f"Debug: Encrypted data: {encrypted_data}")
 
         # Send encrypted data
         await websocket.send(encrypted_data)
