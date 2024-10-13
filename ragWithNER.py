@@ -14,6 +14,7 @@ from langchain.chains import RetrievalQA
 from langchain_community.retrievers import BM25Retriever, EmbedchainRetriever
 import faiss
 from rank_bm25 import BM25Okapi
+from pathlib import Path
 
 load_dotenv()
 
@@ -23,6 +24,125 @@ load_dotenv()
 # text = "Barack Obama was born in Hawaii and served as the 44th President of the United States."
 # tagged_text = kb.named_entity_tagging(text)
 # print("Tagged Text:", tagged_text)
+
+import spacy
+import re
+from nltk.corpus import stopwords
+from nltk.tokenize import sent_tokenize, word_tokenize
+from nltk.stem import PorterStemmer
+from nltk.stem import WordNetLemmatizer
+import nltk
+
+
+class QueryProcessor:
+    def __init__(self):
+        # Initialize the stemmer
+        self.stemmer = PorterStemmer()
+
+        # Initialize the lemmatizer
+        self.lemmatizer = WordNetLemmatizer()
+
+        # Load stopwords
+        self.stop_words = set(stopwords.words("english"))
+        self.nlp = spacy.load("en_core_web_sm")
+
+    def process_query(self, query):
+        # print(f"Original Query: {query}\n")
+
+        # Step 1: Convert to lowercase
+        query_lower = self.to_lowercase(query)
+        # print(f"Step 1 - Lowercase: {query_lower}\n")
+
+        # Step 2: Remove special characters
+        query_clean = self.remove_special_characters(query_lower)
+        # print(f"Step 2 - Remove Special Characters: {query_clean}\n")
+
+        # Step 3: Tokenize (sentences and words)
+        sentences, words = self.tokenize(query_clean)
+        # print(f"Step 3 - Sentence Tokens: {sentences}")
+        # print(f"Step 3 - Word Tokens: {words}\n")
+
+        # Step 4: Stemming
+        stemmed_words = [self.stemmer.stem(word) for word in words]
+        # print(f"Step 4 - Stemmed Words: {stemmed_words}\n")
+
+        # Step 5: Lemmatization
+        lemmatized_words = [self.lemmatizer.lemmatize(word) for word in words]
+        # print(f"Step 5 - Lemmatized Words: {lemmatized_words}\n")
+
+        # Step 6: Remove Stopwords
+        filtered_words = [
+            word for word in lemmatized_words if word not in self.stop_words
+        ]
+        # print(f"Step 6 - Without Stopwords: {filtered_words}\n")
+
+        # POS tagging and NER
+        pos_tags, entities = self.pos_and_ner(query_clean)
+        # print(f"POS Tags: {pos_tags}")
+        # print(f"Named Entities: {entities}\n")
+
+        # Generate context-based list of 3-word strings
+        context_based_chunks = self.generate_3_word_chunks(
+            filtered_words, pos_tags, entities
+        )
+        print(f"Context-Based Three-Word Strings: {context_based_chunks}\n")
+
+        return context_based_chunks
+
+    def to_lowercase(self, text):
+        return text.lower()
+
+    def remove_special_characters(self, text):
+        return re.sub(r"[^a-zA-Z0-9\s]", "", text)
+
+    def tokenize(self, text):
+        sentence_tokens = sent_tokenize(text)
+        word_tokens = word_tokenize(text)
+        return sentence_tokens, word_tokens
+
+    def pos_and_ner(self, text):
+        doc = self.nlp(text)
+
+        # POS tagging
+        pos_tags = [(token.text, token.pos_) for token in doc]
+
+        # Named Entity Recognition (NER)
+        entities = [(ent.text, ent.label_) for ent in doc.ents]
+
+        return pos_tags, entities
+
+    def generate_3_word_chunks(self, words, pos_tags, entities):
+        """
+        Generate contextually relevant 3-word chunks using POS tags and NER.
+        """
+        chunks = []
+        current_chunk = []
+
+        for word, pos in pos_tags:
+            if pos in {
+                "NOUN",
+                "PROPN",
+                "VERB",
+                "ADJ",
+            }:  # Select nouns, proper nouns, verbs, adjectives
+                current_chunk.append(word)
+
+            if len(current_chunk) == 3:
+                chunks.append(" ".join(current_chunk))
+                current_chunk = []
+
+        # Handle the case where fewer than 3 words are left in the chunk
+        if len(current_chunk) > 0:
+            chunks.append(" ".join(current_chunk))
+
+        # Ensure entities are part of the output for better context
+        entity_chunks = [
+            " ".join(entity[0] for entity in entities if entity[0] in words)
+        ]
+        if entity_chunks and not chunks:
+            return entity_chunks
+
+        return chunks or entity_chunks
 
 
 class SentenceTransformerWrapper:
@@ -43,22 +163,30 @@ class KnowledgeBase:
         self.model = SentenceTransformer("all-MiniLM-L6-v2")
         self.embedding_model = SentenceTransformerWrapper(self.model)  # Use the wrapper
         self.nlp = spacy.load("en_core_web_sm")
-        # Replace the title, summary, and text indexes with VectorStoreIndex
-        # self.index = VectorStoreIndex()
-        # Initialize FAISS vector stores for title, summary, and text
 
         self.storage_dir = "VectorDB"
-        self.title_index = None
-        self.summary_index = None
-        self.text_index = None
-        self.title_documents = None
-        self.summary_documents = None
-        self.text_documents = None
-        try:
-            self.load_chunks_separate_indexes()
-        except Exception as e:
-            print("ERROR : ", e)
+        self.documents = []
+        self.create_directory_structure()
+        self.title_index = {}
+        self.summary_index = {}
+        self.text_index = {}
+        self.title_documents = {}
+        self.summary_documents = {}
+        self.text_documents = {}
+
+        # try:
+        self.load_knowledge_base()
+        # except Exception as e:
+        # print("ERROR :: ", e)
         self.chunks = []
+
+    def create_directory_structure(self):
+
+        # subdirs = ["documents"]
+        # , "embeddings", "metadata", "index"]
+        for subdir in self.documents:
+            os.makedirs(Path(self.storage_dir) / subdir, exist_ok=True)
+        print("Directory structure created successfully.")
 
     def read_index(self, path):
         if os.path.exists(os.path.join(self.storage_dir, path)):
@@ -135,7 +263,7 @@ class KnowledgeBase:
         plt.ylabel("Cosine Distance")
         plt.show()
 
-    def semantic_chunking(self, text, buffer_size=1, percentile_threshold=80):
+    def semantic_chunking(self, text, fname, buffer_size=1, percentile_threshold=75):
         # Step 1: Split text into sentences
         sentences = self.split_sentences(text)
 
@@ -173,6 +301,8 @@ class KnowledgeBase:
                     "chunk": self.named_entity_tagging(chunk),
                     "summary": self.get_new_chunk_summary(chunk),
                     "index": uniq_index,
+                    "lines": (start_index, index + 1),
+                    "document Name": fname,
                 }
             )
             start_index = index + 1
@@ -187,6 +317,8 @@ class KnowledgeBase:
                     "chunk": self.named_entity_tagging(chunk),
                     "summary": self.get_new_chunk_summary(chunk),
                     "index": uniq_index,
+                    "lines": (start_index, len(sentences)),
+                    "document Name": fname,
                 }
             )
 
@@ -329,56 +461,178 @@ class KnowledgeBase:
         """
         Saves the chunks' titles, summaries, and texts in separate indexes.
         """
-        title_texts = [chunk.get("title", "") for chunk in self.chunks]
-        summary_texts = [chunk.get("summary", "") for chunk in self.chunks]
-        chunk_texts = [chunk.get("chunk", "") for chunk in self.chunks]
+        groupedChunk = {}
+        for chunk in self.chunks:
+            doc = chunk["document Name"]
+            if doc not in groupedChunk:
+                groupedChunk[doc] = []
+            groupedChunk[doc].append(chunk)
 
-        # Create FAISS vector stores for title, summary, and chunk texts
-        self.title_index = FAISS.from_texts(title_texts, self.embedding_model)
-        self.summary_index = FAISS.from_texts(summary_texts, self.embedding_model)
-        self.text_index = FAISS.from_texts(chunk_texts, self.embedding_model)
+        self.title_documents = {}
+        self.summary_documents = {}
+        self.text_documents = {}
 
-        # Store the documents separately
-        self.title_documents = title_texts
-        self.summary_documents = summary_texts
-        self.text_documents = chunk_texts
+        for doc in groupedChunk:
 
-        faiss.write_index(
-            self.title_index.index, os.path.join(self.storage_dir, "title_index.faiss")
-        )
-        faiss.write_index(
-            self.summary_index.index,
-            os.path.join(self.storage_dir, "summary_index.faiss"),
-        )
-        faiss.write_index(
-            self.text_index.index, os.path.join(self.storage_dir, "text_index.faiss")
-        )
-        # Save document texts
-        with open(os.path.join(self.storage_dir, "title_texts.txt"), "w") as f:
-            f.write("\n".join(self.title_documents))
-        with open(os.path.join(self.storage_dir, "summary_texts.txt"), "w") as f:
-            f.write("\n".join(self.summary_documents))
-        with open(os.path.join(self.storage_dir, "chunk_texts.txt"), "w") as f:
-            f.write("\n".join(self.text_documents))
-        print("Chunks have been saved in FAISS indexes for title, summary, and text.")
+            title_texts = [chunk.get("title", "") for chunk in groupedChunk[doc]]
+            summary_texts = [chunk.get("summary", "") for chunk in groupedChunk[doc]]
+            chunk_texts = [chunk.get("chunk", "") for chunk in groupedChunk[doc]]
 
-    def load_chunks_separate_indexes(self):
+            if doc not in self.title_index:
+                self.title_index[doc] = None
+            if doc not in self.summary_index:
+                self.summary_index[doc] = None
+            if doc not in self.text_index:
+                self.text_index[doc] = None
+
+            # Create FAISS vector stores for title, summary, and chunk texts
+            self.title_index[doc] = FAISS.from_texts(title_texts, self.embedding_model)
+            self.summary_index[doc] = FAISS.from_texts(
+                summary_texts, self.embedding_model
+            )
+            self.text_index[doc] = FAISS.from_texts(chunk_texts, self.embedding_model)
+
+            if doc not in self.title_documents:
+                self.title_documents[doc] = []
+            if doc not in self.summary_documents:
+                self.summary_documents[doc] = []
+            if doc not in self.text_documents:
+                self.text_documents[doc] = []
+
+            self.title_documents[doc] = title_texts
+            self.summary_documents[doc] = summary_texts
+            self.text_documents[doc] = chunk_texts
+
+            os.makedirs(Path(self.storage_dir) / doc, exist_ok=True)
+
+            # os.makedirs(Path(self.storage_dir) / fname, exist_ok=True)
+            print(f"Directory structure { doc } created successfully.")
+
+            faiss.write_index(
+                self.title_index[doc].index,
+                os.path.join(self.storage_dir, doc, "title_index.faiss"),
+            )
+            faiss.write_index(
+                self.summary_index[doc].index,
+                os.path.join(self.storage_dir, doc, "summary_index.faiss"),
+            )
+            faiss.write_index(
+                self.text_index[doc].index,
+                os.path.join(self.storage_dir, doc, "text_index.faiss"),
+            )
+            # Save document texts
+            with open(os.path.join(self.storage_dir, doc, "title_texts.txt"), "w") as f:
+                f.write("\n".join(self.title_documents))
+            with open(
+                os.path.join(self.storage_dir, doc, "summary_texts.txt"), "w"
+            ) as f:
+                f.write("\n".join(self.summary_documents))
+            with open(os.path.join(self.storage_dir, doc, "chunk_texts.txt"), "w") as f:
+                f.write("\n".join(self.text_documents))
+            print(
+                f"Folder : {doc} Chunks have been saved in FAISS indexes for title, summary, and text."
+            )
+
+    def selectedIndexSearch(self, fnames, query):
+        print(fnames)
+        self.documents = []
+        self.title_index = {}
+        self.summary_index = {}
+        self.text_index = {}
+        self.title_documents = {}
+        self.summary_documents = {}
+        self.text_documents = {}
+        for doc in os.listdir(self.storage_dir):
+            if doc in fnames:
+                if doc not in self.title_index:
+                    self.title_index[doc] = None
+                if doc not in self.summary_index:
+                    self.summary_index[doc] = None
+                if doc not in self.text_index:
+                    self.text_index[doc] = None
+                if doc not in self.title_documents:
+                    self.title_documents[doc] = None
+                if doc not in self.summary_documents:
+                    self.summary_documents[doc] = None
+                if doc not in self.text_documents:
+                    self.text_documents[doc] = None
+
+                try:
+                    self.title_index[doc] = self.read_index(f"{doc}/title_index.faiss")
+                    self.summary_index[doc] = self.read_index(
+                        f"{doc}/summary_index.faiss"
+                    )
+                    self.text_index[doc] = self.read_index(f"{doc}/text_index.faiss")
+                    # print(self.text_index)
+                    with open(
+                        os.path.join(self.storage_dir, doc, "title_texts.txt"), "r"
+                    ) as f:
+                        self.title_documents[doc] = f.read().splitlines()
+                    with open(
+                        os.path.join(self.storage_dir, doc, "summary_texts.txt"), "r"
+                    ) as f:
+                        self.summary_documents[doc] = f.read().splitlines()
+                    with open(
+                        os.path.join(self.storage_dir, doc, "chunk_texts.txt"), "r"
+                    ) as f:
+                        self.text_documents[doc] = f.read().splitlines()
+
+                    print("FAISS indexes and documents have been loaded from storage.")
+                    self.documents.append(doc)
+                except Exception as e:
+                    print("Error > : ", e)
+
+            self.documents.append(doc)
+        return self.retrieve_and_rerank(query)
+        # pass
+
+    def load_knowledge_base(self):
         """
         Loads the FAISS indexes and documents from storage.
         """
-        self.title_index = self.read_index("title_index.faiss")
-        self.summary_index = self.read_index("summary_index.faiss")
-        self.text_index = self.read_index("text_index.faiss")
-        # print(self.text_index)
+        self.documents = []
+        # for doc in os.listdir(self.storage_dir):
+        # print(self.title_index, self.read_index(f"{doc}/title_index.faiss"))
+        for doc in os.listdir(self.storage_dir):
+            if doc not in self.title_index:
+                self.title_index[doc] = None
+            if doc not in self.summary_index:
+                self.summary_index[doc] = None
+            if doc not in self.text_index:
+                self.text_index[doc] = None
+            if doc not in self.title_documents:
+                self.title_documents[doc] = None
+            if doc not in self.summary_documents:
+                self.summary_documents[doc] = None
+            if doc not in self.text_documents:
+                self.text_documents[doc] = None
 
-        with open(os.path.join(self.storage_dir, "title_texts.txt"), "r") as f:
-            self.title_documents = f.read().splitlines()
-        with open(os.path.join(self.storage_dir, "summary_texts.txt"), "r") as f:
-            self.summary_documents = f.read().splitlines()
-        with open(os.path.join(self.storage_dir, "chunk_texts.txt"), "r") as f:
-            self.text_documents = f.read().splitlines()
+            try:
+                self.title_index[doc] = self.read_index(f"{doc}/title_index.faiss")
+                self.summary_index[doc] = self.read_index(f"{doc}/summary_index.faiss")
+                self.text_index[doc] = self.read_index(f"{doc}/text_index.faiss")
+                # print(self.text_index)
+                with open(
+                    os.path.join(self.storage_dir, doc, "title_texts.txt"), "r"
+                ) as f:
+                    self.title_documents[doc] = f.read().splitlines()
+                with open(
+                    os.path.join(self.storage_dir, doc, "summary_texts.txt"), "r"
+                ) as f:
+                    self.summary_documents[doc] = f.read().splitlines()
+                with open(
+                    os.path.join(self.storage_dir, doc, "chunk_texts.txt"), "r"
+                ) as f:
+                    self.text_documents[doc] = f.read().splitlines()
 
-        print("FAISS indexes and documents have been loaded from storage.")
+                print("FAISS indexes and documents have been loaded from storage.")
+                self.documents.append(doc)
+            except Exception as e:
+                print("Error > : ", e)
+
+    def add_to_knowledge_base(self, text, fname):
+
+        self.semantic_chunking(text, fname)
 
     # def retrieve_and_rerank(self, query):
     #     """
@@ -416,32 +670,56 @@ class KnowledgeBase:
         """
         Retrieves documents from the specified FAISS index.
         """
-        # query_embedding = self.model.encode(query)
-        distances, indices = index.search(query, k)
+        f_distances = {}
+        f_indices = {}
+        for doc in texts:
+            # query_embedding = self.model.encode(query)
+            distances, indices = index[doc].search(query, k)
+            f_distances[doc] = distances
+            f_indices[doc] = indices
 
-        return [
-            {"text": texts[idx], "distance": distances[0][i]}
-            for i, idx in enumerate(indices[0])
-        ]
+        # return [
+        #     {"text": texts[idx], "distance": distances[0][i]}
+        #     for i, idx in enumerate(indices[0])
 
-    # def similarity_search(query, index, texts, k=5):
-    #     distances, indices = index.search(query, k)
-    #     results = [(texts[i], distances[0][j]) for j, i in enumerate(indices[0])]
-    #     return results
+        # ]
+        results = {}
+        for doc in f_indices:
+            results[doc] = []
+            for i, idx in enumerate(f_indices[doc][0]):
+                results[doc].append(
+                    {
+                        "text": texts[doc][idx],
+                        "distance": f_distances[doc][0][i],
+                    }
+                )
+
+        # print(results)
+
+        # def similarity_search(query, index, texts, k=5):
+        #     distances, indices = index.search(query, k)
+        #     results = [(texts[i], distances[0][j]) for j, i in enumerate(indices[0])]
+        return results
 
     def bm25_search(self, query, texts, k=5):
         # Tokenize the texts and the query
-        tokenized_texts = [doc.split() for doc in texts]
-        bm25 = BM25Okapi(tokenized_texts)
+        results = {}
         tokenized_query = query.split(" ")
+        for doc in texts:
 
-        # BM25 search
-        bm25_scores = bm25.get_scores(tokenized_query)
-        top_n_indices = bm25.get_top_n(tokenized_query, range(len(texts)), n=k)
+            tokenized_texts = [docs.split() for docs in texts[doc]]
+            bm25 = BM25Okapi(tokenized_texts)
 
-        results = [
-            {"text": texts[i], "distance": bm25_scores[i]} for i in top_n_indices
-        ]
+            # BM25 search
+            bm25_scores = bm25.get_scores(tokenized_query)
+            top_n_indices = bm25.get_top_n(tokenized_query, range(len(texts[doc])), n=k)
+
+            results[doc] = [
+                {"text": texts[doc][i], "distance": bm25_scores[i]}
+                for i in top_n_indices
+            ]
+
+        # print(results)
         return results
 
     def remove_duplicates(self, dictionaries):
@@ -457,40 +735,51 @@ class KnowledgeBase:
         return unique_dictionaries
 
     def rerank_results(self, combined_results, top_n, threshold=0.5):
-        filtered_results = [
-            results for results in combined_results if results["distance"] > threshold
-        ]
-        # Sort results by score (assuming each result has a 'score' field)
-        reranked_results = sorted(
-            filtered_results, key=lambda x: x["distance"], reverse=True
-        )
-        result = self.remove_duplicates(
-            reranked_results[:top_n]
-            if len(reranked_results) > top_n
-            else reranked_results
-        )
+        filtered_results = []
+        for result in combined_results:
+            # print(result)
+            for doc in result:
+                for chunk in result[doc]:
 
-        pprint(result)
+                    if chunk["distance"] > threshold:
+                        chunk["document Name"] = doc
+                        filtered_results.append(chunk)
+
+        # filtered_results = [
+        #     results for results in combined_results if results["distance"] > threshold
+        # ]
+        # Sort results by score (assuming each result has a 'score' field)
+
+        reranked_results = self.remove_duplicates(
+            filtered_results[:top_n]
+            if len(filtered_results) > top_n
+            else filtered_results
+        )
+        result = sorted(filtered_results, key=lambda x: x["distance"], reverse=True)
         # Return the top N results or all results if fewer than N
         return result
 
-    def retrieve_and_rerank(self, query, top_n=15):
-        text_query = query
-        query = self.model.encode([query])
-        # Retrieve results from different indexes using each retriever
-        # title_bm25_results = self.bm25_retrieve(query, self.title_index)
-        # summary_embedding_results = self.embedding_retrieve(
-        #     query, self.summary_index, self.model
-        # )
-
+    def retrieve_and_rerank(self, queries, top_n=5):
         results = []
+        for query in queries:
+            text_query = query
+            query = self.model.encode([query]).astype(np.float32)
+            # Retrieve results from different indexes using each retriever
+            # title_bm25_results = self.bm25_retrieve(query, self.title_index)
+            # summary_embedding_results = self.embedding_retrieve(
+            #     query, self.summary_index, self.model
+            # )
 
-        faiss_results = self.faiss_retrieve(query, self.text_documents, self.text_index)
-        results.extend(faiss_results)
+            # print(self.faiss_retrieve(query, self.text_documents, self.text_index))
 
-        bm25_result = self.bm25_search(text_query, self.text_documents)
-        results.extend(bm25_result)
+            faiss_results = self.faiss_retrieve(
+                query, self.text_documents, self.text_index
+            )
+            results.append(faiss_results)
+            bm25_result = self.bm25_search(text_query, self.text_documents)
+            results.append(bm25_result)
 
+        # print(results)
         # Combine and rerank
         final_results = self.rerank_results(
             # title_bm25_results, summary_embedding_results,
@@ -500,50 +789,25 @@ class KnowledgeBase:
 
         return final_results
 
-
-ai = KnowledgeBase()
-
-
-# # Example usage:
-# text = """Astronomy: The Milky Way galaxy is not just a collection of stars; it’s a vast, rotating system that includes planets, moons, asteroids, comets, and cosmic dust. It spans about 100,000 light-years in diameter and contains our solar system. Understanding the Milky Way helps astronomers learn about the structure and evolution of galaxies, the distribution of different types of stars, and the potential for extraterrestrial life. The center of the Milky Way harbors a supermassive black hole, known as Sagittarius A*, which plays a crucial role in the dynamics of our galaxy.
-
-# Ancient Egypt: The Great Pyramid of Giza, also known as the Pyramid of Khufu, is a monumental feat of engineering and architecture. Built during the Fourth Dynasty for the Pharaoh Khufu, it stood as the tallest man-made structure in the world for over 3,800 years, until the construction of the Lincoln Cathedral in England in 1311 AD. The pyramid was originally covered in casing stones made of highly polished Tura limestone, which reflected the sun’s light and made the pyramid shine like a ‘gem.’ Inside, the pyramid contains a series of complex passageways and chambers, including the King’s Chamber, the Queen’s Chamber, and the enigmatic Grand Gallery.
-
-# Technology: Quantum computers operate on the principles of quantum mechanics, using qubits instead of classical bits. These qubits can exist in multiple states simultaneously (superposition) and can be entangled, allowing quantum computers to process a vast number of possibilities at once. This capability enables them to solve certain problems much faster than classical computers, such as factoring large numbers, simulating molecular structures for drug discovery, and optimizing complex systems. However, building a practical quantum computer poses significant technical challenges, including error correction and maintaining qubit coherence.
-
-# History: The first known democracy was established in Athens around 508-507 BC by the reforms of Cleisthenes. This Athenian democracy was a direct democracy, where citizens could participate in decision-making directly rather than through elected representatives. The main institutions of Athenian democracy included the Assembly (Ekklesia), the Council of 500 (Boule), and the People's Court (Heliaia). Citizens could speak, propose laws, and vote on important issues. While Athenian democracy was groundbreaking, it was also limited, as it excluded women, slaves, and non-citizens from participation.
-
-# Art: Vincent van Gogh, one of the most influential figures in Western art, sold only one painting during his lifetime: "The Red Vineyard." Despite his struggles with mental health and poverty, van Gogh produced more than 2,000 artworks, including around 860 oil paintings, many of which were created in the last two years of his life. His expressive and emotive use of color, brushwork, and composition profoundly impacted modern art. Van Gogh's works, such as "Starry Night," "Sunflowers," and "The Bedroom," are celebrated for their intensity, emotion, and innovative approach to capturing the essence of the natural world.
-
-# Marine Biology: Certain species of jellyfish, such as Turritopsis dohrnii, possess the ability to revert to an earlier stage of their life cycle through a process called transdifferentiation. When faced with environmental stress, injury, or old age, these jellyfish can transform their cells back into a polyp state, essentially restarting their life cycle. This process makes them biologically immortal, as they can theoretically repeat this cycle indefinitely. Studying these jellyfish provides insights into cellular regeneration, aging, and the potential for applications in medical science.
-
-# Psychology: The placebo effect is a fascinating phenomenon in which a patient experiences a perceived or actual improvement in their condition after receiving a treatment with no therapeutic effect. This effect underscores the powerful influence of the mind on physical health. Placebos are often used in clinical trials to test the efficacy of new treatments by comparing them to an inert substance. Understanding the placebo effect helps researchers design better experiments and explore the psychological and physiological mechanisms that contribute to healing and well-being.
-
-# Space Exploration: The Voyager 1 spacecraft, launched by NASA in 1977, has traveled farther from Earth than any other human-made object. It carries a golden record containing sounds and images representing life and culture on Earth, intended as a message to potential extraterrestrial civilizations. In 2012, Voyager 1 entered interstellar space, providing valuable data about the heliosphere and the transition to the interstellar medium. Its twin, Voyager 2, also continues to send back scientific information from its journey through space.
-
-# Economics: The concept of supply and demand is a fundamental principle in economics that describes how the quantity of a good or service available (supply) and the desire for that good or service (demand) interact to determine its price. When demand for a product increases and supply remains constant, prices tend to rise. Conversely, if supply increases and demand remains constant, prices tend to fall. This dynamic is essential for understanding market behavior, price formation, and the allocation of resources in an economy.
-
-# Literature: William Shakespeare’s works have been translated into over 80 languages, showcasing the universal appeal and enduring relevance of his plays and poetry. His writings explore timeless themes such as love, power, jealousy, betrayal, and the human condition. From the tragic depths of "Hamlet" and "Macbeth" to the comedic brilliance of "A Midsummer Night's Dream" and "Much Ado About Nothing," Shakespeare's mastery of language and storytelling continues to captivate audiences worldwide. His influence extends beyond literature to art, music, theater, and popular culture.
-
-# Geography: The Amazon River, flowing through South America, is the largest river by discharge volume of water in the world. It discharges more water than the next seven largest rivers combined. The river basin is home to the Amazon rainforest, the largest tropical rainforest on Earth, which supports unparalleled biodiversity. The Amazon River spans approximately 6,000 kilometers (4,000 miles) and provides a critical waterway for transportation, commerce, and sustenance for millions of people living in the region.
-
-# Music: Ludwig van Beethoven, one of the greatest composers in Western music history, continued to compose even after becoming completely deaf. Despite his hearing loss, he created some of his most iconic works, including the Ninth Symphony, which features the famous "Ode to Joy" choral finale. Beethoven's ability to innovate and push the boundaries of classical music left a profound legacy that influenced generations of composers and musicians. His compositions are celebrated for their emotional depth, structural complexity, and enduring appeal.
-
-# Sports: The ancient Olympic Games, held in Olympia, Greece, from 776 BC to 393 AD, were a series of athletic competitions among representatives of various city-states. Events included running, long jump, shot put, javelin, boxing, and chariot racing. The games were held every four years, a period known as an Olympiad, and were part of a festival honoring Zeus. Victorious athletes were celebrated and often immortalized in statues and poetry. The modern Olympic Games, revived in 1896, continue this tradition of international athletic competition.
-
-# Philosophy: Existentialism is a philosophical movement that emerged in the 19th and 20th centuries, focusing on individual freedom, choice, and responsibility. It explores the idea that humans create their own meaning and purpose in an indifferent or absurd universe. Key existentialist thinkers include Søren Kierkegaard, Friedrich Nietzsche, Jean-Paul Sartre, and Simone de Beauvoir. Existentialism emphasizes the importance of personal authenticity, self-awareness, and the courage to confront existential anxiety and the inevitability of death.
-
-# Physics: The theory of relativity, developed by Albert Einstein, revolutionized our understanding of space, time, and gravity. It consists of two parts: special relativity and general relativity. Special relativity introduced the concept that the laws of physics are the same for all observers in uniform motion and led to the famous equation E=mc². General relativity extended this to include gravity, describing it as the curvature of spacetime caused by mass and energy. These theories have been confirmed by numerous experiments and have profound implications for our understanding of the universe.
-
-# Biology: DNA (deoxyribonucleic acid) is the molecule that carries genetic information in all living organisms. It consists of two strands that coil around each other to form a double helix. The sequence of nucleotides (adenine, thymine, cytosine, and guanine) in DNA determines the genetic instructions for the development, functioning, growth, and reproduction of organisms. The discovery of the structure of DNA by James Watson and Francis Crick, based on the work of Rosalind Franklin and others, was a pivotal moment in biology, leading to advancements in genetics, medicine, and biotechnology.
-
-# Chemistry: The periodic table, created by Dmitri Mendeleev, organizes chemical elements based on their atomic number, electron configuration, and recurring chemical properties. Elements are arranged in rows (periods) and columns (groups) to highlight similarities in their properties. The periodic table serves as a fundamental tool for chemists, providing a framework for understanding chemical behavior, predicting reactions, and exploring new elements. It has undergone several revisions as new elements have been discovered and our understanding of atomic structure has evolved.
-
-# Mathematics: The Fibonacci sequence is a series of numbers where each number is the sum of the two preceding ones, starting from 0 and 1. The sequence is named after Leonardo of Pisa, known as Fibonacci, who introduced it to the Western world in his 1202 book "Liber Abaci."""
-# chunks = ai.semantic_chunking(text)
+    def list_documents(self):
+        return self.documents
 
 
-# pprint(chunks)
+if __name__ == "__main__":
 
+    ai = KnowledgeBase()
 
-ai.retrieve_and_rerank("jellyfish")
+    # # Example usage:
+    text = """
+    India's rich cultural heritage is a treasure trove of diverse traditions, customs, and practices that have been shaped over thousands of years. From the ancient Indus Valley Civilization to the present day, India has been a melting pot of various cultures, each contributing to the country's unique identity. The country's cultural landscape is characterized by a blend of Hinduism, Buddhism, Jainism, and Islam, with each religion having its own distinct festivals, rituals, and traditions. The vibrant colors, intricate patterns, and ornate designs of Indian art and architecture are a testament to the country's rich cultural heritage. The majestic Taj Mahal, the stunning Red Fort, and the intricate temples of Khajuraho are just a few examples of India's architectural wonders. India's cultural heritage is also reflected in its music, dance, and literature, with the likes of Rabindranath Tagore, Mahatma Gandhi, and Ravi Shankar being celebrated worldwide. The country's diverse cultural heritage is a reflection of its history, philosophy, and values, which continue to inspire and influence people around the world.India is home to a staggering array of wildlife, with over 1,200 species of birds, 500 species of fish, and 300 species of mammals. The country's diverse geography, ranging from the snow-capped Himalayas to the scorching deserts of Rajasthan, supports a wide range of ecosystems, each with its unique set of flora and fauna. The Sundarbans, the largest mangrove forest in the world, is home to the majestic Bengal tiger, while the Gir Forest National Park is the only habitat of the endangered Asiatic lion. India's wildlife is also characterized by its rich variety of birdlife, with species like the peacock, the parrot, and the eagle being iconic symbols of the country. The country's wetlands, including the famous Keoladeo National Park, are home to a wide range of waterbirds, including the majestic flamingo and the elegant pelican. India's wildlife is not only a source of national pride but also a vital component of the country's ecosystem, providing essential services like pollination, pest control, and climate regulation. The conservation of India's wildlife is a priority, with efforts being made to protect and preserve the country's natural heritage for future generations.India is a country that loves to celebrate, with a wide range of festivals and events taking place throughout the year. From the colorful Holi festival of colors to the majestic Diwali festival of lights, India's festivals are a reflection of the country's rich cultural heritage. The Navratri festival, celebrated over nine days, is a celebration of music, dance, and devotion, with people from all over the country coming together to dance and sing. The Dussehra festival, which marks the victory of good over evil, is celebrated with great fervor, with effigies of Ravana being burned in public. India's festivals are also a time for family and friends to come together, with delicious food, sweet treats, and warm hospitality being an integral part of the celebrations. The country's festivals are not just a source of joy and entertainment but also a way of connecting with one's heritage and culture. Whether it's the majestic Kumbh Mela, the vibrant Ganesh Chaturthi, or the joyous Eid-al-Fitr, India's festivals are a celebration of life, love, and community.India has a rich and diverse history that spans over 5,000 years, with the Indus Valley Civilization being one of the oldest civilizations in the world. The country's history is marked by a series of empires, including the Mauryan, the Gupta, and the Mughal, each leaving its own unique legacy. The ancient Indian kingdoms of Magadha, Kalinga, and Ujjain were known for their rich cultural heritage, with the likes of Chanakya and Aryabhata making significant contributions to the field of politics and mathematics. India's history is also marked by its struggle for independence, with the likes of Mahatma Gandhi, Jawaharlal Nehru, and Subhas Chandra Bose playing a crucial role in the country's freedom movement. The country's history is also characterized by its rich literary and artistic heritage, with the likes of Kalidasa, Rabindranath Tagore, and Ravi Shankar being celebrated worldwide. India's history is a reflection of its people, their struggles, and their triumphs, and it continues to inspire and influence people around the world.Indian cuisine is a reflection of the country's rich cultural heritage, with a wide range of dishes and flavors being enjoyed across the country. From the spicy curries of the south to the rich biryanis of the north, Indian cuisine is a fusion of different flavors, textures, and aromas. The country's diverse geography, with its varied climate, soil, and water, supports a wide range of crops, including rice, wheat, and lentils, which are staples of the Indian diet. Indian cuisine is also characterized by its rich use of spices, with turmeric, cumin, coriander, and chili peppers being some of the most commonly used spices. The country's cuisine is not just a source of nourishment but also a way of connecting with one's heritage and culture. Whether it's the delicious biryani of Hyderabadi, the spicy vada pav of Mumbai, or the sweet jalebi of Jaipur, Indian cuisine is a reflection of the country's rich culinary heritage.Indian fashion is a reflection of the country's rich cultural heritage, with a wide range of styles, fabrics, and designs being enjoyed across the country. From the traditional sarees of the south to the elegant salwar kameez of the north, Indian fashion is a fusion of different styles, with each region having its own unique twist. The country's diverse geography, with its varied climate, soil, and water, supports a wide range of crops, including cotton, silk, and wool, which are used to create a wide range of fabrics. Indian fashion is also characterized by its rich use of colors, with bright hues, intricate patterns, and ornate designs being a hallmark of Indian fashion. The country's fashion industry is not just a source of employment but also a way of connecting with one's heritage and culture. Whether it's the elegant lehengas of Bollywood, the stylish kurtas of the streets, or the traditional angavastram of the temples, Indian fashion is a reflection of the country's rich cultural heritage.Indian music is a reflection of the country's rich cultural heritage, with a wide range of genres, styles, and instruments being enjoyed across the country. From the classical music of the north to the folk music of the south, Indian music is a fusion of different styles, with each region having its own unique twist. The country's diverse geography, with its varied climate, soil, and water, supports a wide range of musical instruments, including the sitar, the tabla, and the tanpura. Indian music is also characterized by its rich use of melodies, with complex ragas and intricate compositions being a hallmark of Indian music. The country's music industry is not just a source of entertainment but also a way of connecting with one's heritage and culture. Whether it's the classical music of Ravi Shankar, the folk music of Lata Mangeshkar, or the pop music of A.R. Rahman, Indian music is a reflection of the country's rich cultural heritage.Indian literature is a reflection of the country's rich cultural heritage, with a wide range of genres, styles, and authors being enjoyed across the country. From the ancient epics of the Ramayana and the Mahabharata to the modern novels of Salman Rushdie and Arundhati Roy, Indian literature is a fusion of different styles, with each region having its own unique twist. The country's diverse geography, with its varied climate, soil, and water, supports a wide range of literary traditions, including the Sanskrit, the Tamil, and the Urdu. Indian literature is also characterized by its rich use of language, with complex metaphors, intricate symbolism, and powerful imagery being a hallmark of Indian literature. The country's literary industry is not just a source of entertainment but also a way of connecting with one's heritage and culture. Whether it's the classical poetry of Kalidasa, the modern fiction of Rohinton Mistry, or the children's literature of Ruskin Bond, Indian literature is a reflection of the country's rich cultural heritage.Indian arts and crafts are a reflection of the country's rich cultural heritage, with a wide range of traditional crafts, such as textiles, pottery, and metalwork, being enjoyed across the country. From the intricate embroidery of the Kashmiri phiran to the colorful block printing of the Rajasthani sarees, Indian arts and crafts are a fusion of different styles, with each region having its own unique twist. The country's diverse geography, with its varied climate, soil, and water, supports a wide range of natural materials, such as cotton, silk, and wool, which are used to create a wide range of crafts. Indian arts and crafts are also characterized by their rich use of colors, with bright hues, intricate patterns, and ornate designs being a hallmark of Indian crafts. The country's artisans are not just skilled craftsmen but also masters of their trade, with each craft being passed down through generations. Whether it's the traditional woodcarvings of the Andhra Pradesh, the beautiful paintings of the Madhubani, or the exquisite jewelry of the Rajasthan, Indian arts and crafts are a reflection of the country's rich cultural heritage.Indian sports are a reflection of the country's rich cultural heritage, with a wide range of traditional and modern sports being enjoyed across the country. From the ancient game of chess to the modern game of cricket, Indian sports are a fusion of different styles, with each region having its own unique twist. The country's diverse geography, with its varied climate, soil, and water, supports a wide range of outdoor activities, such as trekking, mountaineering, and water sports. Indian sports are also characterized by their rich use of physical fitness, with athletes from across the country competing in international events. The country's sports industry is not just a source of entertainment but also a way of connecting with one's heritage and culture. Whether it's the traditional game of kabaddi, the modern game of badminton, or the popular game of cricket, Indian sports are a reflection of the country's rich cultural heritage.Indian science and technology have a rich history, with ancient Indians making significant contributions to the field of mathematics, astronomy, and medicine. From the ancient Indian concept of zero to the modern Indian space program, Indian science and technology have been a driving force behind the country's progress. The country's diverse geography, with its varied climate, soil, and water, supports a wide range of natural resources, such as coal, iron, and copper, which are used to create a wide range of technologies. Indian science and technology are also characterized by their rich use of innovation, with scientists and engineers from across the country working on cutting-edge projects. The country's scientific community is not just a source of knowledge but also a way of connecting with one's heritage and culture. Whether it's the ancient Indian invention of the decimal system, the modern Indian development of the atomic bomb, or the Indian space program's Mars Orbiter Mission, Indian science and technology are a reflection of the country's rich cultural heritage.Indian street food is a reflection of the country's rich cultural heritage, with a wide range of traditional and modern dishes being enjoyed across the country. From the spicy chaat of the north to the sweet jalebi of the south, Indian street food is a fusion of different flavors, textures, and aromas. The country's diverse geography, with its varied climate, soil, and water, supports a wide range of crops, including rice, wheat, and lentils, which are staples of Indian street food. Indian street food is also characterized by its rich use of spices, with turmeric, cumin, coriander, and chili peppers being some of the most commonly used spices. The country's street food vendors are not just skilled cooks but also masters of their trade, with each dish being passed down through generations. Whether it's the popular vada pav of Mumbai, the spicy samosa of Delhi, or the sweet falooda of Kolkata, Indian street food is a reflection of the country's rich cultural heritage.Indian folk music is a reflection of the country's rich cultural heritage, with a wide range of traditional and modern genres being enjoyed across the country. From the ancient folk songs of the north to the modern folk music of the south, Indian folk music is a fusion of different styles, with each region having its own unique twist. The country's diverse geography, with its varied climate, soil, and water, supports a wide range of musical instruments, including the sitar, the tabla, and the tanpura. Indian folk music is also characterized by its rich use of melodies, with complex ragas and intricate compositions being a hallmark of Indian folk music. The country's folk musicians are not just skilled singers but also masters of their trade, with each song being passed down through generations. Whether it's the popular folk song of the Bauls of Bengal, the traditional folk music of the Gond of Madhya Pradesh, or the modern folk music of the Punjabi, Indian folk music is a reflection of the country's rich cultural heritage.Indian textiles are a reflection of the country's rich cultural heritage, with a wide range of traditional and modern fabrics being enjoyed across the country. From the intricate embroidery of the Kashmiri phiran to the colorful block printing of the Rajasthani sarees, Indian textiles are a fusion of different styles, with each region having its own unique twist. The country's diverse geography, with its varied climate, soil, and water, supports a wide range of natural materials, such as cotton, silk, and wool, which are used to create a wide range of textiles. Indian textiles are also characterized by their rich use of colors, with bright hues, intricate patterns, and ornate designs being a hallmark of Indian textiles. The country's textile artisans are not just skilled craftsmen but also masters of their trade, with each fabric being passed down through generations. Whether it's the traditional cotton fabrics of the Andhra Pradesh, the beautiful silk fabrics of the Madhya Pradesh, or the exquisite woolen fabrics of the Jammu and Kashmir, Indian textiles are a reflection of the country's rich cultural heritage.
+    """
+    # chunks = ai.semantic_chunking(text)
+
+    # pprint(chunks)
+
+    qp = QueryProcessor()
+    # ai.add_to_knowledge_base(text=text, fname="USA.txt")
+
+    pprint(
+        ai.retrieve_and_rerank(qp.process_query("tell me what you know about India"))
+    )

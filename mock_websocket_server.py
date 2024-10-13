@@ -5,7 +5,7 @@ import random
 import datetime
 from encryption_utils import encrypt_data, decrypt_data
 from dotenv import load_dotenv
-import os
+import os, math
 
 
 # Load environment variables
@@ -39,15 +39,47 @@ def ensure_fernet_key(key):
 ENCRYPTION_KEY = ensure_fernet_key(ENCRYPTION_KEY)
 
 
+# Initialize variables to maintain the trend
+sales_base = 3000
+customers_base = 120
+average_order_value_base = 100
+customer_satisfaction_base = 4.3
+time_step = 0  # To simulate time progression
+
+
 async def send_mock_data(websocket, path):
+    global time_step
+
     while True:
-        # Generate mock business metrics
+        # Introduce a sine wave trend with some noise for sales and customers
+        sales_trend = (
+            sales_base + 500 * math.sin(time_step / 10) + random.randint(-100, 100)
+        )
+        customers_trend = (
+            customers_base + 20 * math.sin(time_step / 15) + random.randint(-10, 10)
+        )
+
+        # Linear trend with noise for average order value and customer satisfaction
+        average_order_value_trend = (
+            average_order_value_base + (time_step * 0.05) + random.uniform(-10, 10)
+        )
+        customer_satisfaction_trend = (
+            customer_satisfaction_base + (time_step * 0.01) + random.uniform(-0.1, 0.1)
+        )
+
+        # Ensure values stay within realistic bounds
+        sales_trend = max(1000, min(sales_trend, 5000))
+        customers_trend = max(50, min(customers_trend, 200))
+        average_order_value_trend = max(50, min(average_order_value_trend, 200))
+        customer_satisfaction_trend = max(3.5, min(customer_satisfaction_trend, 5.0))
+
+        # Generate mock business metrics with trends
         mock_data = {
             "timestamp": datetime.datetime.now().isoformat(),
-            "sales": random.randint(1000, 5000),
-            "customers": random.randint(50, 200),
-            "average_order_value": round(random.uniform(50, 200), 2),
-            "customer_satisfaction": round(random.uniform(3.5, 5.0), 1),
+            "sales": int(sales_trend),
+            "customers": int(customers_trend),
+            "average_order_value": round(average_order_value_trend, 2),
+            "customer_satisfaction": round(customer_satisfaction_trend, 1),
         }
 
         # Convert data to JSON
@@ -56,7 +88,7 @@ async def send_mock_data(websocket, path):
         # Encrypt the JSON data
         encrypted_data = encrypt_data(json_data, username="WebSocketServer")
 
-        # Send encrypted data
+        print("Sending data:", json_data)
         await websocket.send(encrypted_data)
 
         # Wait for 1 second before sending the next update
