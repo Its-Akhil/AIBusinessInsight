@@ -158,6 +158,43 @@ class LSTMModel:
     #         return self.scaler.inverse_transform([[prediction[0][0]]])[0][0]
     #     except Exception as e:
     #         raise ValueError(f"Error during prediction: {e}")
+    # def predict(self, input_data):
+    #     try:
+    #         # Check the shape of the input data before proceeding
+    #         print("Input data shape before reshaping:", input_data.shape)
+
+    #         # Ensure input_data has at least 2 dimensions
+    #         if len(input_data.shape) < 2:
+    #             raise ValueError("Input data must have at least 2 dimensions.")
+
+    #         # Reshape the input data for LSTM (1 sample, time_steps, num_features)
+    #         input_data_reshaped = input_data.reshape(
+    #             (1, self.time_steps, input_data.shape[1])
+    #         )
+    #         print("Input data shape after reshaping:", input_data_reshaped.shape)
+
+    #         # Make the prediction
+    #         prediction = self.model.predict(input_data_reshaped)
+    #         print("Prediction result:", prediction)
+
+    #         return self.scaler.inverse_transform([[prediction[0][0]]])[0][0]
+    #     except Exception as e:
+    #         raise ValueError(f"Error during prediction: {e}")
+
+    # # def predict(self, input_data):
+    # #     try:
+    # #         # Ensure input_data is scaled
+    # #         input_data_scaled = self.scaler.transform(
+    # #             input_data.reshape(-1, input_data.shape[-1])
+    # #         )  # Reshape if necessary
+    # #         input_data_reshaped = input_data_scaled.reshape(
+    # #             (1, self.time_steps, input_data_scaled.shape[1])
+    # #         )
+    # #         prediction = self.model.predict(input_data_reshaped)
+    # #         return self.scaler.inverse_transform([[prediction[0][0]]])[0][0]
+    # #     except Exception as e:
+    # #         raise ValueError(f"Error during prediction: {e}")
+
     def predict(self, input_data):
         try:
             # Check the shape of the input data before proceeding

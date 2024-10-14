@@ -341,7 +341,154 @@ class DataProcessor:
     def process_data(data):
         data["MA7"] = data["sales"].rolling(window=7).mean()
         data["MA30"] = data["sales"].rolling(window=30).mean()
+
+        # Check if we have enough data to predict
+        if len(previous_20_rows) >= 20:
+            # print(
+            #     len(previous_20_rows), len(previous_20_rows[-20:]), "\n\n\n\n\n\n\n\n\n"
+            # )
+
+            try:
+                # input_data = np.array([[row['input_value'], row['customers'], row['average_order_value'], row['customer_satisfaction']]])
+
+                dictList = []
+
+                # # Collect the last 10 entries from the data buffer
+                # sales = [buffer["sales"] for buffer in previous_20_rows[-10:]]
+                # customers = [buffer["customers"] for buffer in previous_20_rows[-10:]]
+                # average_order_value = [
+                #     buffer["average_order_value"] for buffer in previous_20_rows[-10:]
+                # ]
+                # customer_satisfaction = [
+                #     buffer["customer_satisfaction"] for buffer in previous_20_rows[-10:]
+                # ]
+
+                # # Create a 2D array where each row is a feature
+                # input_data = np.array(
+                #     [sales, customers, average_order_value, customer_satisfaction]
+                # ).T
+
+                # # Scale the data
+                # scaled_data = lstm_model.scaler.fit_transform(input_data)
+
+                # # Optionally, you can unpack the scaled data back into separate variables
+                # (
+                #     scaled_sales,
+                #     scaled_customers,
+                #     scaled_average_order_value,
+                #     scaled_customer_satisfaction,
+                # ) = (
+                #     scaled_data[:, 0],  # Sales
+                #     scaled_data[:, 1],  # Customers
+                #     scaled_data[:, 2],  # Average Order Value
+                #     scaled_data[:, 3],  # Customer Satisfaction
+                # )
+
+                # input_data_lstm = []
+                # for i in range(len(scaled_data) - lstm_model.time_steps):
+                #     input_data_lstm.append(scaled_data[i : i + lstm_model.time_steps])
+
+                # input_data_lstm = np.array(input_data_lstm)
+
+                # predicted_value = lstm_model.predict(input_data_lstm)
+
+                # print("Successful prediction:", predicted_value)
+                # anomaly = np.abs(row["actual_value"] - predicted_value) > threshold
+
+                # Store index of anomalies
+                # if anomaly:
+                # anomaly_indices.append(len(bar_data) - 1)
+                # "sales": [i["sales"] for i in previous_20_rows],
+                # "customers": [i["customers"] for i in previous_20_rows],
+                # "average_order_value": [
+                #     i["average_order_value"] for i in previous_20_rows
+                # ],
+                # "customer_satisfaction": [
+                #     i["customer_satisfaction"] for i in previous_20_rows
+                # ],
+                # x, y = lstm_model.preprocess_data(dictList)
+                dictList = [
+                    {key: value for key, value in i.items() if key != "timestamp"}
+                    for i in previous_20_rows
+                ]
+                predicted_sales = predict_from_buffer(lstm_model, dictList)
+                print(
+                    "\n\n\n\n\n\n<<<<Predicted Sales:>>>>",
+                    len(predicted_sales.tolist()),
+                    type(data),
+                )
+                previous_20_predictions.extend(predicted_sales.tolist())
+
+                n = len(previous_20_predictions)
+                data["predicted_sales"] = data["sales"].copy()
+
+                if n <= len(data):
+                    data["predicted_sales"].iloc[-n:] = previous_20_predictions[-n:]
+                else:
+                    try:
+                        data["predicted_sales"].iloc[-30:] = previous_20_predictions[
+                            -30:
+                        ]
+                    except Exception as e:
+                        print(f"Exception <><><> : {e}")
+                    print("Not enough rows in 'data' to replace with predictions.")
+
+                # dictList = np.tile(dictList, (1, 7))
+                # .reshape(1, 1, 7)
+
+                # # dicList = np.array(
+
+                # #     [
+                # #         [value for key, value in i.items() if key != "timestamp"]
+                # #         for i in previous_20_rows
+                # #     ]
+                # # )
+                # # dictList = np.array(dictList)
+                # # print(dictList)
+                # data["predicted_sales"] = lstm_model.predict(
+                #     dictList,
+                # )
+            except Exception as e:
+                print(f"\n\n\n\n\n\n\nPrediction error \n\n\n\n\n\n : {e}")
+        if "predicted_sales" not in data:
+            data["predicted_sales"] = data["sales"]
         return data
+
+        # if len(data_buffer) >= rows_to_retrain:
+        #     # Retrain the model using the received data
+        #     lstm_model.retrain_lstm("mock_data.txt", data_buffer)
+        #     data_buffer.clear()  # Clear the buffer after retraining
+
+    # Update previous rows for prediction
+    # if len(previous_20_rows) >= 20:
+    #         previous_20_rows.pop(0)
+    #         if len(previous_20_predictions) >= 20:
+    #             previous_20_predictions.pop(0)
+
+    #     previous_20_rows.append(row)
+
+    #     # Check if we have enough data to predict
+    #     if len(data_buffer) >= lstm_model.time_steps:
+    #         try:
+    #             predicted_sales = predict_from_buffer(
+    #                 lstm_model,
+    #                 [
+    #                     {
+    #                         key: value
+    #                         for key, value in i.items()
+    #                         if key != "timestamp"
+    #                     }
+    #                     for i in data_buffer
+    #                 ],
+    #             )
+    #             print("Predicted Sales:", predicted_sales)
+    #         except Exception as e:
+    #             print(f"Prediction error: {e}")
+
+    #     if len(data_buffer) >= rows_to_retrain:
+    #         # Retrain the model using the received data
+    #         lstm_model.retrain_lstm("mock_data.txt", data_buffer)
+    #         data_buffer.clear()  # Clear the buffer after retraining
 
 
 def upload_document(kb):
@@ -417,7 +564,13 @@ def create_dashboard_chart(data):
         ),
         vertical_spacing=0.21,
     )
-
+    fig.add_trace(
+        go.Scatter(
+            x=data["timestamp"], y=data["predicted_sales"], name="Predicted Sales"
+        ),
+        row=1,
+        col=1,
+    )
     # Add traces for each subplot
     fig.add_trace(
         go.Scatter(x=data["timestamp"], y=data["sales"], name="Sales"), row=1, col=1
@@ -425,6 +578,7 @@ def create_dashboard_chart(data):
     fig.add_trace(
         go.Scatter(x=data["timestamp"], y=data["MA7"], name="7-day MA"), row=1, col=1
     )
+
     fig.add_trace(
         go.Scatter(x=data["timestamp"], y=data["MA30"], name="30-day MA"), row=1, col=1
     )
@@ -541,9 +695,15 @@ async def fetch_data(ws_client):
                 continue
 
         new_data = await ws_client.receive_data()
+        # print("\n\n\n\n\n\n", new_data, "\n\n\n\n\n\n\n")
         if new_data is None:
             await asyncio.sleep(2)
             continue
+
+        # if len(previous_20_rows) >= 40:
+        #     previous_20_rows.pop(0)
+
+        previous_20_rows.append(new_data)
 
         store_encrypted_data(new_data, "realtime_data")
         # print(f"New data received: {new_data}")
@@ -625,6 +785,22 @@ def load_dataset():
     return df_resample
 
 
+# def predict(self, input_data):
+
+#     if len(data_buffer) < self.time_steps:
+#         raise ValueError("Not enough data in the buffer for prediction.")
+#     try:
+#         # input_data_scaled = self.scaler.transform(input_data)
+#         input_data_reshaped = input_data.reshape(
+#             (1, self.time_steps, input_data.shape[1])
+#         )
+#         prediction = self.model.predict(input_data_reshaped)
+#         print(prediction, "\n\n\n\n\n\n\n\n\n")
+#         return self.scaler.inverse_transform([[prediction[0][0]]])[0][0]
+#     except Exception as e:
+#         raise ValueError(f"Error during prediction ><><>\n\n\n\n\n: {e}")
+
+
 # Format row to JSON
 def format_row_to_json(row):
     return ", ".join([f"{key}={value}" for key, value in row.items()])
@@ -649,8 +825,22 @@ def predict_from_buffer(lstm_model, data_buffer):
         raise ValueError("Not enough data in the buffer for prediction.")
 
     # Convert the data_buffer to a DataFrame for easy processing
-    df = pd.DataFrame(data_buffer[-20:])
-    data = df.values
+    df = pd.DataFrame(data_buffer)
+    feature_cols = [
+        "sales",
+        "customers",
+        "average_order_value",
+        "customer_satisfaction",
+    ]
+
+    # Ensure all necessary features are present
+    if not all(col in df.columns for col in feature_cols):
+        raise ValueError(
+            f"DataBuffer must contain the following columns: {feature_cols}"
+        )
+
+    # Prepare the data for prediction
+    data = df[feature_cols].values
     scaled_data = lstm_model.scaler.transform(
         data
     )  # Use the scaler from the trained model
@@ -663,7 +853,7 @@ def predict_from_buffer(lstm_model, data_buffer):
     input_data_lstm = np.array(input_data)
 
     # Check input shape
-    # print("Input data shape for prediction:", input_data_lstm.shape)
+    print("Input data shape for prediction:", input_data_lstm.shape)
 
     # Perform prediction
     predictions = lstm_model.model.predict(input_data_lstm)
@@ -671,7 +861,10 @@ def predict_from_buffer(lstm_model, data_buffer):
     # Inverse scale the predictions to get the original scale of sales
     predicted_sales = lstm_model.scaler.inverse_transform(
         np.concatenate([predictions, np.zeros((predictions.shape[0], 3))], axis=1)
-    )[:, 0]
+    )[
+        :, 0
+    ]  # Take only the predicted sales
+
     return predicted_sales
 
 
@@ -734,16 +927,14 @@ async def receive_data():
             # Update previous rows for prediction
             if len(previous_20_rows) >= 20:
                 previous_20_rows.pop(0)
-                if len(previous_20_predictions) >= 20:
-                    previous_20_predictions.pop(0)
 
             previous_20_rows.append(row)
 
             # Check if we have enough data to predict
             if len(data_buffer) >= lstm_model.time_steps:
                 try:
-                    predicted_sales = predict_from_buffer(
-                        lstm_model,
+                    predicted_sales = lstm_model.predict(
+                        # lstm_model,
                         [
                             {
                                 key: value
@@ -753,16 +944,16 @@ async def receive_data():
                             for i in data_buffer
                         ],
                     )
-                    print("Predicted Sales:", predicted_sales)
+                    print(
+                        "_____________________________Predicted Sales:", predicted_sales
+                    )
                 except Exception as e:
-                    print(f"Prediction error: {e}")
+                    print(f"Prediction error :> {e}")
 
-            if len(data_buffer) >= rows_to_retrain:
-                # Retrain the model using the received data
-                lstm_model.retrain_lstm("mock_data.txt", data_buffer)
-                data_buffer.clear()  # Clear the buffer after retraining
-
-            await asyncio.sleep(1)
+            # if len(data_buffer) >= rows_to_retrain:
+            #     # Retrain the model using the received data
+            #     lstm_model.retrain_lstm("mock_data.txt", data_buffer)
+            #     data_buffer.clear()  # Clear the buffer after retraining
 
 
 # Background thread to run asyncio loop for WebSocket
@@ -834,8 +1025,8 @@ def main():
             current_data = global_data.copy()
 
         if not current_data.empty:
+
             processed_data = DataProcessor.process_data(current_data)
-            # print("Processed Data:", processed_data)
 
             with kpi_placeholder.container():
                 col1, col2, col3, col4 = st.columns(4)
